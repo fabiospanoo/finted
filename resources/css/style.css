@@ -1,0 +1,24 @@
+:root {
+    --body-color: #36334A;
+    --card-body-color: #433F5C;
+    --border-color: #58537A;
+    --text-primary: #F5F2FC;
+    --text-secondary: #B7B1D0;
+    --accent-color: #C3B1FF;
+    --accent-text-color: #25194A;
+}
+
+html {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Sora, sans-serif;
+    font-weight: 400;
+    color: var(--text-primary);
+    background-color: var(--body-color);
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
