@@ -15,10 +15,8 @@
         <div class="row g-4">
 
             {{-- Brand --}}
-            <section class="col-12 col-md-6 col-lg-3" aria-label="{{ config('app.name') }}">
-                <a href="{{ url('/') }}" class="site-footer__logo d-inline-block mb-3">
-                    {{ strtoupper(config('app.name', 'Logo')) }}
-                </a>
+            <section class="col-12 col-md-6 col-lg-3">
+                <h6 href="" class="text-primary mb-3">Presto<span class="text-accent">.</span>it</h6>
                 <p class="footer-muted mb-0">
                     Dai una seconda vita agli oggetti che non usi più. Pubblica un annuncio in pochi minuti.
                 </p>
