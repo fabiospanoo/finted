@@ -22,23 +22,10 @@ body {
     padding-right: 200px;
 }
 
-/* Adattamento padding per schermi medi e piccoli */
-@media (max-width: 1400px) {
-    body {
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-}
-@media (max-width: 768px) {
-    body {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-}
 
 /* ========================================================
-   COMPONENTS COMUNI
-   ======================================================== */
+COMPONENTS COMUNI
+======================================================== */
 
 .text-accent {
     color: var(--accent-color) !important;
@@ -65,8 +52,8 @@ body {
 }
 
 /* ========================================================
-   NAVBAR
-   ======================================================== */
+NAVBAR
+======================================================== */
 
 .custom-navbar {
     background-color: var(--body-color);
@@ -137,8 +124,8 @@ body {
 }
 
 /* ========================================================
-   BOTTONI DEL PROGETTO
-   ======================================================== */
+BOTTONI DEL PROGETTO
+======================================================== */
 
 .btn-ui-outline,
 .btn-custom-outline,
@@ -192,8 +179,8 @@ body {
 }
 
 /* ========================================================
-   HERO VISUAL CARD (Box a destra dell'Hero)
-   ======================================================== */
+HERO VISUAL CARD (Box a destra dell'Hero)
+======================================================== */
 
 .hero-box {
     background-color: var(--card-body-color);
@@ -221,8 +208,8 @@ body {
 }
 
 /* ========================================================
-   CARD ANNUNCI (Componente)
-   ======================================================== */
+CARD ANNUNCI (Componente)
+======================================================== */
 
 .card-item {
     background-color: var(--card-body-color);
@@ -273,8 +260,8 @@ body {
 }
 
 /* ========================================================
-   BANNER PROMOZIONALE
-   ======================================================== */
+BANNER PROMOZIONALE
+======================================================== */
 
 .promo-banner-box {
     background-color: var(--card-body-color);
@@ -284,8 +271,8 @@ body {
 }
 
 /* ========================================================
-   DROPDOWN & TOGGLER
-   ======================================================== */
+DROPDOWN & TOGGLER
+======================================================== */
 
 .custom-dropdown-menu {
     background-color: var(--card-body-color);
@@ -311,8 +298,8 @@ body {
 }
 
 /* ========================================================
-   SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
-   ======================================================== */
+SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
+======================================================== */
 
 /* Occupa tutta l'altezza disponibile tra navbar e footer */
 .auth-page-container {
@@ -442,8 +429,8 @@ body {
 }
 
 /* ========================================================
-   STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
-   ======================================================== */
+STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
+======================================================== */
 
 /* Input a pillola per titolo e prezzo */
 .create-input-pill {
@@ -541,8 +528,8 @@ body {
 }
 
 /* ========================================================
-   FOOTER
-   ======================================================== */
+FOOTER
+======================================================== */
 
 .site-footer {
     background: var(--body-color);
@@ -611,4 +598,22 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 999px;
     background: var(--card-body-color);
+} 
+    
+/* Adattamento padding per schermi medi e piccoli */
+@media (max-width: 1400px) {
+    body {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
 }
+@media (max-width: 768px) {
+    body {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+
+
+

@@ -30,7 +30,7 @@
 
         <!-- Breve descrizione -->
         <p class="small text-truncate mb-3 text-secondary" style="font-size: 13px;">
-            {{ $article->description ?? '[Breve descrizione]' }}
+            {{ $article->category_id ?? '[Categoria]' }}
         </p>
     </div>
 
@@ -40,14 +40,14 @@
             € {{ isset($article->price) ? number_format($article->price, 2, ',', '.') : '00,00' }}
         </span>
 
-        @if(isset($article->id))
+        <!-- @if(isset($article->id)) -->
             <a href="{{ route('articles.show', $article) }}" class="btn-custom-outline py-1 px-3" style="font-size: 12px !important;">
                 Dettaglio
             </a>
-        @else
+        <!-- @else
             <a href="#" class="btn-custom-outline py-1 px-3" style="font-size: 12px !important;">
                 Aggiungi
             </a>
-        @endif
+        @endif -->
     </div>
 </div>
