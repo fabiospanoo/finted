@@ -311,6 +311,137 @@ body {
 }
 
 /* ========================================================
+   SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
+   ======================================================== */
+
+/* Occupa tutta l'altezza disponibile tra navbar e footer */
+.auth-page-container {
+    width: 100%;
+    min-height: calc(100vh - 180px);
+    display: flex;
+    align-items: center;
+}
+
+/* Griglia centrale bilanciata (non si disperde sugli schermi ultrawide) */
+.auth-grid {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+}
+
+/* Colonna sinistra */
+.auth-col-left {
+    flex: 1;
+    padding-right: 60px;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Colonna destra */
+.auth-col-right {
+    flex: 1;
+    padding-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Contenitore interno del form (mantiene la larghezza ideale del mockup) */
+.auth-form-content {
+    width: 100%;
+    max-width: 440px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* Switch in alto a destra [ Accedi | Registrati ] */
+.auth-switch-pill {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 4px;
+    display: inline-flex;
+    gap: 4px;
+}
+
+.auth-switch-pill a {
+    padding: 7px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.auth-switch-pill a.active {
+    background-color: var(--accent-color);
+    color: var(--accent-text-color);
+    font-weight: 700;
+}
+
+/* Pillole dei 3 passaggi (1 Registrati, 2 Inserisci annuncio, 3 Libera spazio) */
+.auth-step-pill {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 999px;
+    padding: 8px 18px;
+    display: inline-block;
+}
+
+/* Campi input a pillola */
+.auth-input {
+    background-color: var(--card-body-color) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    border-radius: 999px !important;
+    padding: 12px 22px !important;
+    font-size: 14px !important;
+}
+
+.auth-input::placeholder {
+    color: var(--text-secondary) !important;
+    opacity: 0.7;
+}
+
+.auth-input:focus {
+    background-color: var(--card-body-color) !important;
+    border-color: var(--accent-color) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 0 0 2px rgba(195, 177, 255, 0.25) !important;
+}
+
+/* Bottone Lilla largo */
+.auth-btn {
+    background-color: var(--accent-color) !important;
+    color: var(--accent-text-color) !important;
+    border: 1px solid var(--accent-color) !important;
+    border-radius: 999px !important;
+    font-weight: 700 !important;
+    padding: 12px 24px !important;
+    font-size: 15px !important;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.auth-btn:hover {
+    background-color: #d4c7ff !important;
+    color: var(--accent-text-color) !important;
+}
+
+.auth-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* ========================================================
    FOOTER
    ======================================================== */
 

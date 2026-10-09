@@ -10,7 +10,7 @@
 
 <x-navbar />
 
-<div class="min-vh-100">
+<div class="container-fluid px-0">
     {{ $slot }}
 </div>
 
