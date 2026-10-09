@@ -98,7 +98,7 @@ body {
     border-radius: 999px !important;
     padding: 8px 20px;
     font-size: 14px;
-    width: 480px;
+    width: 100%;
 }
 
 .custom-search::placeholder {

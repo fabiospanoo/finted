@@ -29,7 +29,7 @@
         </li>
       </ul>
 
-      <form class="d-flex my-2 my-lg-0 me-lg-3 flex-grow-1 flex-lg-grow-0" role="search">
+      <form class="d-flex flex-grow-1 my-2 mx-4 my-lg-0" role="search">
         <input
           class="form-control custom-search"
           type="search"
