@@ -22,7 +22,7 @@
             <h5 class="fw-bold mb-0 text-truncate text-primary" style="font-size: 16px; max-width: 80%;">
                 {{ $article->title ?? 'Nome prodotto' }}
             </h5>
-            
+
             <button type="button" class="btn p-0 border-0" title="Salva tra i preferiti">
                 <i class="bi bi-heart fs-6 text-secondary"></i>
             </button>
@@ -30,24 +30,26 @@
 
         <!-- Breve descrizione -->
         <p class="small text-truncate mb-3 text-secondary" style="font-size: 13px;">
-            {{ $article->category_id ?? '[Categoria]' }}
+            {{ $article->description ?? '[Breve descrizione]' }}
         </p>
     </div>
 
     <!-- Prezzo e Bottone azione -->
-    <div class="d-flex justify-content-between align-items-center pt-2" style="border-top: 1px solid var(--border-color);">
+    <div class="d-flex justify-content-between align-items-center pt-2"
+        style="border-top: 1px solid var(--border-color);">
         <span class="fw-bold fs-6 text-primary">
             € {{ isset($article->price) ? number_format($article->price, 2, ',', '.') : '00,00' }}
         </span>
 
-        <!-- @if(isset($article->id)) -->
-            <a href="{{ route('articles.show', $article) }}" class="btn-custom-outline py-1 px-3" style="font-size: 12px !important;">
+        @if(isset($article->id))
+            <a href="{{ route('tutti-gli-articoli', $article) }}" class="btn-custom-outline py-1 px-3"
+                style="font-size: 12px !important;">
                 Dettaglio
             </a>
-        <!-- @else
+        @else
             <a href="#" class="btn-custom-outline py-1 px-3" style="font-size: 12px !important;">
                 Aggiungi
             </a>
-        @endif -->
+        @endif
     </div>
 </div>
