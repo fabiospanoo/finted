@@ -1,11 +1,5 @@
 <x-layout>
     <div class="container-fluid px-0">
-        {{-- <div class="row"></div>
-        <div class="col-12 col-lg-6">
-            <h1 class="h2 mb-1">Benvenuto su Presto.it</h1>
-            <p class="ann-muted mb-4">Il marketplace dove puoi vendere e comprare prodotti di seconda mano.</p>
-        </div>
-    </div> --}}
     <header class="py-5 my-2">
         <div class="container-fluid px-0">
             <div class="row align-items-center gy-4">
@@ -33,12 +27,7 @@
                 <!-- Box con cerchio a destra (identico al wireframe) -->
                 <div class="col-lg-6">
                     <div class="hero-box">
-                        <div class="hero-circle-placeholder">
-                            <i class="bi bi-arrow-repeat"></i>
-                        </div>
-                        <span class="position-absolute bottom-0 start-0 m-4 footer-muted small">
-                            [Immagine hero]
-                        </span>
+                        <img src="https://static.vinted.com/assets/seller-promotion/default/banner-wide-1ca50d3217a3d2402dda712a8e79af381c4bd7cd5cceb0a0b7be17ac2c7522d8.jpg" alt="Immagine hero">
                     </div>
                 </div>
             </div>

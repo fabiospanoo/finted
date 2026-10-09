@@ -183,30 +183,28 @@ BOTTONI DEL PROGETTO
 HERO VISUAL CARD (Box a destra dell'Hero)
 ======================================================== */
 
-.hero-box {
-    background-color: var(--card-body-color);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    height: 380px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+/* Modifica la classe esistente sostituendola con questa */
+.hero-box { 
+  background-color: var(--card-body-color); 
+  border: 1px solid var(--border-color); 
+  border-radius: 24px; 
+  position: relative; 
+  overflow: hidden; 
+  
+  /* Rimosso height: 380px e il flex centralizzato che deformava l'immagine */
+  width: 100%;
+  height: auto; 
+  display: block; 
 }
 
-.hero-circle-placeholder {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    background-color: var(--border-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-color);
-    font-size: 42px;
-}
+/* Aggiungi questa nuova regola subito sotto per gestire l'immagine */
+.hero-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* Garantisce che l'immagine si veda intera */
+  border-radius: 24px; /* Mantiene la curvatura degli angoli anche sull'immagine */
+}    
 
 /* ========================================================
 CARD ANNUNCI (Componente)
@@ -599,6 +597,195 @@ FOOTER
     border: 1px solid var(--border-color);
     border-radius: 999px;
     background: var(--card-body-color);
+}
+
+/* ========================================================
+   DETTAGLIO ANNUNCIO (SHOW BLADE)
+   ======================================================== */
+
+/* Breadcrumb personalizzato */
+.show-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+.show-breadcrumb a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.show-breadcrumb a:hover {
+    color: var(--accent-color);
+}
+
+.show-breadcrumb .separator {
+    color: var(--border-color);
+}
+
+.show-breadcrumb .current {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Box principale dell'immagine / Carosello */
+.show-carousel-box {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    height: 380px;
+}
+
+.show-carousel-box .carousel-inner,
+.show-carousel-box .carousel-item {
+    height: 100%;
+}
+
+.show-carousel-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cerchio centrale placeholder del mockup */
+.show-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-image-placeholder-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: rgba(88, 83, 122, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+}
+
+/* Frecce circolari scure del carosello */
+.show-carousel-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(30, 27, 43, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 5;
+    transition: all 0.2s ease;
+}
+
+.show-carousel-arrow:hover {
+    background-color: var(--body-color);
+    color: var(--accent-color);
+}
+
+.show-carousel-arrow.prev {
+    left: 18px;
+}
+
+.show-carousel-arrow.next {
+    right: 18px;
+}
+
+/* Contatore immagini in basso a destra (es. 1/3) */
+.show-carousel-counter {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    z-index: 4;
+}
+
+/* Miniature (Thumbnails) sotto il box principale */
+.show-thumb-btn {
+    flex: 1;
+    height: 80px;
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    transition: all 0.2s ease;
+}
+
+.show-thumb-btn.active {
+    border: 2px solid var(--accent-color) !important;
+}
+
+.show-thumb-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.show-thumb-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: rgba(88, 83, 122, 0.5);
+}
+
+/* Card laterale del prodotto */
+.show-product-card {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    padding: 34px 30px;
+}
+
+/* Avatar circolare del venditore con iniziali */
+.show-seller-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--body-color);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+/* Link di ritorno agli annunci */
+.show-back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.show-back-link:hover {
+    color: var(--accent-color);
 }
 
 @media (min-width: 2050px) {

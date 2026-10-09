@@ -1,107 +1,141 @@
 <x-layout>
-    <div class="container py-5">
-
-        {{-- Percorso di navigazione --}}
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('tutti-gli-articoli') }}">Annunci</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{ $article->title }}</li>
-            </ol>
+    <div class="p-4 my-2 ">
+        
+        <!-- Breadcrumb identico al mockup (Home / Categoria / Titolo) -->
+        <nav class="show-breadcrumb" aria-label="breadcrumb">
+            <a href="{{ url('/') }}">Home</a>
+            <span class="separator">/</span>
+            <a href="{{ route('tutti-gli-articoli') }}">
+                {{ $article->category->name ?? 'Annunci' }}
+            </a>
+            <span class="separator">/</span>
+            <span class="current">{{ $article->title }}</span>
         </nav>
 
         <div class="row g-5 align-items-start">
 
-            {{-- Colonna sinistra: foto e descrizione --}}
+            <!-- ==========================================
+                 COLONNA SINISTRA: GALLERIA + DESCRIZIONE
+                 ========================================== -->
             <div class="col-12 col-lg-7">
 
-                {{-- Carosello (le foto per ora sono segnaposto) --}}
-                <div id="article-carousel" class="carousel slide mb-4" data-bs-ride="false">
-                    <div class="carousel-indicators">
-                        @for ($i = 0; $i < 3; $i++)
-                            <button type="button" data-bs-target="#article-carousel"
-                                    data-bs-slide-to="{{ $i }}"
-                                    class="{{ $i === 0 ? 'active' : '' }}"
-                                    @if ($i === 0) aria-current="true" @endif
-                                    aria-label="Foto {{ $i + 1 }}"></button>
-                        @endfor
-                    </div>
-
-                    <div class="carousel-inner rounded">
-                        @for ($i = 0; $i < 3; $i++)
+                <!-- 1. Box Immagine Principale con Carosello -->
+                <div id="article-carousel" class="carousel slide show-carousel-box mb-3" data-bs-ride="false">
+                    
+                    <div class="carousel-inner">
+                        @for ($i = 0; $i < 4; $i++)
                             <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                                 @if ($i === 0 && !empty($article->image))
-                                    <img src="{{ asset('storage/' . $article->image) }}"
-                                         class="d-block w-100" alt="{{ $article->title }}">
+                                    {{-- La prima foto è quella reale caricata dall'utente --}}
+                                    <img src="{{ asset('storage/' . $article->image) }}" 
+                                        class="d-block w-100" 
+                                        alt="{{ $article->title }}">
                                 @else
-                                    <div class="ratio ratio-4x3 bg-secondary-subtle">
-                                        <div class="d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-box-seam display-1 text-secondary"></i>
-                                        </div>
-                                    </div>
+                                    {{-- Foto casuali diverse per testare lo scorrimento del carosello --}}
+                                    <img src="https://picsum.photos/800/500?random={{ $i }}" 
+                                        class="d-block w-100" 
+                                        alt="Foto {{ $i + 1 }}">
                                 @endif
                             </div>
                         @endfor
                     </div>
 
-                    <button class="carousel-control-prev" type="button"
-                            data-bs-target="#article-carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Foto precedente</span>
+                    <!-- Frecce circolari scure sui lati -->
+                    <button class="show-carousel-arrow prev" type="button" data-bs-target="#article-carousel" data-bs-slide="prev">
+                        <i class="bi bi-chevron-left"></i>
                     </button>
-                    <button class="carousel-control-next" type="button"
-                            data-bs-target="#article-carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Foto successiva</span>
+                    <button class="show-carousel-arrow next" type="button" data-bs-target="#article-carousel" data-bs-slide="next">
+                        <i class="bi bi-chevron-right"></i>
                     </button>
+
+                    <!-- Indicatore di conteggio in basso a destra -->
+                    <div class="show-carousel-counter" id="carousel-counter">
+                        1/4
+                    </div>
                 </div>
 
-                <h2 class="h5 mb-3">Descrizione</h2>
-                <p class="mb-0">{!! nl2br(e($article->body)) !!}</p>
+                <!-- 2. Riga delle 4 Miniature (Thumbnails interattive) -->
+                <div class="d-flex gap-2 mb-4">
+                    @for ($i = 0; $i < 4; $i++)
+                        <button type="button"
+                                class="show-thumb-btn {{ $i === 0 ? 'active' : '' }}"
+                                data-bs-target="#article-carousel"
+                                data-bs-slide-to="{{ $i }}"
+                                aria-label="Visualizza immagine {{ $i + 1 }}">
+                            @if ($i === 0 && !empty($article->image))
+                                <img src="{{ asset('storage/' . $article->image) }}" alt="Miniatura {{ $i + 1 }}">
+                            @else
+                                <img src="https://picsum.photos/800/500?random={{ $i }}" alt="Miniatura {{ $i + 1 }}">
+                            @endif
+                        </button>
+                    @endfor
+                </div>
+
+                <!-- 3. Descrizione -->
+                <div class="mb-4">
+                    <h2 class="fw-bold text-primary mb-3" style="font-size: 20px;">Descrizione</h2>
+                    <p class="text-secondary small lh-base mb-4 text-break" style="font-size: 14px;">
+                        {{ $article->body }}
+                    </p>
+
+                    <!-- Link Torna agli annunci posizionato sotto la descrizione -->
+                    <a href="{{ route('tutti-gli-articoli') }}" class="show-back-link">
+                        Torna agli annunci
+                    </a>
+                </div>
             </div>
 
-            {{-- Colonna destra: pannello acquisto --}}
+            <!-- ==========================================
+                 COLONNA DESTRA: CARD DETTAGLIO PRODOTTO
+                 ========================================== -->
             <aside class="col-12 col-lg-5">
-                <div class="card">
-                    <div class="card-body p-4">
-                        <span class="badge text-bg-primary mb-3">
+                <div class="show-product-card">
+                    
+                    <!-- Badge Categoria -->
+                    <div class="mb-3">
+                        <span class="badge-accent">
                             {{ $article->category->name ?? 'Senza categoria' }}
                         </span>
+                    </div>
 
-                        <h1 class="h3 mb-2">{{ $article->title }}</h1>
+                    <!-- Titolo Prodotto -->
+                    <h1 class="fw-bold text-primary mb-2 text-break" style="font-size: 26px;">
+                        {{ $article->title }}
+                    </h1>
 
-                        <p class="display-6 fw-bold mb-4">
-                            € {{ number_format($article->price, 2, ',', '.') }}
-                        </p>
+                    <!-- Prezzo -->
+                    <div class="fw-bold text-primary mb-4 text-break" style="font-size: 32px;">
+                        € {{ number_format($article->price, 2, ',', '.') }}
+                    </div>
 
-                        <div class="d-grid gap-2 mb-4">
-                            <a href="#" class="btn btn-primary btn-lg">
-                                <i class="bi bi-envelope me-1"></i> Contatta il venditore
-                            </a>
-                            <button type="button" class="btn btn-outline-secondary">
-                                <i class="bi bi-heart me-1"></i> Salva tra i preferiti
-                            </button>
-                        </div>
+                    <!-- Bottoni di Azione a Pillola -->
+                    <div class="d-flex flex-column gap-2 mb-4">
+                        <!-- Bottone pieno Lilla -->
+                        <a href="#" class="btn-ui-accent w-100 py-2 text-center text-decoration-none fw-bold" style="font-size: 15px;">
+                            Modifica annuncio
+                        </a>
 
-                        <hr>
+                        <!-- Bottone trasparente con bordo -->
+                        <button type="button" class="btn-ui-outline w-100 py-2" style="font-size: 14px;">
+                            Elimina annuncio
+                        </button>
+                    </div>
 
-                        <div class="d-flex align-items-center gap-3">
-                            <i class="bi bi-person-circle fs-2"></i>
-                            <div>
-                                <div class="small text-secondary">
-                                    Pubblicato {{ $article->created_at->diffForHumans() }}
-                                </div>
+                    <!-- Linea divisoria sottile -->
+                    <div class="my-4" style="border-top: 1px solid var(--border-color);"></div>
+
+                    <!-- Informazioni Venditore -->
+                    <div class="d-flex align-items-center gap-3">
+                        <div>
+                            <div class="text-secondary small" style="font-size: 12px;">
+                                Pubblicato {{ $article->created_at->diffForHumans() }}
                             </div>
                         </div>
                     </div>
+
                 </div>
             </aside>
-        </div>
-    </div>
-    <div class="mt-5">
-            <a href="{{ route('tutti-gli-articoli') }}" class="link-secondary text-decoration-none">
-                <i class="bi bi-arrow-left"></i> Torna agli annunci
-            </a>
+
         </div>
     </div>
 </x-layout>

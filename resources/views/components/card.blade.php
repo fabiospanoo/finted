@@ -11,8 +11,8 @@
             @if(isset($article) && !empty($article->image))
                 <img src="{{ asset('storage/' . $article->image) }}" alt="{{ $article->title }}">
             @else
-                <div class="card-circle-placeholder">
-                    <i class="bi bi-box-seam"></i>
+                <div class="card-placeholder d-flex justify-content-center align-items-center">
+                    <img src="https://picsum.photos/400/300" alt="Immagine di esempio">
                 </div>
             @endif
         </div>
@@ -22,10 +22,6 @@
             <h5 class="fw-bold mb-0 text-truncate text-primary" style="font-size: 16px; max-width: 80%;">
                 {{ $article->title ?? 'Nome prodotto' }}
             </h5>
-
-            <button type="button" class="btn p-0 border-0" title="Salva tra i preferiti">
-                <i class="bi bi-heart fs-6 text-secondary"></i>
-            </button>
         </div>
 
         <!-- Breve descrizione -->
