@@ -14,6 +14,7 @@ class CreateArticleForm extends Component
     public $body;
     #[Validate('required|numeric|min:0')]
     public $price;
+    public $category;
 
     public function store(){
         $this->validate();
@@ -22,6 +23,7 @@ class CreateArticleForm extends Component
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
+            'category'=> $this->category
         ]);
 
         $this->resetInputs();
@@ -33,6 +35,7 @@ class CreateArticleForm extends Component
         $this->title = '';
         $this->body = '';
         $this->price = '';
+        $this->category = '';
     }
 
     protected function messages() 
