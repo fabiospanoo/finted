@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Article;
+use App\Models\Category;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -14,7 +15,8 @@ class CreateArticleForm extends Component
     public $body;
     #[Validate('required|numeric|min:0')]
     public $price;
-    public $category;
+    #[Validate('nullable|exists:categories,id')]
+    public $category_id;
 
     public function store(){
         $this->validate();
@@ -23,7 +25,7 @@ class CreateArticleForm extends Component
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
-            'category'=> $this->category
+            'category_id' => $this->category_id
         ]);
 
         $this->resetInputs();
@@ -35,7 +37,7 @@ class CreateArticleForm extends Component
         $this->title = '';
         $this->body = '';
         $this->price = '';
-        $this->category = '';
+        $this->category_id = '';
     }
 
     protected function messages() 
@@ -49,10 +51,17 @@ class CreateArticleForm extends Component
             'price.min' => 'Il campo :attribute e\' troppo basso.',
         ];
     }
+
+    public function selectCategory($id)
+    {
+        $this->category_id = $id;
+    }
     
 
     public function render()
     {
-        return view('livewire.create-article-form');
+        $categories = Category::all();
+        $selectedCategoryName = Category::find($this->category_id)?->name ?? 'Elettronica';
+        return view('livewire.create-article-form', compact('categories', 'selectedCategoryName'));
     }
 }
