@@ -24,9 +24,30 @@
             <a class="nav-link custom-nav-link" href="{{ route('crea-articolo') }}">Inserisci annuncio</a>
           </li>
         @endauth
-        <li class="nav-item">
-          <a class="nav-link custom-nav-link" href="#">Assistenza</a>
-        </li>
+        <li class="nav-item dropdown">
+          <!-- 1. Il link deve avere "dropdown-toggle" e "data-bs-toggle="dropdown"" -->
+          <a class="nav-link custom-nav-link dropdown-toggle" 
+            href="#" 
+            id="categoriesDropdown" 
+            role="button" 
+            data-bs-toggle="dropdown" 
+            aria-expanded="false">
+              Categorie
+          </a>
+
+          <!-- 2. Il menu DEVE trovarsi dentro lo stesso <li> e NON deve avere "dropdown-menu-end" -->
+          <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="categoriesDropdown">
+              <li><a class="dropdown-item custom-dropdown-item" href="#">Tutte le categorie</a></li>
+              <li><hr class="dropdown-divider" style="border-color: var(--border-color);"></li>
+              @foreach($categories as $category)
+                  <li>
+                      <a class="dropdown-item custom-dropdown-item" href="#">
+                          {{ $category->name }}
+                      </a>
+                  </li>
+              @endforeach
+          </ul>
+      </li>
       </ul>
 
       <form class="d-flex flex-grow-1 my-2 mx-4 my-lg-0" role="search">

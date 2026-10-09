@@ -30,7 +30,7 @@
 
         <!-- Breve descrizione -->
         <p class="small text-truncate mb-3 text-secondary" style="font-size: 13px;">
-            {{ $article->description ?? '[Breve descrizione]' }}
+            {{ $article->body ?? '[Breve descrizione]' }}
         </p>
     </div>
 
@@ -42,7 +42,7 @@
         </span>
 
         @if(isset($article->id))
-            <a href="{{ route('tutti-gli-articoli', $article) }}" class="btn-custom-outline py-1 px-3"
+            <a href="{{ route('mostra-articolo', $article) }}" class="btn-custom-outline py-1 px-3"
                 style="font-size: 12px !important;">
                 Dettaglio
             </a>
