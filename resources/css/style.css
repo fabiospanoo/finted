@@ -11,6 +11,7 @@
 html {
     padding: 0;
     margin: 0;
+    background-color: var(--body-color);
 }
 
 body {
@@ -18,22 +19,9 @@ body {
     font-weight: 400;
     color: var(--text-primary);
     background-color: var(--body-color);
+    margin: 0;
     padding-left: 200px;
     padding-right: 200px;
-}
-
-/* Adattamento padding per schermi medi e piccoli */
-@media (max-width: 1400px) {
-    body {
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-}
-@media (max-width: 768px) {
-    body {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 }
 
 /* ========================================================
@@ -611,4 +599,20 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 999px;
     background: var(--card-body-color);
+}
+
+@media (min-width: 2050px) {
+    body {
+        /* Calcola i pixel in eccesso oltre i 1400px e li assegna come padding laterale */
+        padding-left: calc((100% - 2050px) / 2) !important;
+        padding-right: calc((100% - 2050px) / 2) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        /* Evita che 60px/200px schiaccino i contenuti su smartphone */
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
 }
