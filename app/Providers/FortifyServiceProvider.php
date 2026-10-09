@@ -21,7 +21,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        
     }
 
     /**
@@ -57,7 +57,7 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
-         Fortify::registerView(function () {
+        Fortify::registerView(function () {
             return view('auth.register');
         });
     }
