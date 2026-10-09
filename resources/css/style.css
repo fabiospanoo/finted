@@ -22,7 +22,23 @@ body {
     padding-right: 200px;
 }
 
-/* components */
+/* Adattamento padding per schermi medi e piccoli */
+@media (max-width: 1400px) {
+    body {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+}
+@media (max-width: 768px) {
+    body {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+/* ========================================================
+   COMPONENTS COMUNI
+   ======================================================== */
 
 .text-accent {
     color: var(--accent-color) !important;
@@ -32,7 +48,25 @@ body {
     color: var(--text-primary) !important;
 }
 
-/* navbar */
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+/* Badge lilla usato su card e hero */
+.badge-accent {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--accent-text-color);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 999px;
+    letter-spacing: 0.03em;
+}
+
+/* ========================================================
+   NAVBAR
+   ======================================================== */
 
 .custom-navbar {
     background-color: var(--body-color);
@@ -64,7 +98,7 @@ body {
     border-radius: 999px !important;
     padding: 8px 20px;
     font-size: 14px;
-    width: 540px;
+    width: 480px;
 }
 
 .custom-search::placeholder {
@@ -77,6 +111,34 @@ body {
     border-color: var(--accent-color) !important;
     box-shadow: 0 0 0 2px rgba(195, 177, 255, 0.25) !important;
 }
+
+/* Icona circolare per login / preferiti / carrello */
+.nav-circle-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    background-color: var(--card-body-color);
+    transition: all 0.2s ease;
+}
+.nav-circle-btn:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+.nav-circle-btn.btn-filled {
+    background-color: var(--accent-color);
+    color: var(--accent-text-color);
+    border-color: var(--accent-color);
+}
+
+/* ========================================================
+   BOTTONI DEL PROGETTO
+   ======================================================== */
 
 .btn-ui-outline,
 .btn-custom-outline,
@@ -92,6 +154,7 @@ body {
     text-decoration: none !important;
     vertical-align: middle !important;
     cursor: pointer !important;
+    transition: all 0.2s ease;
 }
 
 .btn-ui-outline,
@@ -128,6 +191,102 @@ body {
     color: var(--accent-text-color) !important;
 }
 
+/* ========================================================
+   HERO VISUAL CARD (Box a destra dell'Hero)
+   ======================================================== */
+
+.hero-box {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-circle-placeholder {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    font-size: 42px;
+}
+
+/* ========================================================
+   CARD ANNUNCI (Componente)
+   ======================================================== */
+
+.card-item {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 16px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.card-item:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-color);
+}
+
+.card-media-box {
+    width: 100%;
+    height: 180px;
+    background-color: var(--body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-media-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-circle-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-color);
+    font-size: 28px;
+}
+
+/* ========================================================
+   BANNER PROMOZIONALE
+   ======================================================== */
+
+.promo-banner-box {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 36px 40px;
+}
+
+/* ========================================================
+   DROPDOWN & TOGGLER
+   ======================================================== */
+
 .custom-dropdown-menu {
     background-color: var(--card-body-color);
     border: 1px solid var(--border-color);
@@ -151,7 +310,9 @@ body {
     filter: invert(1) brightness(0.9);
 }
 
-/* footer */
+/* ========================================================
+   FOOTER
+   ======================================================== */
 
 .site-footer {
     background: var(--body-color);
