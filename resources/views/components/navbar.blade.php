@@ -56,6 +56,7 @@
           type="search"
           placeholder="Cerca prodotti..."
           aria-label="Cerca"
+          wire:model="search"
         />
       </form>
 
