@@ -38,30 +38,7 @@
     <!-- ========================================================
             FILTRO CATEGORIE (Pills orizzontali)
             ======================================================== -->
-    <section id="categorie" class="py-2">
-        <div class="container-fluid px-0">
-            <div class="d-flex gap-2 overflow-x-auto pb-2" style="scrollbar-width: none;">
-                <!-- Bottone "Tutti" attivo -->
-                <a href="#" class="btn-custom-accent">
-                    Tutti
-                </a>
-
-                @if(isset($categories) && count($categories) > 0)
-                    @foreach($categories as $category)
-                        <a href="#" class="btn-custom-outline">
-                            {{ $category->name }}
-                        </a>
-                    @endforeach
-                @else
-                    <!-- Placeholder nel caso il db sia momentaneamente vuoto -->
-                    <a href="#" class="btn-custom-outline">[Categoria 1]</a>
-                    <a href="#" class="btn-custom-outline">[Categoria 2]</a>
-                    <a href="#" class="btn-custom-outline">[Categoria 3]</a>
-                    <a href="#" class="btn-custom-outline">[Categoria 4]</a>
-                @endif
-            </div>
-        </div>
-    </section>
+    
 
 
     <!-- ========================================================
@@ -76,7 +53,7 @@
                 </a>
             </div>
 
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-3">
                 @forelse ($articles as $article)
                     <div class="col">
                         <x-card :article="$article" />
