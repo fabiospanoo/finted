@@ -37,14 +37,17 @@
 
           <!-- 2. Il menu DEVE trovarsi dentro lo stesso <li> e NON deve avere "dropdown-menu-end" -->
           <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="categoriesDropdown">
-              <li><a class="dropdown-item custom-dropdown-item" href="#">Tutte le categorie</a></li>
+              <li><a class="dropdown-item custom-dropdown-item" href="{{ route('tutti-gli-articoli') }}">Tutte le categorie</a></li>
               <li><hr class="dropdown-divider" style="border-color: var(--border-color);"></li>
               @foreach($categories as $category)
                   <li>
-                      <a class="dropdown-item custom-dropdown-item" href="#">
+                      <a class="dropdown-item custom-dropdown-item" href="{{ route('categoria', ['category' => $category]) }}">
                           {{ $category->name }}
                       </a>
                   </li>
+                  @if (!$loop->last)
+                      <li><hr class="dropdown-divider" style="border-color: var(--border-color);"></li>
+                  @endif
               @endforeach
           </ul>
       </li>
@@ -56,6 +59,7 @@
           type="search"
           placeholder="Cerca prodotti..."
           aria-label="Cerca"
+          wire:model="search"
         />
       </form>
 

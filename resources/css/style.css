@@ -213,7 +213,7 @@ CARD ANNUNCI (Componente)
 .card-item {
     background-color: var(--card-body-color);
     border: 1px solid var(--border-color);
-    border-radius: 18px;
+    border-radius: 26px;
     padding: 16px;
     height: 100%;
     display: flex;
@@ -232,7 +232,7 @@ CARD ANNUNCI (Componente)
     aspect-ratio: 3 / 5;
     background-color: var(--body-color);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
