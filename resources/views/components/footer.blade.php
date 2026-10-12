@@ -18,7 +18,7 @@
             <section class="col-12 col-md-6 col-lg-3">
                 <div class="align-items-center">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('storage/images/logo.png') }}" 
+                        <img src="{{ asset('images/logo.png') }}" 
                             alt="Logo" 
                             style="height: 25px; width: auto; object-fit: contain;">
                     </a>
