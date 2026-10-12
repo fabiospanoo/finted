@@ -55,10 +55,92 @@ COMPONENTS COMUNI
 /* ========================================================
 NAVBAR
 ======================================================== */
-
+.navbar {
+    padding-bottom: 0px !important;
+}
 .custom-navbar {
     background-color: var(--body-color);
     border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+}
+
+.navbar-logo {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+}
+
+.navbar-navigation {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.navbar-search-group {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    gap: 12px;
+    min-width: 0;
+    margin-left: 24px;
+}
+
+.navbar-search {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.navbar-actions {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.categories-toggle {
+    border: 0;
+    background: transparent;
+}
+
+.navbar-category-panel {
+    width: 100%;
+    min-width: 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: 12px;
+}
+
+.navbar-category-pills {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    min-width: 0;
+    gap: 8px;
+    padding: 16px 0 0px;
+    box-sizing: border-box;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.navbar-category-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar-category-pills > a {
+    flex: 0 0 auto;
+}
+
+.custom-navbar > .container-fluid:last-child {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .brand-text {
@@ -215,6 +297,7 @@ CARD ANNUNCI (Componente)
     border: 1px solid var(--border-color);
     border-radius: 26px;
     padding: 16px;
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -226,10 +309,21 @@ CARD ANNUNCI (Componente)
     border-color: var(--accent-color);
 }
 
+.card-image-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-image-link:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
+    border-radius: 26px;
+}
+
 .card-media-box {
     width: 100%;
-    height: 78%;
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 2 / 3;
     background-color: var(--body-color);
     border: 1px solid var(--border-color);
     border-radius: 26px;
@@ -319,6 +413,11 @@ SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
     align-items: stretch;
 }
 
+.auth-heading {
+    font-size: 42px;
+    line-height: 1.2;
+}
+
 /* Colonna sinistra */
 .auth-col-left {
     flex: 1;
@@ -353,17 +452,22 @@ SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
     border: 1px solid var(--border-color);
     border-radius: 999px;
     padding: 4px;
-    display: inline-flex;
+    display: flex;
     gap: 4px;
+    align-self: center;
+    width: 100%;
+    max-width: 440px;
 }
 
 .auth-switch-pill a {
+    flex: 1 1 0;
     padding: 7px 24px;
     border-radius: 999px;
     font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     color: var(--text-secondary);
+    text-align: center;
     transition: all 0.2s ease;
 }
 
@@ -375,14 +479,24 @@ SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
 
 /* Pillole dei 3 passaggi (1 Registrati, 2 Inserisci annuncio, 3 Libera spazio) */
 .auth-step-pill {
+    flex: auto;
     background-color: var(--card-body-color);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 500;
     border-radius: 999px;
-    padding: 8px 18px;
-    display: inline-block;
+    padding: 8px;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    width: auto;
+}
+
+.auth-step-list {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: 4px;
 }
 
 /* Campi input a pillola */
@@ -427,6 +541,125 @@ SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
 
 .auth-muted {
     color: var(--text-secondary) !important;
+}
+
+@media (min-width: 768px) {
+    .auth-col-left {
+        justify-content: center;
+    }
+
+    .auth-col-left > .my-auto {
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto !important;
+    }
+
+    .auth-col-right {
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .auth-form-content {
+        margin: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .auth-page-container {
+        min-height: 0;
+        align-items: flex-start;
+        padding: 24px 0 40px;
+    }
+
+    .auth-grid {
+        flex-direction: column;
+        gap: 3rem;
+        width: 100%;
+    }
+
+    .auth-col-left {
+        flex: 0 0 auto;
+        padding: 0 0 2rem;
+        border: 0;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .auth-col-left > .my-auto {
+        padding: 0 !important;
+    }
+
+    .auth-step-list {
+        width: 100%;
+        flex-wrap: nowrap !important;
+        gap: 4px !important;
+        justify-content: center;
+    }
+
+    .auth-step-pill {
+        padding: 6px clamp(2px, 1.1vw, 7px);
+        font-size: clamp(7px, 2.5vw, 10px);
+        white-space: nowrap;
+    }
+
+    @media (max-width: 280px) {
+        .auth-step-list {
+            gap: 2px !important;
+        }
+
+        .auth-step-pill {
+            padding-right: 1px;
+            padding-left: 1px;
+        }
+    }
+
+    .auth-col-left > .pt-4 {
+        display: none;
+    }
+
+    .auth-heading {
+        font-size: clamp(30px, 8vw, 38px);
+        line-height: 1.12;
+    }
+
+    .auth-col-right {
+        flex: 0 0 auto;
+        align-items: stretch;
+        gap: 20px;
+        padding: 0;
+        width: 100%;
+    }
+
+    .auth-switch-pill {
+        align-self: center;
+        margin-bottom: 0 !important;
+    }
+
+    .auth-switch-pill a {
+        padding: 7px 10px;
+    }
+
+    .auth-form-content {
+        width: 100%;
+        max-width: 440px;
+        align-self: center;
+        margin: 0;
+    }
+
+    .auth-input {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .auth-form-content .d-flex.justify-content-between {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .auth-btn {
+        white-space: normal;
+    }
 }
 
 /* ========================================================
@@ -790,18 +1023,177 @@ FOOTER
     color: var(--accent-color);
 }
 
+.article-cards-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.article-card-column {
+    min-width: 0;
+}
+
+.article-cards-empty {
+    grid-column: 1 / -1;
+}
+
+.category-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.category-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.category-pills > a {
+    flex: 0 0 auto;
+}
+
+.category-pill {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    box-sizing: border-box;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1.5 !important;
+    padding: 7px 18px !important;
+    vertical-align: middle !important;
+}
+
+@media (max-width: 1600px) {
+    body {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+}
+
 @media (min-width: 2050px) {
     body {
-        /* Calcola i pixel in eccesso oltre i 1400px e li assegna come padding laterale */
         padding-left: calc((100% - 2050px) / 2) !important;
         padding-right: calc((100% - 2050px) / 2) !important;
     }
 }
 
+@media (max-width: 1200px) {
+    .article-cards-row {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .article-cards-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
-    body {
-        /* Evita che 60px/200px schiaccino i contenuti su smartphone */
-        padding-left: 16px !important;
-        padding-right: 16px !important;
+    .article-cards-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 575.98px) {
+    .article-cards-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar .container-fluid.navbar-layout {
+        display: grid !important;
+        grid-template-columns: auto minmax(0, 1fr);
+        column-gap: 8px;
+        row-gap: 8px;
+    }
+
+    .navbar-brand {
+        grid-column: 1;
+        grid-row: 1;
+        margin: 0;
+        justify-self: start;
+        align-self: center;
+    }
+
+    .navbar-logo {
+        height: 26px;
+    }
+
+    .navbar .navbar-content {
+        display: contents;
+    }
+
+    .navbar-navigation {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .navbar-links {
+        flex: 1 1 auto;
+        min-width: 0;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 8px;
+        margin: 0 !important;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .navbar-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navbar-search-group {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-self: center;
+        width: min(100%, 480px);
+        min-width: 0;
+        margin: 0;
+    }
+
+    .navbar-search {
+        flex: 1 1 auto;
+        min-width: 0;
+    }
+
+    .navbar-search:focus-within + .navbar-actions {
+        display: none !important;
+    }
+
+    .navbar-actions {
+        flex: 0 0 auto;
+        margin: 0 !important;
+        white-space: nowrap;
+    }
+
+    .navbar-actions .btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        height: 39px;
+        padding: 0 8px !important;
+        font-size: 11px !important;
+        line-height: 1 !important;
+        box-sizing: border-box;
     }
 }

@@ -11,21 +11,25 @@ class CreateArticleForm extends Component
 {
     #[Validate('required|string|max:255')]
     public $title;
+
     #[Validate('required|string')]
     public $body;
+
     #[Validate('required|numeric|min:0')]
     public $price;
+
     #[Validate('nullable|exists:categories,id')]
     public $category_id;
 
-    public function store(){
+    public function store()
+    {
         $this->validate();
-        
+
         Article::create([
             'title' => $this->title,
             'body' => $this->body,
             'price' => $this->price,
-            'category_id' => $this->category_id
+            'category_id' => $this->category_id,
         ]);
 
         $this->resetInputs();
@@ -33,14 +37,15 @@ class CreateArticleForm extends Component
         session()->flash('success', 'Articolo creato con successo');
     }
 
-    public function resetInputs(){
+    public function resetInputs()
+    {
         $this->title = '';
         $this->body = '';
         $this->price = '';
         $this->category_id = '';
     }
 
-    protected function messages() 
+    protected function messages()
     {
         return [
             'title.required' => 'il campo :attribute è necessario!.',
@@ -56,12 +61,12 @@ class CreateArticleForm extends Component
     {
         $this->category_id = $id;
     }
-    
 
     public function render()
     {
         $categories = Category::all();
-        $selectedCategoryName = Category::find($this->category_id)?->name ?? 'Elettronica';
+        $selectedCategoryName = Category::find($this->category_id)?->name;
+
         return view('livewire.create-article-form', compact('categories', 'selectedCategoryName'));
     }
 }
