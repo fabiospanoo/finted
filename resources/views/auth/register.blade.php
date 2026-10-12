@@ -6,7 +6,7 @@
             <div class="auth-col-left">
                 <!-- Testo centrale -->
                 <div class="my-auto py-3">
-                    <h1 class="fw-bold text-primary mb-3" style="font-size: 42px; line-height: 1.2;">
+                    <h1 class="auth-heading fw-bold text-primary mb-3">
                         Dai una seconda vita<br>alle cose che non usi più
                     </h1>
                     <p class="auth-muted fs-6 mb-4">
@@ -14,7 +14,7 @@
                     </p>
 
                     <!-- Le 3 pillole -->
-                    <div class="d-flex flex-wrap gap-2">
+                    <div class="auth-step-list d-flex gap-2">
                         <span class="auth-step-pill">1 Registrati</span>
                         <span class="auth-step-pill">2 Inserisci annuncio</span>
                         <span class="auth-step-pill">3 Libera spazio</span>

@@ -134,11 +134,13 @@
                 <div class="create-preview-card">
                     
                     <!-- Badge Categoria -->
-                    <div class="mb-3">
-                        <span class="badge-accent">
-                            {{ $selectedCategoryName }}
-                        </span>
-                    </div>
+                    @if ($selectedCategoryName)
+                        <div class="mb-3">
+                            <span class="badge-accent">
+                                {{ $selectedCategoryName }}
+                            </span>
+                        </div>
+                    @endif
 
                     <!-- Titolo Reattivo -->
                     <h3 class="fw-bold text-primary mb-2 text-break" style="font-size: 24px;">
