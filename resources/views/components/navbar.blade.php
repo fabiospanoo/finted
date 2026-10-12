@@ -1,7 +1,13 @@
 <nav class="navbar navbar-expand-lg custom-navbar py-3">
   <div class="container-fluid px-0">
-    <a class="navbar-brand brand-text me-4" href="{{ route('home') }}">Presto<span class="text-accent">.</span>it</a>
-
+      <div class="align-items-center">
+          <a class="navbar-brand" href="{{ route('home') }}">
+              <img src="{{ asset('storage/images/logo.png') }}" 
+                  alt="Logo" 
+                  style="height: 35px; width: auto; object-fit: contain;">
+          </a>
+      </div>
+    
     <button
       class="navbar-toggler custom-toggler"
       type="button"

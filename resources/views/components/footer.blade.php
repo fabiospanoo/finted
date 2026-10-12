@@ -16,8 +16,14 @@
 
             {{-- Brand --}}
             <section class="col-12 col-md-6 col-lg-3">
-                <h6 href="" class="text-primary mb-3">Presto<span class="text-accent">.</span>it</h6>
-                <p class="footer-muted mb-0">
+                <div class="align-items-center">
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="{{ asset('storage/images/logo.png') }}" 
+                            alt="Logo" 
+                            style="height: 25px; width: auto; object-fit: contain;">
+                    </a>
+                </div>
+                <p class="footer-muted mb-0 mt-2">
                     Dai una seconda vita agli oggetti che non usi più. Pubblica un annuncio in pochi minuti.
                 </p>
             </section>
