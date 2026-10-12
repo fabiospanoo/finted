@@ -109,7 +109,7 @@
                     </div>
 
                     <!-- Bottoni di Azione a Pillola -->
-                    <div class="d-flex flex-column gap-2 mb-4">
+                    {{-- <div class="d-flex flex-column gap-2 mb-4">
                         <!-- Bottone pieno Lilla -->
                         <a href="#" class="btn-ui-accent w-100 py-2 text-center text-decoration-none fw-bold" style="font-size: 15px;">
                             Modifica annuncio
@@ -119,7 +119,7 @@
                         <button type="button" class="btn-ui-outline w-100 py-2" style="font-size: 14px;">
                             Elimina annuncio
                         </button>
-                    </div>
+                    </div> --}}
 
                     <!-- Linea divisoria sottile -->
                     <div class="my-4" style="border-top: 1px solid var(--border-color);"></div>
