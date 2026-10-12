@@ -2,7 +2,7 @@
   <div class="container-fluid px-0">
       <div class="align-items-center">
           <a class="navbar-brand" href="{{ route('home') }}">
-              <img src="{{ asset('storage/images/logo.png') }}" 
+              <img src="{{ asset('images/logo.png') }}" 
                   alt="Logo" 
                   style="height: 35px; width: auto; object-fit: contain;">
           </a>
