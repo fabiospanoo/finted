@@ -14,12 +14,12 @@
                             Una frase che descrive il vostro catalogo e il vantaggio principale per chi compra.
                         </p>
                         <div class="d-flex flex-wrap gap-2">
-                            <a href="#annunci" class="btn-custom-accent">
+                            <a href="{{ route('tutti-gli-articoli') }}" class="btn-custom-accent">
                                 Acquista ora
                             </a>
-                            <a href="#" class="btn-custom-outline">
+                            {{-- <a href="#" class="btn-custom-outline">
                                 Scopri le novit&agrave;
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                         </div>
                     
                         <div class="col-md-4 text-md-end">
-                            <a href="#annunci" class="btn-ui-outline">
+                            <a href="{{ route('tutti-gli-articoli') }}" class="btn-ui-outline">
                                 Scopri l'offerta
                             </a>
                         </div>
