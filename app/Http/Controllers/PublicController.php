@@ -13,6 +13,8 @@ class PublicController extends Controller
         $articles = Article::with(['category', 'user'])->latest()->take(5)->get();
         // chiedere ad alessandro
         $categories = Category::orderBy('name')->get();
+        // 
+        $articles = Article::where('is_accepted', true)->orderBy('created_at','desc')->take(5)->get();
 
         return view('welcome', compact('articles', 'categories'));
     }

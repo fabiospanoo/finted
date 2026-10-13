@@ -1,11 +1,11 @@
 @php
-    $link = fn (string $name) => Route::has($name) ? route($name) : '#';
+    $link = fn(string $name) => Route::has($name) ? route($name) : '#';
 
     // Contatti di esempio (dati finti, da sostituire)
     $team = [
-        ['nome' => 'Ivan',    'email' => 'ivan@example.com',    'tel' => '+39 000 123 4561'],
-        ['nome' => 'Mikele',  'email' => 'mikele@example.com',  'tel' => '+39 000 123 4562'],
-        ['nome' => 'Fabio',   'email' => 'fabio@example.com',   'tel' => '+39 000 123 4563'],
+        ['nome' => 'Ivan', 'email' => 'ivan@example.com', 'tel' => '+39 000 123 4561'],
+        ['nome' => 'Mikele', 'email' => 'mikele@example.com', 'tel' => '+39 000 123 4562'],
+        ['nome' => 'Fabio', 'email' => 'fabio@example.com', 'tel' => '+39 000 123 4563'],
         ['nome' => 'Nadeesh', 'email' => 'nadeesh@example.com', 'tel' => '+39 000 123 4564'],
     ];
 @endphp
@@ -18,8 +18,7 @@
             <section class="col-12 col-md-6 col-lg-3">
                 <div class="align-items-center">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('images/logo.png') }}" 
-                            alt="Logo" 
+                        <img src="{{ asset('images/logo.png') }}" alt="Logo"
                             style="height: 25px; width: auto; object-fit: contain;">
                     </a>
                 </div>
@@ -35,6 +34,7 @@
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ $link('annunci.index') }}">Tutti gli annunci</a></li>
                     <li><a href="{{ $link('annunci.create') }}">Inserisci annuncio</a></li>
+                    <li><a href="{{ $link('become.revisor') }}">Lavora con noi</a></li>
                     @guest
                         <li><a href="{{ $link('login') }}">Accedi</a></li>
                         <li><a href="{{ $link('register') }}">Registrati</a></li>
@@ -72,7 +72,8 @@
     {{-- Barra finale --}}
     <div class="site-footer__bottom">
         <div class="container py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
-            <small class="footer-muted">&copy; {{ date('Y') }} {{ config('app.name') }}. Tutti i diritti riservati.</small>
+            <small class="footer-muted">&copy; {{ date('Y') }} {{ config('app.name') }}. Tutti i diritti
+                riservati.</small>
             <a href="#top" class="site-footer__top">Torna su &uarr;</a>
         </div>
     </div>
