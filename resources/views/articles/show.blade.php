@@ -12,6 +12,15 @@
             <span class="current">{{ $article->title }}</span>
         </nav>
 
+        <div class="pt-3 pb-3 align-items-center d-inline-flex">
+            <a href="{{ route('tutti-gli-articoli') }}" class="d-inline-flex align-items-center btn-ui-outline py-2 px-3 text-decoration-none fw-bold gap-2" style="font-size: 14px;">
+                <div class="container-fluid px-0 gap-2 d-flex align-items-center">
+                    <i class="bi bi-arrow-left" style="line-height: 1"></i>
+                    <span>Torna agli annunci</span>
+                </div>
+            </a>
+        </div>
+
         <div class="row g-5 align-items-start">
 
             <!-- ==========================================
@@ -70,19 +79,6 @@
                         </button>
                     @endfor
                 </div>
-
-                <!-- 3. Descrizione -->
-                <div class="mb-4">
-                    <h2 class="fw-bold text-primary mb-3" style="font-size: 20px;">Descrizione</h2>
-                    <p class="text-secondary small lh-base mb-4 text-break" style="font-size: 14px;">
-                        {{ $article->body }}
-                    </p>
-
-                    <!-- Link Torna agli annunci posizionato sotto la descrizione -->
-                    <a href="{{ route('tutti-gli-articoli') }}" class="show-back-link">
-                        Torna agli annunci
-                    </a>
-                </div>
             </div>
 
             <!-- ==========================================
@@ -107,19 +103,15 @@
                     <div class="fw-bold text-primary mb-4 text-break" style="font-size: 32px;">
                         € {{ number_format($article->price, 2, ',', '.') }}
                     </div>
+                    
+                    <!-- Descrizione Prodotto -->
 
-                    <!-- Bottoni di Azione a Pillola -->
-                    {{-- <div class="d-flex flex-column gap-2 mb-4">
-                        <!-- Bottone pieno Lilla -->
-                        <a href="#" class="btn-ui-accent w-100 py-2 text-center text-decoration-none fw-bold" style="font-size: 15px;">
-                            Modifica annuncio
-                        </a>
-
-                        <!-- Bottone trasparente con bordo -->
-                        <button type="button" class="btn-ui-outline w-100 py-2" style="font-size: 14px;">
-                            Elimina annuncio
-                        </button>
-                    </div> --}}
+                    <div class="mb-3 pt-2">
+                        <h2 class="fw-bold text-primary mb-3" style="font-size: 20px;">Descrizione</h2>
+                        <p class="text-secondary small lh-base mb-4 text-break" style="font-size: 14px;">
+                            {{ $article->body }}
+                        </p>
+                    </div>
 
                     <!-- Linea divisoria sottile -->
                     <div class="my-4" style="border-top: 1px solid var(--border-color);"></div>
