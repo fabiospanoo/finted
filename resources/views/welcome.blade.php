@@ -15,36 +15,29 @@
         </div>
     @endif
 
-    </div>
     <div class="container-fluid px-0">
-        <header class="py-5 my-2">
-            <div class="container-fluid px-0">
-                <div class="row align-items-center gy-4">
-                    <div class="col-lg-6 pe-lg-5">
-                        <span class="badge-accent mb-3">
-                            Nuova collezione
-                        </span>
-                        <h1 class="display-5 fw-bold text-primary lh-sm mb-3">
-                            Scelti per durare,<br>pensati per te
-                        </h1>
-                        <p class="fs-6 footer-muted mb-4" style="max-width: 480px;">
-                            Una frase che descrive il vostro catalogo e il vantaggio principale per chi compra.
-                        </p>
-                        <div class="d-flex flex-wrap gap-2">
-                            <a href="{{ route('tutti-gli-articoli') }}" class="btn-custom-accent">
-                                Acquista ora
-                            </a>
-                            {{-- <a href="#" class="btn-custom-outline">
-                                Scopri le novit&agrave;
-                            </a> --}}
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <div class="hero-box">
-                            <img src="https://static.vinted.com/assets/seller-promotion/default/banner-wide-1ca50d3217a3d2402dda712a8e79af381c4bd7cd5cceb0a0b7be17ac2c7522d8.jpg"
-                                alt="Immagine hero">
-                        </div>
+        <header class="home-hero">
+            <img class="home-hero__image"
+                src="https://static.vinted.com/assets/seller-promotion/default/banner-wide-1ca50d3217a3d2402dda712a8e79af381c4bd7cd5cceb0a0b7be17ac2c7522d8.jpg"
+                alt="Immagine hero">
+            <div class="home-hero__inner">
+                <div class="home-hero__card">
+                    <span class="badge-accent mb-3">
+                        Nuova collezione
+                    </span>
+                    <h1 class="display-5 fw-bold text-primary lh-sm mb-3">
+                        Scelti per durare,<br>pensati per te
+                    </h1>
+                    <p class="fs-6 footer-muted mb-4" style="max-width: 480px;">
+                        Una frase che descrive il vostro catalogo e il vantaggio principale per chi compra.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ route('tutti-gli-articoli') }}" class="btn-custom-accent">
+                            Acquista ora
+                        </a>
+                        {{-- <a href="#" class="btn-custom-outline">
+                            Scopri le novit&agrave;
+                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -105,7 +98,6 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </section>
+        </section>
     </div>
 </x-layout>

@@ -59,6 +59,11 @@ NAVBAR
     padding-bottom: 0px !important;
 }
 .custom-navbar {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding-right: 200px;
+    padding-left: 200px;
+    box-sizing: border-box;
     background-color: var(--body-color);
     border-bottom: 1px solid var(--border-color);
     flex-wrap: wrap;
@@ -161,6 +166,15 @@ NAVBAR
     color: var(--accent-color) !important;
 }
 
+.nav-link-with-badge {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: inherit;
+    position: relative;
+}
+
 .custom-search {
     background-color: var(--card-body-color) !important;
     border: 1px solid var(--border-color) !important;
@@ -204,6 +218,24 @@ NAVBAR
     background-color: var(--accent-color);
     color: var(--accent-text-color);
     border-color: var(--accent-color);
+}
+
+.reviewer-empty-state-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+.reviewer-empty-state-icon .bi {
+    display: block;
+    line-height: 1;
+    transform: translateY(3px);
+}
+
+.reviewer-empty-state-icon .bi::before {
+    vertical-align: 0;
 }
 
 /* ========================================================
@@ -262,31 +294,76 @@ BOTTONI DEL PROGETTO
 }
 
 /* ========================================================
-HERO VISUAL CARD (Box a destra dell'Hero)
+HOMEPAGE HERO
 ======================================================== */
 
-/* Modifica la classe esistente sostituendola con questa */
-.hero-box { 
-  background-color: var(--card-body-color); 
-  border: 1px solid var(--border-color); 
-  border-radius: 24px; 
-  position: relative; 
-  overflow: hidden; 
-  
-  /* Rimosso height: 380px e il flex centralizzato che deformava l'immagine */
-  width: 100%;
-  height: auto; 
-  display: block; 
+.home-hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    min-height: clamp(380px, 42vw, 600px);
+    margin-left: calc(50% - 50vw);
+    overflow: hidden;
+    background-color: var(--card-body-color);
 }
 
-/* Aggiungi questa nuova regola subito sotto per gestire l'immagine */
-.hero-box img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain; /* Garantisce che l'immagine si veda intera */
-  border-radius: 24px; /* Mantiene la curvatura degli angoli anche sull'immagine */
-}    
+.home-hero::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+}
+
+.home-hero__image {
+    position: absolute;
+    z-index: -2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+}
+
+.home-hero__inner {
+    width: 100%;
+    padding: 48px 200px;
+    box-sizing: border-box;
+}
+
+.home-hero__card {
+    width: min(100%, 480px);
+    padding: 48px;
+    box-sizing: border-box;
+    background: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+}
+
+@media (max-width: 575.98px) {
+    .home-hero {
+        min-height: 460px;
+    }
+
+    .home-hero__inner {
+        padding: 20px 16px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .home-hero__inner {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media (min-width: 2050px) {
+    .home-hero__inner {
+        padding-right: calc((100vw - 2050px) / 2);
+        padding-left: calc((100vw - 2050px) / 2);
+    }
+}
 
 /* ========================================================
 CARD ANNUNCI (Componente)
@@ -1069,10 +1146,38 @@ FOOTER
     vertical-align: middle !important;
 }
 
+.badge-notification {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  line-height: 1;
+  background: var(--accent-color);
+  color: var(--accent-text-color);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0;
+  border: 2px solid var(--body-color);
+  border-radius: 50%;
+  box-shadow: none;
+  animation: none;
+  position: relative;
+  transform: none !important;
+  margin-left: 0;
+  flex-shrink: 0;
+}
+
 @media (max-width: 1600px) {
     body {
         padding-left: 16px !important;
         padding-right: 16px !important;
+    }
+
+    .custom-navbar {
+        padding-right: 16px;
+        padding-left: 16px;
     }
 }
 
@@ -1080,6 +1185,11 @@ FOOTER
     body {
         padding-left: calc((100% - 2050px) / 2) !important;
         padding-right: calc((100% - 2050px) / 2) !important;
+    }
+
+    .custom-navbar {
+        padding-right: calc((100vw - 2050px) / 2);
+        padding-left: calc((100vw - 2050px) / 2);
     }
 }
 

@@ -12,15 +12,15 @@ class Article extends Model
         'body',
         'price',
         'category_id',
-        'user_id'
+        'user_id',
     ];
 
-     public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-      public function category():BelongsTo
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
@@ -29,11 +29,14 @@ class Article extends Model
     {
         $this->is_accepted = $value;
         $this->save();
+
         return true;
     }
 
     public static function toBeRevisionedCount()
     {
-        return Article::where('is_accepted', null)->count();
+        $revisionedCount = Article::where('is_accepted', null)->count();
+
+        return $revisionedCount;
     }
 }

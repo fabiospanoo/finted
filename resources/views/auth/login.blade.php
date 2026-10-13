@@ -66,11 +66,11 @@
 
                         <!-- Ricordami & Password dimenticata -->
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div class="form-check">
+                            {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                        {{ old('remember') ? 'checked' : '' }}>
                                 <label class="form-check-label auth-muted small" for="remember">Ricordami</label>
-                            </div>
+                            </div> --}}
 
                             @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}" class="small text-accent text-decoration-none">

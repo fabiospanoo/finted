@@ -13,14 +13,17 @@
           @auth
             @if (Auth::user()->is_revisor)
               <li class="nav-item">
-                <a class="nav-link custom-nav-link" href="{{ route('revisor.index') }}">
-                  Lavora Con Noi
-                  <span class="badge rounded-pill bg-danger">{{ App\Models\Article::toBeRevisionedCount() }}
-                  </span>
+                <a class="nav-link custom-nav-link nav-link-with-badge" href="{{ route('revisor.index') }}">
+                  Revisiona Articoli
+                  @if (\App\Models\Article::toBeRevisionedCount() > 0)
+                    <span class="badge-notification">
+                      {{ \App\Models\Article::toBeRevisionedCount() }}
+                      <span class="visually-hidden">articoli da revisionare</span>
+                    </span>
+                  @endif
                 </a>
               </li>
             @endif
-
             <li class="nav-item">
               <a class="nav-link custom-nav-link" href="{{ route('crea-articolo') }}">Inserisci annuncio</a>
             </li>

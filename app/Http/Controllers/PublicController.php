@@ -9,12 +9,9 @@ class PublicController extends Controller
 {
     public function home()
     {
-        // Gli ultimi 4 annunci, dal più recente al meno recente
-        $articles = Article::with(['category', 'user'])->latest()->take(5)->get();
-        // chiedere ad alessandro
         $categories = Category::orderBy('name')->get();
-        // 
-        $articles = Article::where('is_accepted', true)->orderBy('created_at','desc')->take(5)->get();
+
+        $articles = Article::where('is_accepted', true)->orderBy('created_at', 'desc')->take(5)->get();
 
         return view('welcome', compact('articles', 'categories'));
     }
