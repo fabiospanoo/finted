@@ -9,7 +9,7 @@ class ArticleIndexTable extends Component
 {
     public function render()
     {
-        $articles = Article::all();
+        $articles = Article::orderBy('created_at', 'desc')->get();
         return view('livewire.article-index-table', compact('articles'));
     }
 }

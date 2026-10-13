@@ -18,7 +18,7 @@ class CreateArticleForm extends Component
     #[Validate('required|numeric|min:0')]
     public $price;
 
-    #[Validate('nullable|exists:categories,id')]
+    #[Validate('required|exists:categories,id')]
     public $category_id;
 
     public function store()
@@ -54,6 +54,8 @@ class CreateArticleForm extends Component
             'body.min' => 'Il campo :attribute e\' troppo corto.',
             'price.required' => 'il campo :attribute è necessario!.',
             'price.min' => 'Il campo :attribute e\' troppo basso.',
+            'category_id.required' => 'il campo categoria è necessario!.',
+            'category_id.exists' => 'La categoria selezionata non è valida.',
         ];
     }
 

@@ -1,18 +1,15 @@
 <div class="card-item d-flex flex-column justify-content-between p-3 rounded-4">
     <div>
-        <!-- Contenitore Immagine + Badge -->
         @if(isset($article->id))
             <a href="{{ route('mostra-articolo', $article) }}"
                class="card-image-link"
                aria-label="Apri annuncio: {{ $article->title }}">
         @endif
                 <div class="card-media-box position-relative mb-3 overflow-hidden rounded-3">
-                    <!-- Badge categoria o tag -->
                     <span class="badge-accent position-absolute top-0 start-0 m-2">
-                        {{ $article->category->name ?? 'Usato' }}
+                        {{ $article->category->name }}
                     </span>
 
-                    <!-- Immagine con aspect-ratio per evitare deformazioni -->
                     @if(isset($article) && !empty($article->image))
                         <img src="{{ asset('storage/' . $article->image) }}"
                              alt="{{ $article->title }}"
@@ -32,13 +29,13 @@
         <!-- Titolo dell'annuncio -->
         <div class="d-flex justify-content-between align-items-center mb-1">
             <h5 class="fw-bold mb-0 text-truncate text-primary" style="font-size: 16px; max-width: 100%;">
-                {{ $article->title ?? 'Nome prodotto' }}
+                {{ $article->title }}
             </h5>
         </div>
 
         <!-- Breve descrizione -->
         <p class="small text-truncate mb-3 text-secondary" style="font-size: 13px;">
-            {{ $article->body ?? '[Breve descrizione]' }}
+            {{ $article->body }}
         </p>
     </div>
 
