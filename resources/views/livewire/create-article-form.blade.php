@@ -159,7 +159,7 @@
                     <div class="mb-4">
                         @if (!empty($body))
                             <p class="text-secondary small mb-0 text-break" style="line-height: 1.6;">
-                                {{ Str::limit($body, 140) }}
+                                {{ Str::limit($body, 100) }}
                             </p>
                         @else
                             {{-- Linee placeholder tratteggiate come nella foto --}}

@@ -41,8 +41,8 @@
       </div>
 
       <div class="navbar-search-group">
-        <form class="navbar-search d-flex flex-grow-1" role="search">
-          <input class="form-control custom-search" type="search" placeholder="Cerca prodotti..." aria-label="Cerca"
+        <form class="navbar-search d-flex flex-grow-1" role="search" action="{{ route('article.search') }}">
+          <input name="query" class="form-control custom-search" type="search" placeholder="Cerca prodotti..." aria-label="Cerca"
             wire:model="search" />
         </form>
 

@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
@@ -15,17 +14,16 @@ class BecomeRevisor extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
+    public function __construct(
+        public User $user,
+        public string $requestSubject,
+        public string $requestBody,
+    ) {}
 
-   
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: "Rendi revisore l'utente" . $this->user->name,
+            subject: $this->requestSubject,
         );
     }
 

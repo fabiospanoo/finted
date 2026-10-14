@@ -40,10 +40,21 @@
     </div>
 
     <!-- Prezzo -->
-    <div class="pt-2"
+    <div class="pt-2 container d-flex justify-content-between px-0 align-items-center"
         style="border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));">
         <span class="fw-bold fs-6 text-primary">
             € {{ isset($article->price) ? number_format($article->price, 2, ',', '.') : '00,00' }}
         </span>
+        @auth
+            @if (Auth::user()->is_revisor)
+                <form method="POST" action="{{ route('reject', $article) }}">
+                    @csrf
+                    @method('PATCH')
+                    <button type="submit" class="btn-ui-accent btn p-0">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </form>
+            @endif
+        @endauth
     </div>
 </div>
