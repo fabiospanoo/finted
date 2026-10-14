@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Scout\Searchable;
 
 class Article extends Model
 {
+    use Searchable;
+
     protected $fillable = [
         'title',
         'body',
@@ -38,5 +41,15 @@ class Article extends Model
         $revisionedCount = Article::where('is_accepted', null)->count();
 
         return $revisionedCount;
+    }
+
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'body' => $this->body,
+            'category' => $this->category,
+        ];
     }
 }

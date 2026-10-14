@@ -1,18 +1,21 @@
 <div class="rejected-page">
     <div class="mb-4">
-        <span class="badge-accent mb-3">
-            Gestione annunci
-        </span>
+        <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap">
+            <div>
+                <span class="badge-accent mb-3">
+                    Gestione annunci
+                </span>
+                <h2 class="h3 fw-bold text-primary mb-0">
+                    Annunci rifiutati
+                </h2>
+            </div>
 
-        <div class="container-fluid px-0 d-flex justify-content-between align-items-center gap-3 flex-wrap">
-            <h2 class="h3 fw-bold text-primary mb-0">
-                Annunci rifiutati
-            </h2>
-            <div class="input-group mb-3" style="max-width: 75%;">
-                <input type="text" class="form-control" placeholder="Cerca un annuncio..."
+            <div class="input-group rejected-articles-search">
+                <input type="text" class="form-control rejected-search-field" placeholder="Cerca un annuncio..."
                     aria-label="Cerca un annuncio" wire:model.live="search">
 
-                <button class="btn btn-outline-secondary" type="button" wire:click="$set('search', '')">
+                <button class="btn rejected-search-clear" type="button" aria-label="Cancella ricerca"
+                    wire:click="$set('search', '')">
                     <i class="bi bi-x-lg"></i>
                 </button>
             </div>
@@ -29,14 +32,14 @@
 
         <div class="table-responsive rejected-articles-container">
 
-            <table class="table table-hover align-middle mb-0">
+            <table class="table table-hover rejected-articles-table align-middle mb-0">
 
-                <thead class="table-light">
+                <thead>
                     <tr>
                         <th>Titolo</th>
                         <th>Descrizione</th>
-                        <th>Categoria</th>
-                        <th class="text-center">Azioni</th>
+                        <th class="rejected-category-column">Categoria</th>
+                        <th class="rejected-actions-column">Azioni</th>
                     </tr>
                 </thead>
 
@@ -50,37 +53,42 @@
                             </td>
 
                             <td>
-                                {{ Str::limit($article->body, 120) }}
+                                {{ Str::limit($article->body, 80) }}
                             </td>
 
                             <td>
-                                <span class="badge bg-secondary">
+                                <span class="badge rejected-category-badge">
                                     {{ $article->category->name ?? 'Senza categoria' }}
                                 </span>
                             </td>
 
                             <td>
-                                <div class="d-flex justify-content-center gap-2">
+                                <div class="d-flex justify-content-center gap-2 flex-wrap">
 
                                     {{-- Ripristina --}}
-                                    <button type="button" class="btn btn-success btn-sm text-nowrap"
+                                    <<<<<<< HEAD <button type="button" class="btn btn-success btn-sm text-nowrap"=======<button
+                                        type="button" class="btn btn-sm rejected-restore-btn text-nowrap">>>>>>>
+                                        b453f8efb549f93f51ab0c8960d8cd468314d829
                                         wire:click="restore({{ $article->id }})"
                                         wire:confirm="Vuoi ripristinare questo annuncio?" wire:loading.attr="disabled"
                                         wire:target="restore({{ $article->id }})">
 
                                         <i class="bi bi-arrow-counterclockwise me-1"></i>
                                         Ripristina
-                                    </button>
+                                        </button>
 
-                                    {{-- Elimina definitivamente --}}
-                                    <button type="button" class="btn btn-danger btn-sm text-nowrap"
-                                        wire:click="destroy({{ $article->id }})"
-                                        wire:confirm="Sei sicuro di voler eliminare definitivamente questo annuncio?"
-                                        wire:loading.attr="disabled" wire:target="destroy({{ $article->id }})">
+                                        {{-- Elimina definitivamente --}}
+                                        <<<<<<< HEAD <button type="button"
+                                            class="btn btn-danger btn-sm text-nowrap"=======<button type="button"
+                                            class="btn btn-sm rejected-delete-btn text-nowrap">>>>>>>
+                                            b453f8efb549f93f51ab0c8960d8cd468314d829
+                                            wire:click="destroy({{ $article->id }})"
+                                            wire:confirm="Sei sicuro di voler eliminare definitivamente questo annuncio?"
+                                            wire:loading.attr="disabled" wire:target="destroy({{ $article->id }})">
 
-                                        <i class="bi bi-trash me-1"></i>
-                                        Elimina definitivamente
-                                    </button>
+                                            <i class="bi bi-trash me-1"></i>
+                                            Elimina definitivamente
+                                            </button>
 
                                 </div>
                             </td>
@@ -96,7 +104,7 @@
 
     @else
 
-        <div class="alert alert-light border text-center py-4">
+        <div class="rejected-empty-state text-center py-4">
             <i class="bi bi-search fs-3 d-block mb-2"></i>
 
             @if (trim($search) !== '')
@@ -112,6 +120,5 @@
                 </p>
             @endif
         </div>
-
     @endif
 </div>

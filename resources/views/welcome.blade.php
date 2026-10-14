@@ -25,15 +25,15 @@
                     <span class="badge-accent mb-3">
                         Nuova collezione
                     </span>
-                    <h1 class="display-5 fw-bold text-primary lh-sm mb-3">
-                        Scelti per durare,<br>pensati per te
+                    <h1 class="display-5 fw-bold text-primary lh-sm mb-3" style="font-size: 50px;">
+                        L'usato di qualità,<br>a portata di mano.
                     </h1>
                     <p class="fs-6 footer-muted mb-4" style="max-width: 480px;">
-                        Una frase che descrive il vostro catalogo e il vantaggio principale per chi compra.
+                        Dall'elettronica all'abbigliamento: trova affari sicuri ogni giorno.
                     </p>
                     <div class="d-flex flex-wrap gap-2">
                         <a href="{{ route('tutti-gli-articoli') }}" class="btn-custom-accent">
-                            Acquista ora
+                            Esplora le occasioni
                         </a>
                         {{-- <a href="#" class="btn-custom-outline">
                             Scopri le novit&agrave;

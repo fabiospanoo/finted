@@ -1115,7 +1115,7 @@ FOOTER
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 16px;
     margin: 0;
-    padding: 8px;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -1125,6 +1125,56 @@ FOOTER
 
 .article-cards-empty {
     grid-column: 1 / -1;
+}
+
+.revisor-request-page {
+    max-width: 720px;
+}
+
+.revisor-request-card {
+    padding: clamp(22px, 5vw, 40px);
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 26px;
+    box-shadow: 0 18px 48px rgba(15, 12, 30, 0.18);
+}
+
+.revisor-request-icon {
+    display: inline-flex;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background-color: rgba(195, 177, 255, 0.14);
+    color: var(--accent-color);
+    font-size: 21px;
+}
+
+.revisor-request-input {
+    padding: 12px 16px;
+    background-color: var(--body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    color: var(--text-primary);
+}
+
+.revisor-request-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.revisor-request-input:focus {
+    background-color: var(--body-color);
+    border-color: var(--accent-color);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 3px rgba(195, 177, 255, 0.2);
+}
+
+.revisor-request-textarea {
+    min-height: 180px;
+    resize: vertical;
 }
 
 .category-pills {
@@ -1179,27 +1229,167 @@ FOOTER
     flex-shrink: 0;
 }
 
-/* Contenitore della tabella degli annunci rifiutati */
+/* Gestione degli annunci rifiutati */
+.rejected-articles-search {
+    flex: 0 1 64%;
+    max-width: 980px;
+    min-width: 280px;
+    margin-bottom: 0;
+    overflow: hidden;
+    border: 1px solid var(--accent-color);
+    border-radius: 14px;
+    background-color: var(--card-body-color);
+}
+
+.rejected-search-field,
+.rejected-search-field:focus {
+    color: var(--text-primary) !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.rejected-search-field::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+.rejected-search-clear,
+.rejected-search-clear:hover,
+.rejected-search-clear:focus {
+    color: var(--accent-color);
+    background-color: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
 .rejected-articles-container {
-    max-height: 350px;
+    max-height: 390px;
     overflow-x: auto;
     overflow-y: auto;
-    border: 1px solid var(--bs-border-color);
-    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.rejected-articles-container::-webkit-scrollbar {
+    display: none;
+}
+
+.rejected-articles-table {
+    --bs-table-color: var(--text-primary);
+    --bs-table-bg: var(--card-body-color);
+    --bs-table-border-color: var(--border-color);
+    --bs-table-hover-color: var(--text-primary);
+    --bs-table-hover-bg: var(--body-color);
+    min-width: 760px;
+    color: var(--text-primary);
+    background-color: var(--card-body-color);
 }
 
 /* Mantiene visibili le intestazioni durante lo scroll verticale */
-.rejected-articles-container thead th {
+.rejected-articles-table thead th {
     position: sticky;
     top: 0;
     z-index: 2;
-    background-color: var(--bs-tertiary-bg);
+    padding: 17px 22px;
+    color: var(--text-secondary);
+    background-color: var(--card-body-color);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     white-space: nowrap;
 }
 
-/* Evita che i pulsanti vadano a capo */
-.rejected-articles-container td:last-child {
-    min-width: 290px;
+.rejected-articles-table tbody td {
+    padding: 18px 22px;
+    border-color: var(--border-color);
+}
+
+.rejected-articles-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.rejected-articles-table td:first-child {
+    font-weight: 700;
+}
+
+.rejected-category-column,
+.rejected-articles-table td:nth-child(3) {
+    min-width: 180px;
+}
+
+.rejected-actions-column,
+.rejected-articles-table td:last-child {
+    min-width: 340px;
+    text-align: center;
+}
+
+.rejected-category-badge {
+    padding: 6px 12px;
+    color: var(--accent-color);
+    background-color: var(--border-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.rejected-restore-btn {
+    padding: 8px 14px;
+    color: var(--accent-text-color);
+    background-color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.rejected-restore-btn:hover,
+.rejected-restore-btn:focus {
+    color: var(--accent-text-color);
+    background-color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.rejected-delete-btn {
+    padding: 8px 14px;
+    color: var(--bs-danger);
+    background-color: transparent;
+    border: 1px solid var(--bs-danger);
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.rejected-delete-btn:hover,
+.rejected-delete-btn:focus {
+    color: var(--text-primary);
+    background-color: var(--bs-danger);
+    border-color: var(--bs-danger);
+}
+
+.rejected-empty-state {
+    color: var(--text-secondary);
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+}
+
+.rejected-empty-state h3 {
+    color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+    .rejected-articles-search {
+        flex-basis: 100%;
+        max-width: none;
+    }
+
+    .rejected-articles-table thead th,
+    .rejected-articles-table tbody td {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
 }
 
 
