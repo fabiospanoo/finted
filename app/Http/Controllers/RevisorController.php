@@ -14,8 +14,11 @@ class RevisorController extends Controller
     public function index()
     {
         $article_to_check = Article::where('is_accepted', null)->first();
+       
+        // Recupera tutti gli articoli rifiutati
+        $is_rejected = Article::where('is_accepted', false)->latest()->get();
 
-        return view('revisor.index', compact('article_to_check'));
+        return view('revisor.index', compact('article_to_check', 'is_rejected'));
     }
 
     public function accept(Article $article)
@@ -29,7 +32,7 @@ class RevisorController extends Controller
     {
         $article->setAccepted(false);
 
-        return redirect()->route('tutti-gli-articoli')->with('message', "Hai rifiutato l'articolo $article->title");
+        return redirect()->back()->with('message', "Hai rifiutato l'articolo $article->title");
     }
 
     public function becomeRevisor()

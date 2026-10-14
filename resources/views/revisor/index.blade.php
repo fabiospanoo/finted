@@ -90,4 +90,12 @@
             </div>
         @endif
     </div>
+
+
+    <br> 
+
+    <livewire:revisor.rejected-articles />
+    
+</section>
+
 </x-layout>

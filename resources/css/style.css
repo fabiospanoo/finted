@@ -1169,6 +1169,31 @@ FOOTER
   flex-shrink: 0;
 }
 
+/* Contenitore della tabella degli annunci rifiutati */
+.rejected-articles-container {
+    max-height: 350px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 12px;
+}
+
+/* Mantiene visibili le intestazioni durante lo scroll verticale */
+.rejected-articles-container thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: var(--bs-tertiary-bg);
+    white-space: nowrap;
+}
+
+/* Evita che i pulsanti vadano a capo */
+.rejected-articles-container td:last-child {
+    min-width: 290px;
+}
+
+
+/* Media queries */
 @media (max-width: 1600px) {
     body {
         padding-left: 16px !important;
