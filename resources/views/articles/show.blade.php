@@ -32,7 +32,7 @@
                 <div id="article-carousel" class="carousel slide show-carousel-box mb-3" data-bs-ride="false">
                     
                     <div class="carousel-inner">
-                        @for ($i = 0; $i < 6; $i++)
+                        @for ($i = 0; $i < 4; $i++)
                         
                             <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                                 @if ($i === 0 && !empty($article->image))
