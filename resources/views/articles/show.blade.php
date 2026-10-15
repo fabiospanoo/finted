@@ -42,7 +42,7 @@
                                         alt="{{ $article->title }}">
                                 @else
                                 <div class="col-12 col-md-6 mb-3">
-                                    {{-- @if ($article->images->count() > 0)
+                                    @if ($article->images->count() > 0)
                                         <div id="carouselExample" class="carousel slide">
                                             <div class="carousel-inner">
                                                 @foreach ($article->images as $key => $image)
@@ -68,7 +68,7 @@
                                     @else
                                         <img src="https://picsum.photos" alt="Nessuna foto inserita dall'utente">
                                     @endif
-                                </div> --}}
+                                </div>
                                     {{-- Foto casuali diverse per testare lo scorrimento del carosello --}}
                                     <img src="https://picsum.photos/800/500?random={{ $i }}" 
                                         class="d-block w-100" 
