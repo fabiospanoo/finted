@@ -32,7 +32,8 @@
                 <div id="article-carousel" class="carousel slide show-carousel-box mb-3" data-bs-ride="false">
                     
                     <div class="carousel-inner">
-                        @for ($i = 0; $i < 4; $i++)
+                        @for ($i = 0; $i < 6; $i++)
+                        
                             <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
                                 @if ($i === 0 && !empty($article->image))
                                     {{-- La prima foto è quella reale caricata dall'utente --}}
@@ -40,6 +41,34 @@
                                         class="d-block w-100" 
                                         alt="{{ $article->title }}">
                                 @else
+                                <div class="col-12 col-md-6 mb-3">
+                                    {{-- @if ($article->images->count() > 0)
+                                        <div id="carouselExample" class="carousel slide">
+                                            <div class="carousel-inner">
+                                                @foreach ($article->images as $key => $image)
+                                                    <div class="carousel-item @if ($loop->first) active @endif">
+                                                        <img src="{{ Storage::url($image->path) }}" class="d-block w-100 rounded shadow"
+                                                            alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            @if ($article->images->count() > 1)
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                                                    data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                                                    data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <img src="https://picsum.photos" alt="Nessuna foto inserita dall'utente">
+                                    @endif
+                                </div> --}}
                                     {{-- Foto casuali diverse per testare lo scorrimento del carosello --}}
                                     <img src="https://picsum.photos/800/500?random={{ $i }}" 
                                         class="d-block w-100" 

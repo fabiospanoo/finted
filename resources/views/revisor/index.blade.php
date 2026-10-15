@@ -18,6 +18,14 @@
             <div class="row g-5 align-items-start">
 
                 {{-- Foto dell'annuncio --}}
+                @if ($article_to_check->images->count())
+                    @foreach ($article_to_check->images as $key => $image)
+                        <div class="col-6 col-md-4 mb-4">
+                            <img src="{{ Storage::url($image->path) }}" class="img-fluid rounded shadow"
+                                alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
+                        </div>
+                    @endforeach
+                @else
                 <div class="col-12 col-lg-7">
                     <div class="row row-cols-2 row-cols-md-3 g-3">
                         @for ($i = 0; $i < 6; $i++)
@@ -29,6 +37,7 @@
                         @endfor
                     </div>
                 </div>
+                @endif
 
                 {{-- Dati dell'annuncio e azioni --}}
                 <aside class="col-12 col-lg-5">

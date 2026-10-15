@@ -16,10 +16,10 @@
                              class="w-100">
                     @else
                         <div class="card-placeholder w-100 h-100">
-                            <img src="https://picsum.photos/800/800"
+                            <img src="{{$article->images->isNotEmpty() ? Storage::url($article->images->first()->path) : 'https://picsum.photos/800/800'}}"
                                  alt="Immagine di esempio"
                                  class="w-100 h-100">
-                        </div>
+                        </div>       
                     @endif
                 </div>
         @if(isset($article->id))
