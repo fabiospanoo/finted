@@ -43,7 +43,7 @@
       <div class="navbar-search-group">
         <form class="navbar-search d-flex flex-grow-1" role="search" action="{{ route('article.search') }}">
           <input name="query" class="form-control custom-search" type="search" placeholder="Cerca prodotti..." aria-label="Cerca"
-            wire:model="search" />
+            wire:model="search" required />
         </form>
 
         <div class="navbar-actions d-flex align-items-center gap-2">

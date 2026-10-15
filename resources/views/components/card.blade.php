@@ -50,8 +50,8 @@
                 <form method="POST" action="{{ route('reject', $article) }}">
                     @csrf
                     @method('PATCH')
-                    <button type="submit" class="btn-ui-accent btn p-0">
-                        <i class="bi bi-trash3-fill"></i>
+                    <button type="submit" class="btn-ui-accent btn p-0 d-inline-block">
+                        <i class="bi bi-arrow-return-left fw-bolder" style="-webkit-text-stroke: 0.5px currentColor; padding: 0 !important; line-height: 1;""></i>
                     </button>
                 </form>
             @endif
