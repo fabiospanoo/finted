@@ -11,11 +11,11 @@ class RejectedArticles extends Component
 
     public function restore($articleId)
     {
-
         $article = Article::where('is_accepted', false)
             ->findOrFail($articleId);
 
         $article->setAccepted(true);
+        session()->flash('rejected_articles_message', "Hai ripristinato l'articolo {$article->title}.");
     }
 
     public function destroy($articleId)
@@ -31,13 +31,13 @@ class RejectedArticles extends Component
         $rejected_articles = Article::where('is_accepted', false)
             ->with('category')
             ->where(function ($query) {
-                $query->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('body', 'like', '%' . $this->search . '%')
+                $query->where('title', 'like', '%'.$this->search.'%')
+                    ->orWhere('body', 'like', '%'.$this->search.'%')
                     ->orWhereHas('category', function ($categoryQuery) {
                         $categoryQuery->where(
                             'name',
                             'like',
-                            '%' . $this->search . '%'
+                            '%'.$this->search.'%'
                         );
                     });
             })

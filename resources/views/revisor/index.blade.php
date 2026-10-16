@@ -1,6 +1,13 @@
 <x-layout>
     <div class="container-fluid px-0 py-4">
 
+        @if (session('review_message'))
+            <div class="promo-banner-box d-flex align-items-center gap-3 py-3 px-4 mb-4" role="status">
+                <span class="nav-circle-btn btn-filled"><i class="bi bi-check-lg"></i></span>
+                <span class="text-primary">{{ session('review_message') }}</span>
+            </div>
+        @endif
+
         @if ($article_to_check)
             {{-- Intestazione --}}
             <div class="mb-4 mt-4">
@@ -8,40 +15,28 @@
                 <h1 class="h2 fw-bold text-primary mb-2">Revisiona annunci</h1>
             </div>
 
-            {{-- Messaggio di conferma --}}
-            @if (session('success'))
-                <div class="promo-banner-box d-flex align-items-center gap-3 py-3 px-4 mb-4" role="status">
-                    <span class="nav-circle-btn btn-filled"><i class="bi bi-check-lg"></i></span>
-                    <span class="text-primary">{{ session('success') }}</span>
-                </div>
-            @endif
-            <div class="row g-5 align-items-start">
-
-                {{-- Foto dell'annuncio --}}
-                @if ($article_to_check->images->count())
-                    @foreach ($article_to_check->images as $key => $image)
-                        <div class="col-6 col-md-4 mb-4">
-                            <img src="{{ Storage::url($image->path) }}" class="img-fluid rounded shadow"
-                                alt="Immagine {{ $key + 1 }} dell'articolo '{{ $article_to_check->title }}'">
-                        </div>
-                    @endforeach
-                @else
-                <div class="col-12 col-lg-7">
-                    <div class="row row-cols-2 row-cols-md-3 g-3">
-                        @for ($i = 0; $i < 6; $i++)
-                            <div class="col">
-                                <div class="card-media-box" style="height: 200px;">
-                                    <img src="https://picsum.photos/300" alt="Foto {{ $i + 1 }} dell'annuncio">
+            <div class="row g-4 align-items-start">
+                <section class="col-12 col-lg-7" aria-label="Foto dell'annuncio">
+                    @if ($article_to_check->images->isNotEmpty())
+                        <div class="row row-cols-2 row-cols-md-3 g-3">
+                            @foreach ($article_to_check->images as $key => $image)
+                                <div class="col-6 col-md-4 mb-4 text-center">
+                                    <img src="{{ $image->getUrl(400, 600) }}" class="img-fluid rounded shadow"
+                                        alt="Immagine {{ $key + 1 }} dell'articolo {{ $article_to_check->title }}">
                                 </div>
-                            </div>
-                        @endfor
-                    </div>
-                </div>
-                @endif
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="revisor-no-images">
+                            <i class="bi bi-image" aria-hidden="true"></i>
+                            <span>Questo annuncio non contiene immagini.</span>
+                        </div>
+                    @endif
+                </section>
 
                 {{-- Dati dell'annuncio e azioni --}}
                 <aside class="col-12 col-lg-5">
-                    <div class="create-preview-card position-sticky" style="top: 24px;">
+                    <div class="revisor-article-card position-sticky">
 
                         <span class="badge-accent mb-3">
                             {{ $article_to_check->category->name ?? 'Senza categoria' }}
@@ -104,7 +99,5 @@
     <br> 
 
     <livewire:revisor.rejected-articles />
-    
-</section>
 
 </x-layout>

@@ -1,4 +1,4 @@
-<div>
+<div class="create-article-page">
     {{-- Messaggio di conferma pubblicazione --}}
     @if (session('success'))
         <div class="alert alert-success d-flex align-items-center mb-4 rounded-4" role="alert">
@@ -7,66 +7,55 @@
         </div>
     @endif
 
-    <div class="row g-5 align-items-start">
-        
-        <!-- ==========================================
-             COLONNA SINISTRA: FORM DI INSERIMENTO
-             ========================================== -->
-        <div class="col-12 col-lg-7">
-            <!-- Intestazione -->
-            <div class="mb-4">
-                <h1 class="fw-bold text-primary mb-2" style="font-size: 38px;">
-                    Cosa vuoi vendere?
-                </h1>
-                <p class="text-secondary small mb-0">
-                    I campi contrassegnati con * sono obbligatori.
-                </p>
-            </div>
+    <header class="create-page-heading mb-4">
+        <span class="badge-accent mb-2">Nuovo annuncio</span>
+        <h1 class="fw-bold text-primary mb-2">Cosa vuoi vendere?</h1>
+        <p class="text-secondary small mb-0">Completa i dettagli e carica 6 immagini per pubblicare l'annuncio.</p>
+    </header>
 
-            <form wire:submit.prevent="store" novalidate>
-               
-            {{-- inserimento immagini --}}
-            <div class="mb-3">
-                <input type="file" wire:model.live="temporary_images" multiple
-                    class="form-control shadow @error('temporary_images.*') is-invalid @enderror" placeholder="Img/"/>
-                @error('temporary_images.*')
-                    <p class="fst-italic text-danger">{{ $message }}</p>
-                @enderror
-                @error('temporary_images')
-                    <p class="fst-italic text-danger">{{ $message }}</p>
-                @enderror
-            </div>
-            @if (!empty($images))
-                <div class="row">
-                    <div class="col-12">
-                        <p>Photo preview:</p>
-                        <div class="row border border-4 border-success rounded shadow py-4">
-                            @foreach ($images as $key => $image)
-                                <div class="col d-flex flex-column align-items-center my-3">
-                                    <div class="img-preview mx-auto shadow rounded"
-                                        style="background-image: url({{ $image->temporaryUrl() }});"></div>
-                                </div>
-                            @endforeach
+    <div class="row g-4 align-items-stretch create-article-layout">
+        <div class="col-12 col-lg-6">
+            <div class="create-form-card">
+                <form wire:submit.prevent="store" novalidate>
+                    <div class="create-upload-section mb-4">
+                        <div class="d-flex align-items-center justify-content-between gap-3 mb-2">
+                            <span class="form-label fw-semibold mb-0">Foto</span>
+                            <span class="create-image-count">{{ count($images) }} / 6</span>
                         </div>
+                        <p class="text-secondary small mb-3">Aggiungi 6 immagini, massimo 1 MB ciascuna.</p>
+                        <input id="temporary_images" type="file" wire:model.live="temporary_images" accept="image/*" multiple
+                            class="create-upload-input @error('temporary_images.*') is-invalid @enderror @error('temporary_images') is-invalid @enderror @error('images') is-invalid @enderror"/>
+                        <div class="create-upload-grid">
+                            @for ($slot = 0; $slot < 6; $slot++)
+                                @if (isset($images[$slot]))
+                                    <button type="button"
+                                            class="create-upload-slot has-image"
+                                            wire:click="removeImage({{ $slot }})"
+                                            aria-label="Rimuovi immagine {{ $slot + 1 }}">
+                                        <img src="{{ $images[$slot]->temporaryUrl() }}" alt="Immagine caricata {{ $slot + 1 }}">
+                                        <span class="create-upload-remove" aria-hidden="true">&times;</span>
+                                    </button>
+                                @else
+                                    <label for="temporary_images" class="create-upload-slot" aria-label="Aggiungi immagine {{ $slot + 1 }}">
+                                        <i class="bi bi-plus-lg" aria-hidden="true"></i>
+                                    </label>
+                                @endif
+                            @endfor
+                        </div>
+                        <div wire:loading wire:target="temporary_images" class="text-secondary small mt-2">
+                            Caricamento immagini...
+                        </div>
+                        @error('temporary_images.*')
+                            <p class="fst-italic text-danger mt-2">{{ $message }}</p>
+                        @enderror
+                        @error('temporary_images')
+                            <p class="fst-italic text-danger mt-2">{{ $message }}</p>
+                        @enderror
+                        @error('images')
+                            <p class="fst-italic text-danger mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
-                </div>
-            @endif
-            
-            <p>Photo preview:</p>
-                <div class="row border border-4 border-success routned shadow py-4">
-                    @foreach ($images as $key => $image)
-                        <div class="col d-flex flex-column align-items-center my-3">
-                            <div
-                                class="img-preview mx-auto shadow rounded"
-                                style="background-image: url({{ $image->temporaryUrl() }});">
-                            </div>
-                            <button type="button" class="btn mt-1 btn-danger "
-                                wire:click="removeImage({{ $key }})">X</button>
-                        </div>
-                    @endforeach
-                </div>
 
-                <!-- 1. Titolo -->
                 <div class="mb-4">
                     <label for="title" class="form-label text-secondary small fw-semibold mb-1">
                         Titolo *
@@ -158,60 +147,73 @@
                     </button>
                 </div>
 
-            </form>
+                </form>
+            </div>
         </div>
 
-        <!-- ==========================================
-             COLONNA DESTRA: ANTEPRIMA REATTIVA LIVEWIRE
-             ========================================== -->
-        <div class="col-12 col-lg-5" style="padding-top: 6rem;">
-            <div class="sticky-top" style="top: 30px;">
-                <!-- Etichetta sopra la card -->
-                <span class="text-secondary small fw-semibold d-block mb-1">
-                    Anteprima annuncio
-                </span>
+        <aside class="col-12 col-lg-6">
+            <div class="create-preview-panel">
+                <div class="create-preview-heading">
+                    <span class="fw-semibold">Anteprima</span>
+                    <span class="text-secondary small">come nel catalogo</span>
+                </div>
 
-                <!-- Card Anteprima (Mockup) -->
-                <div class="create-preview-card">
-                    
-                    <!-- Badge Categoria -->
-                    @if ($selectedCategoryName)
-                        <div class="mb-3">
-                            <span class="badge-accent">
+                <div class="card-item create-preview-card">
+                    <div class="card-media-box create-preview-media mb-3">
+                        @if ($selectedCategoryName)
+                            <span class="badge-accent position-absolute top-0 start-0 m-2">
                                 {{ $selectedCategoryName }}
                             </span>
+                        @else
+                            <span class="badge-accent position-absolute top-0 start-0 m-2">
+                                Categoria
+                            </span>
+                        @endif
+                        <div id="create-preview-carousel" class="carousel slide create-preview-carousel" data-bs-ride="false">
+                            <div class="carousel-inner">
+                                @for ($slot = 0; $slot < 6; $slot++)
+                                    <div class="carousel-item {{ $slot === 0 ? 'active' : '' }}">
+                                        @if (isset($images[$slot]))
+                                            <img src="{{ $images[$slot]->temporaryUrl() }}"
+                                                alt="Anteprima immagine {{ $slot + 1 }} dell'annuncio">
+                                        @else
+                                            <div class="create-preview-empty-image" aria-label="Immagine {{ $slot + 1 }} non ancora selezionata">
+                                                <i class="bi bi-image" aria-hidden="true"></i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endfor
+                            </div>
+
+                            <button class="carousel-control-prev" type="button" data-bs-target="#create-preview-carousel" data-bs-slide="prev" aria-label="Immagine precedente">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#create-preview-carousel" data-bs-slide="next" aria-label="Immagine successiva">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </button>
+
                         </div>
-                    @endif
-
-                    <!-- Titolo Reattivo -->
-                    <h3 class="fw-bold text-primary mb-2 text-break" style="font-size: 24px;">
-                        {{ !empty($title) ? $title : "[Titolo dell'annuncio]" }}
-                    </h3>
-
-                    <!-- Prezzo Reattivo -->
-                    <div class="fw-bold fs-4 text-primary mb-3">
-                        € {{ !empty($price) && is_numeric($price) ? number_format((float)$price, 2, ',', '.') : '0,00' }}
                     </div>
 
-                    <!-- Divisore orizzontale della card -->
-                    <div class="create-preview-divider mb-3"></div>
+                    <div class="create-preview-details">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h5 class="fw-bold mb-0 text-truncate text-primary create-preview-title">
+                                {{ !empty($title) ? $title : '[Titolo dell\'annuncio]' }}
+                            </h5>
+                        </div>
 
-                    <!-- Descrizione Reattiva oppure linee segnaposto (mockup) -->
-                    <div class="mb-4">
-                        @if (!empty($body))
-                            <p class="text-secondary small mb-0 text-break" style="line-height: 1.6;">
-                                {{ Str::limit($body, 100) }}
-                            </p>
-                        @else
-                            {{-- Linee placeholder tratteggiate come nella foto --}}
-                            <div class="d-flex flex-column gap-2 py-1">
-                                <div class="create-placeholder-line w-75"></div>
-                                <div class="create-placeholder-line w-50"></div>
-                            </div>
-                        @endif
+                        <p class="small text-truncate mb-3 text-secondary create-preview-body">
+                            {{ !empty($body) ? $body : 'La descrizione del tuo annuncio apparirà qui.' }}
+                        </p>
+
+                        <div class="pt-2 d-flex justify-content-between px-0 align-items-center create-preview-price">
+                            <span class="fw-bold fs-6 text-primary">
+                                € {{ !empty($price) && is_numeric($price) ? number_format((float) $price, 2, ',', '.') : '00,00' }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
     </div>
 </div>
