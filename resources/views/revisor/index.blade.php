@@ -20,9 +20,11 @@
                     @if ($article_to_check->images->isNotEmpty())
                         <div class="row row-cols-2 row-cols-md-3 g-3">
                             @foreach ($article_to_check->images as $key => $image)
-                                <div class="col-6 col-md-4 mb-4 text-center">
-                                    <img src="{{ $image->getUrl(400, 600) }}" class="img-fluid rounded shadow"
-                                        alt="Immagine {{ $key + 1 }} dell'articolo {{ $article_to_check->title }}">
+                                <div class="col-6 col-md-4">
+                                    <div class="revisor-article-image shadow">
+                                        <img src="{{ $image->getUrl() }}"
+                                            alt="Immagine {{ $key + 1 }} dell'articolo {{ $article_to_check->title }}">
+                                    </div>
                                 </div>
                             @endforeach
                         </div>

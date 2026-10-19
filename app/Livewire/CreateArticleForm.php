@@ -41,13 +41,14 @@ class CreateArticleForm extends Component
             'body' => 'required|string',
             'price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:categories,id',
-            'images' => 'required|array|size:6',
+            'images' => 'required|array|min:1|max:6',
             'images.*' => 'image|max:1024',
         ], [
-            'images.required' => 'Per pubblicare l\'annuncio devi caricare esattamente 6 immagini.',
-            'images.size' => 'Per pubblicare l\'annuncio devi caricare esattamente 6 immagini.',
-            'images.*.image' => 'Ogni file deve essere un\'immagine valida.',
-            'images.*.max' => 'Ogni immagine deve pesare al massimo 1 MB.',
+            'images.required' => __('validation.custom.images.required'),
+            'images.min' => __('validation.custom.images.min'),
+            'images.max' => __('validation.custom.images.max'),
+            'images.*.image' => __('validation.custom.images.invalid_file'),
+            'images.*.max' => __('validation.custom.images.file_size'),
         ]);
 
         $this->article = Article::create([
@@ -94,9 +95,10 @@ class CreateArticleForm extends Component
         ];
     }
 
-    public function selectCategory($id)
+    public function selectCategory(int $id): void
     {
         $this->category_id = $id;
+        $this->resetValidation('category_id');
     }
 
     public function render()
@@ -115,7 +117,7 @@ class CreateArticleForm extends Component
         ]);
 
         if (count($this->images) + count($this->temporary_images) > 6) {
-            $this->addError('temporary_images', 'Puoi caricare al massimo 6 immagini.');
+            $this->addError('temporary_images', __('validation.custom.images.max'));
             $this->temporary_images = [];
 
             return;

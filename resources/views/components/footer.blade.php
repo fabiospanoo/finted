@@ -32,9 +32,12 @@
                 <h2 class="h6 mb-3 esplora">{{ __('ui.esplora') }}</h2>
                 <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
                     <li><a href="{{ url('/') }}" class="home">{{ __('ui.home') }}</a></li>
-                    <li><a href="{{ $link('annunci.index') }}" class="tutti-gli-annunci">{{ __('ui.tutti-gli-annunci') }}</a></li>
-                    <li><a href="{{ $link('annunci.create') }}" class="inserisci-annuncio">{{ __('ui.inserisci-annuncio') }}</a></li>
-                    <li><a href="{{ $link('become.revisor') }}" class="lavora-con-noi">{{ __('ui.lavora-con-noi') }}</a></li>
+                    <li><a href="{{ $link('tutti-gli-articoli') }}"
+                            class="tutti-gli-annunci">{{ __('ui.tutti-gli-annunci') }}</a></li>
+                    <li><a href="{{ $link('crea-articolo') }}"
+                            class="inserisci-annuncio">{{ __('ui.inserisci-annuncio') }}</a></li>
+                    <li><a href="{{ $link('become.revisor') }}" class="lavora-con-noi">{{ __('ui.lavora-con-noi') }}</a>
+                    </li>
                     @guest
                         <li><a href="{{ $link('login') }}" class="accedi">{{ __('ui.accedi') }}</a></li>
                         <li><a href="{{ $link('register') }}" class="registrati">{{ __('ui.registrati') }}</a></li>
@@ -60,10 +63,10 @@
             <nav class="col-6 col-md-3 col-lg-3" aria-label="Informazioni legali">
                 <h2 class="h6 mb-3 informazioni">{{ __('ui.informazioni') }}</h2>
                 <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-                    <li><a href="#" class="chi-siamo">{{ __('ui.chi-siamo') }}</a></li>
-                    <li><a href="#" class="privacy">{{ __('ui.privacy') }}</a></li>
-                    <li><a href="#" class="termini-e-condizioni">{{ __('ui.termini-e-condizioni') }}</a></li>
-                    <li><a href="#" class="cookie">{{ __('ui.cookie') }}</a></li>
+                    <li><a href="{{ route('chi-siamo') }}" class="chi-siamo">{{ __('ui.chi-siamo') }}</a></li>
+                    <li><a href="{{ route('privacy') }}" class="privacy">{{ __('ui.privacy') }}</a></li>
+                    <li><a href="{{ route('termini-e-condizioni') }}"
+                            class="termini-e-condizioni">{{ __('ui.termini-e-condizioni') }}</a></li>
                 </ul>
             </nav>
         </div>
@@ -72,7 +75,8 @@
     {{-- Barra finale --}}
     <div class="site-footer__bottom">
         <div class="container py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
-            <small class="footer-muted">&copy; {{ date('Y') }} {{ config('app.name') }}. <span class="tutti-i-diritti-riservati">{{ __('ui.tutti-i-diritti-riservati') }}</span></small>
+            <small class="footer-muted">&copy; {{ date('Y') }} {{ config('app.name') }}. <span
+                    class="tutti-i-diritti-riservati">{{ __('ui.tutti-i-diritti-riservati') }}</span></small>
             <a href="#top" class="site-footer__top torna-su">{{ __('ui.torna-su') }} &uarr;</a>
         </div>
     </div>

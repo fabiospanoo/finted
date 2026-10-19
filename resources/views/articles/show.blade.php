@@ -28,42 +28,37 @@
                  ========================================== -->
             <div class="col-12 col-lg-6 show-gallery-column">
 
-                <div class="show-gallery-layout mb-4">
+                <div class="show-gallery-layout {{ $article->images->count() <= 1 ? 'show-gallery-single' : '' }} mb-4">
                     <!-- Miniature interattive a sinistra del carosello -->
-                    <div class="show-carousel-thumbnails">
-                        @forelse ($article->images as $key => $image)
+                    @if ($article->images->count() > 1)
+                        <div class="show-carousel-thumbnails">
+                            @foreach ($article->images as $key => $image)
                             <button type="button"
                                     class="show-thumb-btn {{ $loop->first ? 'active' : '' }}"
                                     data-bs-target="#article-carousel"
                                     data-bs-slide-to="{{ $key }}"
                                     aria-label="Visualizza immagine {{ $key + 1 }}">
-                                <img src="{{ $image->getUrl(400, 600) }}" alt="Miniatura {{ $key + 1 }}">
+                                <img src="{{ $image->getUrl() }}" alt="Miniatura {{ $key + 1 }}">
                             </button>
-                        @empty
-                            <button type="button"
-                                    class="show-thumb-btn active"
-                                    data-bs-target="#article-carousel"
-                                    data-bs-slide-to="0"
-                                    aria-label="Visualizza immagine predefinita">
-                                <img src="https://picsum.photos/800/500?random=0" alt="Immagine predefinita">
-                            </button>
-                        @endforelse
-                    </div>
+                            @endforeach
+                        </div>
+                    @endif
 
                     <!-- Immagine principale verticale con carosello -->
                     <div id="article-carousel" class="carousel slide show-carousel-box" data-bs-ride="false">
                         <div class="carousel-inner">
                             @forelse ($article->images as $key => $image)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <img src="{{ $image->getUrl(400, 600) }}"
+                                    <img src="{{ $image->getUrl() }}"
                                         class="d-block w-100 rounded shadow"
                                         alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}">
                                 </div>
                             @empty
                                 <div class="carousel-item active">
-                                    <img src="https://picsum.photos/800/500?random=0"
-                                        class="d-block w-100"
-                                        alt="Nessuna foto inserita dall'utente">
+                                    <div class="show-image-placeholder" role="img" aria-label="{{ __('ui.nessuna-immagine') }}">
+                                        <i class="bi bi-image" aria-hidden="true"></i>
+                                        <span>{{ __('ui.nessuna-immagine') }}</span>
+                                    </div>
                                 </div>
                             @endforelse
                         </div>
@@ -77,9 +72,11 @@
                             </button>
                         @endif
 
-                        <div class="show-carousel-counter" id="carousel-counter">
-                            1/{{ max($article->images->count(), 1) }}
-                        </div>
+                        @if ($article->images->count() > 1)
+                            <div class="show-carousel-counter" id="carousel-counter">
+                                1/{{ $article->images->count() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

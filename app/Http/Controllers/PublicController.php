@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -31,10 +32,25 @@ class PublicController extends Controller
         return view('articles.searched', ['articles' => $articles, 'query' => $query]);
     }
 
-
     public function setLanguage($lang)
     {
         session()->put('locale', $lang);
+
         return redirect()->back();
+    }
+
+    public function aboutUs()
+    {
+        return view('info.chi-siamo');
+    }
+
+    public function privacyPolicy(): View
+    {
+        return view('info.privacy');
+    }
+
+    public function termsAndConditions(): View
+    {
+        return view('info.termini-e-condizioni');
     }
 }

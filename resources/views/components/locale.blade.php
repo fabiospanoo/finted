@@ -1,6 +1,6 @@
-<form action="{{ route('language', $lang) }}" method="POST" class="d-inline">
-    @csrf
-    <button type="submit" class="btn">
-        <img src="{{ asset('vendor/blade-flags/country-' . $lang . '.svg') }}" width="32" height="32">
-    </button>
-</form>
+<img
+    src="{{ asset('vendor/blade-flags/country-' . $nation . '.svg') }}"
+    class="language-flag"
+    alt=""
+    aria-hidden="true"
+>

@@ -182,12 +182,18 @@ return [
 
     'custom' => [
         'images' => [
-            'required' => 'To publish the listing you must upload exactly 6 images.',
-            'size' => 'To publish the listing you must upload exactly 6 images.',
+            'required' => 'Upload at least one image to publish the listing.',
+            'min' => 'Upload at least one image to publish the listing.',
+            'max' => 'You can upload a maximum of 6 images.',
+            'invalid_file' => 'Each file must be a valid image.',
+            'file_size' => 'Each image must weigh at most 1 MB.',
         ],
         'images.*' => [
             'image' => 'Each file must be a valid image.',
             'max' => 'Each image must weigh at most 1 MB.',
+        ],
+        'temporary_images' => [
+            'max' => 'You can select a maximum of 6 images at a time.',
         ],
     ],
 

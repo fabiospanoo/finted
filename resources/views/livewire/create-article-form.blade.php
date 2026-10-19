@@ -80,25 +80,17 @@
                     
                     <div class="d-flex flex-wrap gap-2">
                         @forelse ($categories as $category)
-                            <button 
-                                type="button" 
-                                wire:click="selectCategory({{ $category->id }})" 
+                            <button
+                                type="button"
+                                wire:click="selectCategory({{ $category->id }})"
+                                wire:key="create-category-{{ $category->id }}"
                                 class="create-cat-pill {{ (string)$category_id === (string)$category->id ? 'active' : '' }}"
+                                aria-pressed="{{ (string)$category_id === (string)$category->id ? 'true' : 'false' }}"
                             >
                                 {{ __('ui.' . $category->name) }}
                             </button>
                         @empty
-                            {{-- Fallback visivo se il database non è ancora popolato --}}
-                            <button type="button" class="create-cat-pill active">Elettronica</button>
-                            <button type="button" class="create-cat-pill">Auto e moto</button>
-                            <button type="button" class="create-cat-pill">Casa e giardino</button>
-                            <button type="button" class="create-cat-pill">Informatica</button>
-                            <button type="button" class="create-cat-pill">Abbigliamento</button>
-                            <button type="button" class="create-cat-pill">Sport</button>
-                            <button type="button" class="create-cat-pill">Libri e musica</button>
-                            <button type="button" class="create-cat-pill">Giochi e hobby</button>
-                            <button type="button" class="create-cat-pill">Bambini</button>
-                            <button type="button" class="create-cat-pill">Altro</button>
+                            <p class="text-secondary small mb-0">{{ __('ui.categorie-non-disponibili') }}</p>
                         @endforelse
                     </div>
                     @error('category_id')

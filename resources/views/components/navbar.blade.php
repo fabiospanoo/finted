@@ -8,12 +8,14 @@
       <div class="navbar-navigation align-items-center gap-2">
         <ul class="navbar-nav navbar-links mb-2 mb-lg-0 gap-lg-2 justify-content-end">
           <li class="nav-item">
-            <a class="nav-link custom-nav-link articoli" href="{{ route('tutti-gli-articoli') }}">{{ __('ui.articoli') }}</a>
+            <a class="nav-link custom-nav-link articoli"
+              href="{{ route('tutti-gli-articoli') }}">{{ __('ui.articoli') }}</a>
           </li>
           @auth
             @if (Auth::user()->is_revisor)
               <li class="nav-item">
-                <a class="nav-link custom-nav-link nav-link-with-badge revisiona-articoli" href="{{ route('revisor.index') }}">
+                <a class="nav-link custom-nav-link nav-link-with-badge revisiona-articoli"
+                  href="{{ route('revisor.index') }}">
                   {{ __('ui.revisiona-articoli') }}
                   @if (\App\Models\Article::toBeRevisionedCount() > 0)
                     <span class="badge-notification">
@@ -25,7 +27,8 @@
               </li>
             @endif
             <li class="nav-item">
-              <a class="nav-link custom-nav-link inserisci-annuncio" href="{{ route('crea-articolo') }}">{{ __('ui.inserisci-annuncio') }}</a>
+              <a class="nav-link custom-nav-link inserisci-annuncio"
+                href="{{ route('crea-articolo') }}">{{ __('ui.inserisci-annuncio') }}</a>
             </li>
           @endauth
           <li class="nav-item">
@@ -42,12 +45,44 @@
 
       <div class="navbar-search-group">
         <form class="navbar-search d-flex flex-grow-1" role="search" action="{{ route('article.search') }}">
-          <input name="query" class="form-control custom-search cerca-placeholder" type="search" placeholder="{{ __('ui.cerca-placeholder') }}"
-            aria-label="{{ __('ui.cerca') }}" wire:model="search" required />
+          <input name="query" class="form-control custom-search cerca-placeholder" type="search"
+            placeholder="{{ __('ui.cerca-placeholder') }}" aria-label="{{ __('ui.cerca') }}" wire:model="search"
+            required />
         </form>
-        <x-locale lang="it" nation="it" />
-        <x-locale lang="lk" nation="lk" />
-        <x-locale lang="en" nation="gb" />
+
+        {{-- Dropdown per la selezione della lingua --}}
+        @php
+          $languages = [
+            'it' => ['nation' => 'it', 'name' => 'Italiano'],
+            'lk' => ['nation' => 'lk', 'name' => 'සිංහල'],
+            'en' => ['nation' => 'gb', 'name' => 'English'],
+          ];
+          $current = app()->getLocale();
+        @endphp
+
+        <div class="dropdown language-dropdown">
+          <button class="btn btn-custom-outline dropdown-toggle language-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false" aria-label="Lingua: {{ $languages[$current]['name'] ?? 'Italiano' }}">
+            <span class="language-current" inert>
+              <x-locale :nation="$languages[$current]['nation'] ?? 'it'" />
+            </span>
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end custom-dropdown-menu language-menu">
+            @foreach ($languages as $code => $language)
+              <li class="language-item {{ $current === $code ? 'active' : '' }}">
+                <form action="{{ route('language', $code) }}" method="POST" class="language-form">
+                  @csrf
+                  <button type="submit" class="language-option" @if ($current === $code) aria-current="true" @endif>
+                    <x-locale :nation="$language['nation']" />
+                    <span class="language-name">{{ $language['name'] }}</span>
+                  </button>
+                </form>
+              </li>
+            @endforeach
+          </ul>
+        </div>
+
         <div class="navbar-actions d-flex align-items-center gap-2">
           @auth
             <div class="dropdown">
@@ -66,8 +101,10 @@
             </div>
           @else
             @unless (request()->routeIs('login', 'register'))
-              <a href="{{ route('login') }}" class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
-              <a href="{{ route('register') }}" class="btn btn-custom-accent align-items-center registrati">{{ __('ui.registrati') }}</a>
+              <a href="{{ route('login') }}"
+                class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
+              <a href="{{ route('register') }}"
+                class="btn btn-custom-accent align-items-center registrati">{{ __('ui.registrati') }}</a>
             @endunless
           @endauth
         </div>

@@ -72,7 +72,7 @@
                             </td>
 
                             <td>
-                                <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <div class="rejected-action-buttons">
 
                                     {{-- Ripristina --}}
                                     <button

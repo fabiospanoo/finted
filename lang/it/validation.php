@@ -172,12 +172,18 @@ return [
 
     'custom' => [
         'images' => [
-            'required' => 'Per pubblicare l\'annuncio devi caricare esattamente 6 immagini.',
-            'size' => 'Per pubblicare l\'annuncio devi caricare esattamente 6 immagini.',
+            'required' => 'Per pubblicare l\'annuncio devi caricare almeno un\'immagine.',
+            'min' => 'Per pubblicare l\'annuncio devi caricare almeno un\'immagine.',
+            'max' => 'Puoi caricare al massimo 6 immagini.',
+            'invalid_file' => 'Ogni file deve essere un\'immagine valida.',
+            'file_size' => 'Ogni immagine deve pesare al massimo 1 MB.',
         ],
         'images.*' => [
             'image' => 'Ogni file deve essere un\'immagine valida.',
             'max' => 'Ogni immagine deve pesare al massimo 1 MB.',
+        ],
+        'temporary_images' => [
+            'max' => 'Puoi selezionare al massimo 6 immagini alla volta.',
         ],
     ],
 

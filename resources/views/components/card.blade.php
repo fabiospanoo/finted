@@ -10,16 +10,14 @@
                         {{ __('ui.' . $article->category->name) }}
                     </span>
 
-                    @if(isset($article) && !empty($article->image))
-                        <img src="{{ asset('storage/' . $article->image) }}"
+                    @if($article->images->isNotEmpty())
+                        <img src="{{ $article->images->first()->getUrl() }}"
                              alt="{{ $article->title }}"
-                             class="w-100">
+                             class="w-100 h-100">
                     @else
-                        <div class="card-placeholder w-100 h-100">
-                            <img src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(400, 600) : 'https://picsum.photos/800/800' }}"
-                                 alt="Immagine di esempio"
-                                 class="w-100 h-100">
-                        </div>       
+                        <div class="card-image-placeholder w-100 h-100" role="img" aria-label="{{ __('ui.nessuna-immagine') }}">
+                            <i class="bi bi-image" aria-hidden="true"></i>
+                        </div>
                     @endif
                 </div>
         @if(isset($article->id))
