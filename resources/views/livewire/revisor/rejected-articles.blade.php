@@ -1,4 +1,4 @@
-<div class="rejected-page">
+<div>
     <div class="mb-4">
         <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap">
             <div>
@@ -11,11 +11,20 @@
             </div>
 
             <div class="input-group rejected-articles-search">
-                <input type="text" class="form-control rejected-search-field" placeholder="Cerca un annuncio..."
-                    aria-label="Cerca un annuncio" wire:model.live="search">
+                <input
+                    type="text"
+                    class="form-control rejected-search-field"
+                    placeholder="Cerca un annuncio..."
+                    aria-label="Cerca un annuncio"
+                    wire:model.live="search"
+                >
 
-                <button class="btn rejected-search-clear" type="button" aria-label="Cancella ricerca"
-                    wire:click="$set('search', '')">
+                <button
+                    class="btn rejected-search-clear"
+                    type="button"
+                    aria-label="Cancella ricerca"
+                    wire:click="$set('search', '')"
+                >
                     <i class="bi bi-x-lg"></i>
                 </button>
             </div>
@@ -66,29 +75,30 @@
                                 <div class="d-flex justify-content-center gap-2 flex-wrap">
 
                                     {{-- Ripristina --}}
-                                    <<<<<<< HEAD <button type="button" class="btn btn-success btn-sm text-nowrap"=======<button
-                                        type="button" class="btn btn-sm rejected-restore-btn text-nowrap">>>>>>>
-                                        b453f8efb549f93f51ab0c8960d8cd468314d829
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm rejected-restore-btn text-nowrap"
                                         wire:click="restore({{ $article->id }})"
-                                        wire:confirm="Vuoi ripristinare questo annuncio?" wire:loading.attr="disabled"
+                                        wire:confirm="Vuoi ripristinare questo annuncio?"
+                                        wire:loading.attr="disabled"
                                         wire:target="restore({{ $article->id }})">
 
                                         <i class="bi bi-arrow-counterclockwise me-1"></i>
                                         Ripristina
-                                        </button>
+                                    </button>
 
-                                        {{-- Elimina definitivamente --}}
-                                        <<<<<<< HEAD <button type="button"
-                                            class="btn btn-danger btn-sm text-nowrap"=======<button type="button"
-                                            class="btn btn-sm rejected-delete-btn text-nowrap">>>>>>>
-                                            b453f8efb549f93f51ab0c8960d8cd468314d829
-                                            wire:click="destroy({{ $article->id }})"
-                                            wire:confirm="Sei sicuro di voler eliminare definitivamente questo annuncio?"
-                                            wire:loading.attr="disabled" wire:target="destroy({{ $article->id }})">
+                                    {{-- Elimina definitivamente --}}
+                                    <button
+                                        type="button"
+                                        class="btn btn-sm rejected-delete-btn text-nowrap"
+                                        wire:click="destroy({{ $article->id }})"
+                                        wire:confirm="Sei sicuro di voler eliminare definitivamente questo annuncio?"
+                                        wire:loading.attr="disabled"
+                                        wire:target="destroy({{ $article->id }})">
 
-                                            <i class="bi bi-trash me-1"></i>
-                                            Elimina definitivamente
-                                            </button>
+                                        <i class="bi bi-trash me-1"></i>
+                                        Elimina definitivamente
+                                    </button>
 
                                 </div>
                             </td>
