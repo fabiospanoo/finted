@@ -17,7 +17,7 @@
             </div>
         @empty
             <div class="article-cards-empty">
-                <p class="footer-muted mb-0">Nessun annuncio per ora. Torna presto!</p>
+                <p class="footer-muted mb-0 nessun-annuncio">{{ __('ui.nessun-annuncio') }}</p>
             </div>
         @endforelse
     </div>

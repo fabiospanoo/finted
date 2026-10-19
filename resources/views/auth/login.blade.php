@@ -6,18 +6,18 @@
             <div class="auth-col-left">
                 <!-- Testo centrale -->
                 <div class="my-auto py-3">
-                    <h1 class="auth-heading fw-bold text-primary mb-3">
-                        Dai una seconda vita<br>alle cose che non usi più
+                    <h1 class="auth-heading fw-bold text-primary mb-3 auth-titolo">
+                        {{ __('ui.auth-titolo') }}
                     </h1>
-                    <p class="auth-muted fs-6 mb-4">
-                        Accedi per inserire e gestire i tuoi annunci in pochi minuti.
+                    <p class="auth-muted fs-6 mb-4 auth-login-sottotitolo">
+                        {{ __('ui.auth-login-sottotitolo') }}
                     </p>
 
                     <!-- Le 3 pillole -->
                     <div class="auth-step-list d-flex gap-2">
-                        <span class="auth-step-pill">1 Registrati</span>
-                        <span class="auth-step-pill">2 Inserisci annuncio</span>
-                        <span class="auth-step-pill">3 Libera spazio</span>
+                        <span class="auth-step-pill step-registrati">{{ __('ui.step-registrati') }}</span>
+                        <span class="auth-step-pill step-inserisci-annuncio">{{ __('ui.step-inserisci-annuncio') }}</span>
+                        <span class="auth-step-pill step-libera-spazio">{{ __('ui.step-libera-spazio') }}</span>
                     </div>
                 </div>
 
@@ -31,8 +31,8 @@
             <div class="auth-col-right">
                 <!-- Switch in alto a destra: [ Accedi | Registrati ] -->
                 <div class="auth-switch-pill mb-4">
-                    <a href="{{ route('login') }}" class="active">Accedi</a>
-                    <a href="{{ route('register') }}">Registrati</a>
+                    <a href="{{ route('login') }}" class="active accedi">{{ __('ui.accedi') }}</a>
+                    <a href="{{ route('register') }}" class="registrati">{{ __('ui.registrati') }}</a>
                 </div>
 
                 <!-- Form centrato nella sua metà -->
@@ -42,10 +42,10 @@
 
                         <!-- Email -->
                         <div class="mb-3">
-                            <label for="email" class="form-label auth-muted small mb-1">Email</label>
+                            <label for="email" class="form-label auth-muted small mb-1 email">{{ __('ui.email') }}</label>
                             <input id="email" type="email" name="email"
-                                   class="form-control auth-input @error('email') is-invalid @enderror"
-                                   value="{{ old('email') }}" placeholder="nome@email.it"
+                                   class="form-control auth-input placeholder-email @error('email') is-invalid @enderror"
+                                   value="{{ old('email') }}" placeholder="{{ __('ui.placeholder-email') }}"
                                    required autofocus autocomplete="email">
                             @error('email')
                                 <div class="invalid-feedback ps-3">{{ $message }}</div>
@@ -54,10 +54,10 @@
 
                         <!-- Password -->
                         <div class="mb-3">
-                            <label for="password" class="form-label auth-muted small mb-1">Password</label>
+                            <label for="password" class="form-label auth-muted small mb-1 password">{{ __('ui.password') }}</label>
                             <input id="password" type="password" name="password"
-                                   class="form-control auth-input @error('password') is-invalid @enderror"
-                                   placeholder="La tua password"
+                                   class="form-control auth-input placeholder-password @error('password') is-invalid @enderror"
+                                   placeholder="{{ __('ui.placeholder-password') }}"
                                    required autocomplete="current-password">
                             @error('password')
                                 <div class="invalid-feedback ps-3">{{ $message }}</div>
@@ -73,20 +73,20 @@
                             </div> --}}
 
                             @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="small text-accent text-decoration-none">
-                                    Password dimenticata?
+                                <a href="{{ route('password.request') }}" class="small text-accent text-decoration-none password-dimenticata">
+                                    {{ __('ui.password-dimenticata') }}
                                 </a>
                             @endif
                         </div>
 
                         <!-- Bottone Invio Form -->
-                        <button type="submit" class="btn auth-btn mb-3">
-                            Accedi
+                        <button type="submit" class="btn auth-btn mb-3 accedi">
+                            {{ __('ui.accedi') }}
                         </button>
 
                         <!-- Link Registrazione -->
-                        <p class="text-center auth-muted small mb-0">
-                            Non hai un account? <a href="{{ route('register') }}" class="text-accent text-decoration-none fw-semibold">Registrati</a>
+                        <p class="text-center auth-muted small mb-0 non-hai-un-account">
+                            {{ __('ui.non-hai-un-account') }} <a href="{{ route('register') }}" class="text-accent text-decoration-none fw-semibold registrati">{{ __('ui.registrati') }}</a>
                         </p>
                     </form>
                 </div>

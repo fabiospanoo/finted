@@ -22,29 +22,29 @@
                             style="height: 25px; width: auto; object-fit: contain;">
                     </a>
                 </div>
-                <p class="footer-muted mb-0 mt-2">
-                    Dai una seconda vita agli oggetti che non usi più. Pubblica un annuncio in pochi minuti.
+                <p class="footer-muted mb-0 mt-2 footer-descrizione">
+                    {{ __('ui.footer-descrizione') }}
                 </p>
             </section>
 
             {{-- Navigazione --}}
             <nav class="col-6 col-md-3 col-lg-2" aria-label="Navigazione footer">
-                <h2 class="h6 mb-3">Esplora</h2>
+                <h2 class="h6 mb-3 esplora">{{ __('ui.esplora') }}</h2>
                 <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                    <li><a href="{{ $link('annunci.index') }}">Tutti gli annunci</a></li>
-                    <li><a href="{{ $link('annunci.create') }}">Inserisci annuncio</a></li>
-                    <li><a href="{{ $link('become.revisor') }}">Lavora con noi</a></li>
+                    <li><a href="{{ url('/') }}" class="home">{{ __('ui.home') }}</a></li>
+                    <li><a href="{{ $link('annunci.index') }}" class="tutti-gli-annunci">{{ __('ui.tutti-gli-annunci') }}</a></li>
+                    <li><a href="{{ $link('annunci.create') }}" class="inserisci-annuncio">{{ __('ui.inserisci-annuncio') }}</a></li>
+                    <li><a href="{{ $link('become.revisor') }}" class="lavora-con-noi">{{ __('ui.lavora-con-noi') }}</a></li>
                     @guest
-                        <li><a href="{{ $link('login') }}">Accedi</a></li>
-                        <li><a href="{{ $link('register') }}">Registrati</a></li>
+                        <li><a href="{{ $link('login') }}" class="accedi">{{ __('ui.accedi') }}</a></li>
+                        <li><a href="{{ $link('register') }}" class="registrati">{{ __('ui.registrati') }}</a></li>
                     @endguest
                 </ul>
             </nav>
 
             {{-- Contatti --}}
             <section class="col-12 col-md-6 col-lg-4" aria-label="Contatti">
-                <h2 class="h6 mb-3">Contatti</h2>
+                <h2 class="h6 mb-3 contatti">{{ __('ui.contatti') }}</h2>
                 <ul class="list-unstyled row row-cols-1 row-cols-sm-2 g-3 mb-0">
                     @foreach ($team as $persona)
                         <li class="col d-flex flex-column">
@@ -58,12 +58,12 @@
 
             {{-- Informazioni --}}
             <nav class="col-6 col-md-3 col-lg-3" aria-label="Informazioni legali">
-                <h2 class="h6 mb-3">Informazioni</h2>
+                <h2 class="h6 mb-3 informazioni">{{ __('ui.informazioni') }}</h2>
                 <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
-                    <li><a href="#">Chi siamo</a></li>
-                    <li><a href="#">Privacy</a></li>
-                    <li><a href="#">Termini e condizioni</a></li>
-                    <li><a href="#">Cookie</a></li>
+                    <li><a href="#" class="chi-siamo">{{ __('ui.chi-siamo') }}</a></li>
+                    <li><a href="#" class="privacy">{{ __('ui.privacy') }}</a></li>
+                    <li><a href="#" class="termini-e-condizioni">{{ __('ui.termini-e-condizioni') }}</a></li>
+                    <li><a href="#" class="cookie">{{ __('ui.cookie') }}</a></li>
                 </ul>
             </nav>
         </div>
@@ -72,9 +72,8 @@
     {{-- Barra finale --}}
     <div class="site-footer__bottom">
         <div class="container py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
-            <small class="footer-muted">&copy; {{ date('Y') }} {{ config('app.name') }}. Tutti i diritti
-                riservati.</small>
-            <a href="#top" class="site-footer__top">Torna su &uarr;</a>
+            <small class="footer-muted">&copy; {{ date('Y') }} {{ config('app.name') }}. <span class="tutti-i-diritti-riservati">{{ __('ui.tutti-i-diritti-riservati') }}</span></small>
+            <a href="#top" class="site-footer__top torna-su">{{ __('ui.torna-su') }} &uarr;</a>
         </div>
     </div>
 </footer>

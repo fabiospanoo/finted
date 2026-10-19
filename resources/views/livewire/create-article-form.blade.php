@@ -8,9 +8,9 @@
     @endif
 
     <header class="create-page-heading mb-4">
-        <span class="badge-accent mb-2">Nuovo annuncio</span>
-        <h1 class="fw-bold text-primary mb-2">Cosa vuoi vendere?</h1>
-        <p class="text-secondary small mb-0">Completa i dettagli e carica 6 immagini per pubblicare l'annuncio.</p>
+        <span class="badge-accent mb-2 nuovo-annuncio">{{ __('ui.nuovo-annuncio') }}</span>
+        <h1 class="fw-bold text-primary mb-2 cosa-vuoi-vendere">{{ __('ui.cosa-vuoi-vendere') }}</h1>
+        <p class="text-secondary small mb-0 crea-annuncio-sottotitolo">{{ __('ui.crea-annuncio-sottotitolo') }}</p>
     </header>
 
     <div class="row g-4 align-items-stretch create-article-layout">
@@ -19,10 +19,10 @@
                 <form wire:submit.prevent="store" novalidate>
                     <div class="create-upload-section mb-4">
                         <div class="d-flex align-items-center justify-content-between gap-3 mb-2">
-                            <span class="form-label fw-semibold mb-0">Foto</span>
+                            <span class="form-label fw-semibold mb-0 foto">{{ __('ui.foto') }}</span>
                             <span class="create-image-count">{{ count($images) }} / 6</span>
                         </div>
-                        <p class="text-secondary small mb-3">Aggiungi 6 immagini, massimo 1 MB ciascuna.</p>
+                        <p class="text-secondary small mb-3 aggiungi-immagini-info">{{ __('ui.aggiungi-immagini-info') }}</p>
                         <input id="temporary_images" type="file" wire:model.live="temporary_images" accept="image/*" multiple
                             class="create-upload-input @error('temporary_images.*') is-invalid @enderror @error('temporary_images') is-invalid @enderror @error('images') is-invalid @enderror"/>
                         <div class="create-upload-grid">
@@ -42,8 +42,8 @@
                                 @endif
                             @endfor
                         </div>
-                        <div wire:loading wire:target="temporary_images" class="text-secondary small mt-2">
-                            Caricamento immagini...
+                        <div wire:loading wire:target="temporary_images" class="text-secondary small mt-2 caricamento-immagini">
+                            {{ __('ui.caricamento-immagini') }}
                         </div>
                         @error('temporary_images.*')
                             <p class="fst-italic text-danger mt-2">{{ $message }}</p>
@@ -57,15 +57,15 @@
                     </div>
 
                 <div class="mb-4">
-                    <label for="title" class="form-label text-secondary small fw-semibold mb-1">
-                        Titolo *
+                    <label for="title" class="form-label text-secondary small fw-semibold mb-1 titolo">
+                        {{ __('ui.titolo') }} *
                     </label>
                     <input 
                         type="text" 
                         id="title" 
                         wire:model.live="title" 
-                        class="form-control create-input-pill @error('title') is-invalid @enderror" 
-                        placeholder="Nome dell'oggetto"
+                        class="form-control create-input-pill placeholder-titolo @error('title') is-invalid @enderror" 
+                        placeholder="{{ __('ui.placeholder-titolo') }}"
                     >
                     @error('title')
                         <div class="invalid-feedback ps-3">{{ $message }}</div>
@@ -74,8 +74,8 @@
 
                 <!-- 2. Categorie a Pillola -->
                 <div class="mb-4">
-                    <label class="form-label text-secondary small fw-semibold mb-2 d-block">
-                        Categoria *
+                    <label class="form-label text-secondary small fw-semibold mb-2 d-block categoria">
+                        {{ __('ui.categoria') }} *
                     </label>
                     
                     <div class="d-flex flex-wrap gap-2">
@@ -85,7 +85,7 @@
                                 wire:click="selectCategory({{ $category->id }})" 
                                 class="create-cat-pill {{ (string)$category_id === (string)$category->id ? 'active' : '' }}"
                             >
-                                {{ $category->name }}
+                                {{ __('ui.' . $category->name) }}
                             </button>
                         @empty
                             {{-- Fallback visivo se il database non è ancora popolato --}}
@@ -108,8 +108,8 @@
 
                 <!-- 3. Prezzo (€) -->
                 <div class="mb-4">
-                    <label for="price" class="form-label text-secondary small fw-semibold mb-1">
-                        Prezzo (€) *
+                    <label for="price" class="form-label text-secondary small fw-semibold mb-1 prezzo">
+                        {{ __('ui.prezzo') }} (€) *
                     </label>
                     <input 
                         type="text" 
@@ -125,15 +125,15 @@
 
                 <!-- 4. Descrizione -->
                 <div class="mb-4">
-                    <label for="body" class="form-label text-secondary small fw-semibold mb-1">
-                        Descrizione *
+                    <label for="body" class="form-label text-secondary small fw-semibold mb-1 descrizione">
+                        {{ __('ui.descrizione') }} *
                     </label>
                     <textarea 
                         id="body" 
                         wire:model.live="body" 
                         rows="6" 
-                        class="form-control create-textarea @error('body') is-invalid @enderror" 
-                        placeholder="Racconta lo stato dell'oggetto e perché lo vendi."
+                        class="form-control create-textarea placeholder-descrizione @error('body') is-invalid @enderror" 
+                        placeholder="{{ __('ui.placeholder-descrizione') }}"
                     ></textarea>
                     @error('body')
                         <div class="invalid-feedback ps-3">{{ $message }}</div>
@@ -142,8 +142,8 @@
 
                 <!-- Bottone di invio -->
                 <div class="pt-2">
-                    <button type="submit" class="btn btn-ui-accent py-2 px-4 fw-bold">
-                        Pubblica annuncio
+                    <button type="submit" class="btn btn-ui-accent py-2 px-4 fw-bold pubblica-annuncio">
+                        {{ __('ui.pubblica-annuncio') }}
                     </button>
                 </div>
 
@@ -154,19 +154,19 @@
         <aside class="col-12 col-lg-6">
             <div class="create-preview-panel">
                 <div class="create-preview-heading">
-                    <span class="fw-semibold">Anteprima</span>
-                    <span class="text-secondary small">come nel catalogo</span>
+                    <span class="fw-semibold anteprima">{{ __('ui.anteprima') }}</span>
+                    <span class="text-secondary small come-nel-catalogo">{{ __('ui.come-nel-catalogo') }}</span>
                 </div>
 
                 <div class="card-item create-preview-card">
                     <div class="card-media-box create-preview-media mb-3">
                         @if ($selectedCategoryName)
                             <span class="badge-accent position-absolute top-0 start-0 m-2">
-                                {{ $selectedCategoryName }}
+                                {{ __('ui.' . $selectedCategoryName) }}
                             </span>
                         @else
-                            <span class="badge-accent position-absolute top-0 start-0 m-2">
-                                Categoria
+                            <span class="badge-accent position-absolute top-0 start-0 m-2 categoria">
+                                {{ __('ui.categoria') }}
                             </span>
                         @endif
                         <div id="create-preview-carousel" class="carousel slide create-preview-carousel" data-bs-ride="false">
@@ -197,13 +197,13 @@
 
                     <div class="create-preview-details">
                         <div class="d-flex justify-content-between align-items-center mb-1">
-                            <h5 class="fw-bold mb-0 text-truncate text-primary create-preview-title">
-                                {{ !empty($title) ? $title : '[Titolo dell\'annuncio]' }}
+                            <h5 class="fw-bold mb-0 text-truncate text-primary create-preview-title anteprima-titolo-default">
+                                {{ !empty($title) ? $title : __('ui.anteprima-titolo-default') }}
                             </h5>
                         </div>
 
-                        <p class="small text-truncate mb-3 text-secondary create-preview-body">
-                            {{ !empty($body) ? $body : 'La descrizione del tuo annuncio apparirà qui.' }}
+                        <p class="small text-truncate mb-3 text-secondary create-preview-body anteprima-descrizione-default">
+                            {{ !empty($body) ? $body : __('ui.anteprima-descrizione-default') }}
                         </p>
 
                         <div class="pt-2 d-flex justify-content-between px-0 align-items-center create-preview-price">

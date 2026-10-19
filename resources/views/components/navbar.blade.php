@@ -8,32 +8,32 @@
       <div class="navbar-navigation align-items-center gap-2">
         <ul class="navbar-nav navbar-links mb-2 mb-lg-0 gap-lg-2 justify-content-end">
           <li class="nav-item">
-            <a class="nav-link custom-nav-link" href="{{ route('tutti-gli-articoli') }}">Articoli</a>
+            <a class="nav-link custom-nav-link articoli" href="{{ route('tutti-gli-articoli') }}">{{ __('ui.articoli') }}</a>
           </li>
           @auth
             @if (Auth::user()->is_revisor)
               <li class="nav-item">
-                <a class="nav-link custom-nav-link nav-link-with-badge" href="{{ route('revisor.index') }}">
-                  Revisiona Articoli
+                <a class="nav-link custom-nav-link nav-link-with-badge revisiona-articoli" href="{{ route('revisor.index') }}">
+                  {{ __('ui.revisiona-articoli') }}
                   @if (\App\Models\Article::toBeRevisionedCount() > 0)
                     <span class="badge-notification">
                       {{ \App\Models\Article::toBeRevisionedCount() }}
-                      <span class="visually-hidden">articoli da revisionare</span>
+                      <span class="visually-hidden articoli-da-revisionare">{{ __('ui.articoli-da-revisionare') }}</span>
                     </span>
                   @endif
                 </a>
               </li>
             @endif
             <li class="nav-item">
-              <a class="nav-link custom-nav-link" href="{{ route('crea-articolo') }}">Inserisci annuncio</a>
+              <a class="nav-link custom-nav-link inserisci-annuncio" href="{{ route('crea-articolo') }}">{{ __('ui.inserisci-annuncio') }}</a>
             </li>
           @endauth
           <li class="nav-item">
-            <button class="nav-link custom-nav-link dropdown-toggle categories-toggle" type="button"
+            <button class="nav-link custom-nav-link dropdown-toggle categories-toggle categorie" type="button"
               id="categoriesDropdown" data-bs-toggle="collapse" data-bs-target="#navbarCategoryPanel"
               aria-expanded="{{ request()->query('categories') === 'open' ? 'true' : 'false' }}"
               aria-controls="navbarCategoryPanel">
-              Categorie
+              {{ __('ui.categorie') }}
             </button>
           </li>
         </ul>
@@ -42,34 +42,32 @@
 
       <div class="navbar-search-group">
         <form class="navbar-search d-flex flex-grow-1" role="search" action="{{ route('article.search') }}">
-          <input name="query" class="form-control custom-search" type="search" placeholder="Cerca prodotti..."
-            aria-label="Cerca" wire:model="search" required />
+          <input name="query" class="form-control custom-search cerca-placeholder" type="search" placeholder="{{ __('ui.cerca-placeholder') }}"
+            aria-label="{{ __('ui.cerca') }}" wire:model="search" required />
         </form>
-
-        <x-locale lang="IT" />
-        <x-locale lang="UK" />
-        <x-locale lang="LK" />
-
+        <x-locale lang="it" nation="it" />
+        <x-locale lang="lk" nation="lk" />
+        <x-locale lang="en" nation="gb" />
         <div class="navbar-actions d-flex align-items-center gap-2">
           @auth
             <div class="dropdown">
               <button class="btn btn-custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                Ciao, {{ Auth::user()->name }}
+                <span class="ciao">{{ __('ui.ciao') }}</span>, {{ Auth::user()->name }}
               </button>
               <ul class="dropdown-menu dropdown-menu-end custom-dropdown-menu">
                 <li>
                   <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button class="dropdown-item custom-dropdown-item" type="submit">Logout</button>
+                    <button class="dropdown-item custom-dropdown-item logout" type="submit">{{ __('ui.logout') }}</button>
                   </form>
                 </li>
               </ul>
             </div>
           @else
             @unless (request()->routeIs('login', 'register'))
-              <a href="{{ route('login') }}" class="btn btn-custom-outline align-items-center">Accedi</a>
-              <a href="{{ route('register') }}" class="btn btn-custom-accent align-items-center">Registrati</a>
+              <a href="{{ route('login') }}" class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
+              <a href="{{ route('register') }}" class="btn btn-custom-accent align-items-center registrati">{{ __('ui.registrati') }}</a>
             @endunless
           @endauth
         </div>
@@ -81,8 +79,8 @@
       id="navbarCategoryPanel">
       <div class="navbar-category-pills">
         <a href="{{ route('tutti-gli-articoli', ['categories' => 'open']) }}" wire:navigate
-          class="category-pill {{ request()->routeIs('tutti-gli-articoli') ? 'btn-custom-accent' : 'btn-custom-outline' }} text-nowrap">
-          Tutti
+          class="category-pill {{ request()->routeIs('tutti-gli-articoli') ? 'btn-custom-accent' : 'btn-custom-outline' }} text-nowrap tutti">
+          {{ __('ui.tutti') }}
         </a>
         @php
           $currentRouteCategory = request()->route('category');
@@ -93,7 +91,7 @@
         @foreach($categories as $category)
           <a href="{{ route('categoria', ['category' => $category, 'categories' => 'open']) }}" wire:navigate
             class="category-pill {{ request()->routeIs('categoria') && (int) $currentCategoryId === (int) $category->id ? 'btn-custom-accent' : 'btn-custom-outline' }} text-nowrap">
-            {{ $category->name }}
+            {{ __('ui.' . $category->name) }}
           </a>
         @endforeach
       </div>

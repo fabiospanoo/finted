@@ -29,7 +29,7 @@ class CreateArticleForm extends Component
     #[Validate('required|exists:categories,id')]
     public $category_id;
 
-    #[Validate('required|array|size:6')]
+    #[Validate('required|array|min:1|max:6')]
     public $images = [];
 
     public $temporary_images = [];

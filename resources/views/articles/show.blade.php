@@ -3,10 +3,10 @@
         
         <!-- Breadcrumb identico al mockup (Home / Categoria / Titolo) -->
         <nav class="show-breadcrumb" aria-label="breadcrumb">
-            <a href="{{ url('/') }}">Home</a>
+            <a href="{{ url('/') }}" class="home">{{ __('ui.home') }}</a>
             <span class="separator">/</span>
             <a href="{{ route('tutti-gli-articoli') }}">
-                {{ $article->category->name ?? 'Annunci' }}
+                {{ __('ui.' . $article->category->name) }}
             </a>
             <span class="separator">/</span>
             <span class="current">{{ $article->title }}</span>
@@ -16,7 +16,7 @@
             <a href="{{ route('tutti-gli-articoli') }}" class="d-inline-flex align-items-center btn-ui-outline py-2 px-3 text-decoration-none fw-bold gap-2" style="font-size: 14px;">
                 <div class="container-fluid px-0 gap-2 d-flex align-items-center">
                     <i class="bi bi-arrow-left" style="line-height: 1"></i>
-                    <span>Torna agli annunci</span>
+                    <span class="torna-agli-annunci">{{ __('ui.torna-agli-annunci') }}</span>
                 </div>
             </a>
         </div>
@@ -93,7 +93,7 @@
                     <!-- Badge Categoria -->
                     <div class="mb-3">
                         <span class="badge-accent">
-                            {{ $article->category->name ?? 'Senza categoria' }}
+                            {{ __('ui.' . $article->category->name) }}
                         </span>
                     </div>
 
@@ -110,7 +110,7 @@
                     <!-- Descrizione Prodotto -->
 
                     <div class="mb-3 pt-2">
-                        <h2 class="fw-bold text-primary mb-3" style="font-size: 20px;">Descrizione</h2>
+                        <h2 class="fw-bold text-primary mb-3 descrizione" style="font-size: 20px;">{{ __('ui.descrizione') }}</h2>
                         <p class="text-secondary small lh-base mb-4 text-break" style="font-size: 14px;">
                             {{ $article->body }}
                         </p>
@@ -122,8 +122,8 @@
                     <!-- Informazioni Venditore -->
                     <div class="d-flex align-items-center gap-3">
                         <div>
-                            <div class="text-secondary small" style="font-size: 12px;">
-                                Pubblicato {{ $article->created_at->diffForHumans() }}
+                            <div class="text-secondary small pubblicato" style="font-size: 12px;">
+                                <span class="pubblicato-testo">{{ __('ui.pubblicato') }}</span> {{ $article->created_at->diffForHumans() }}
                             </div>
                         </div>
                     </div>

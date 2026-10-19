@@ -2,20 +2,20 @@
     <div class="mb-4">
         <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap">
             <div>
-                <span class="badge-accent mb-3">
-                    Gestione annunci
+                <span class="badge-accent mb-3 gestione-annunci">
+                    {{ __('ui.gestione-annunci') }}
                 </span>
-                <h2 class="h3 fw-bold text-primary mb-0">
-                    Annunci rifiutati
+                <h2 class="h3 fw-bold text-primary mb-0 annunci-rifiutati">
+                    {{ __('ui.annunci-rifiutati') }}
                 </h2>
             </div>
 
             <div class="input-group rejected-articles-search">
                 <input
                     type="text"
-                    class="form-control rejected-search-field"
-                    placeholder="Cerca un annuncio..."
-                    aria-label="Cerca un annuncio"
+                    class="form-control rejected-search-field placeholder-cerca-annuncio"
+                    placeholder="{{ __('ui.placeholder-cerca-annuncio') }}"
+                    aria-label="{{ __('ui.placeholder-cerca-annuncio') }}"
                     wire:model.live="search"
                 >
 
@@ -45,10 +45,10 @@
 
                 <thead>
                     <tr>
-                        <th>Titolo</th>
-                        <th>Descrizione</th>
-                        <th class="rejected-category-column">Categoria</th>
-                        <th class="rejected-actions-column">Azioni</th>
+                        <th class="titolo">{{ __('ui.titolo') }}</th>
+                        <th class="descrizione">{{ __('ui.descrizione') }}</th>
+                        <th class="rejected-category-column categoria">{{ __('ui.categoria') }}</th>
+                        <th class="rejected-actions-column azioni">{{ __('ui.azioni') }}</th>
                     </tr>
                 </thead>
 
@@ -67,7 +67,7 @@
 
                             <td>
                                 <span class="badge rejected-category-badge">
-                                    {{ $article->category->name ?? 'Senza categoria' }}
+                                    {{ $article->category->name ?? __('ui.senza-categoria') }}
                                 </span>
                             </td>
 
@@ -84,7 +84,7 @@
                                         wire:target="restore({{ $article->id }})">
 
                                         <i class="bi bi-arrow-counterclockwise me-1"></i>
-                                        Ripristina
+                                        <span class="ripristina">{{ __('ui.ripristina') }}</span>
                                     </button>
 
                                     {{-- Elimina definitivamente --}}
@@ -97,7 +97,7 @@
                                         wire:target="destroy({{ $article->id }})">
 
                                         <i class="bi bi-trash me-1"></i>
-                                        Elimina definitivamente
+                                        <span class="elimina-definitivamente">{{ __('ui.elimina-definitivamente') }}</span>
                                     </button>
 
                                 </div>
@@ -118,15 +118,15 @@
             <i class="bi bi-search fs-3 d-block mb-2"></i>
 
             @if (trim($search) !== '')
-                <h3 class="h5">Nessun risultato trovato</h3>
+                <h3 class="h5 nessun-risultato-trovato">{{ __('ui.nessun-risultato-trovato') }}</h3>
                 <p class="text-secondary mb-0">
                     Non ci sono annunci che corrispondono alla ricerca
                     "{{ $search }}".
                 </p>
             @else
-                <h3 class="h5">Nessun annuncio rifiutato</h3>
-                <p class="text-secondary mb-0">
-                    Non ci sono annunci da ripristinare.
+                <h3 class="h5 nessun-annuncio-rifiutato">{{ __('ui.nessun-annuncio-rifiutato') }}</h3>
+                <p class="text-secondary mb-0 nessun-annuncio-da-ripristinare">
+                    {{ __('ui.nessun-annuncio-da-ripristinare') }}
                 </p>
             @endif
         </div>

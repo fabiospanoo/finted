@@ -11,8 +11,8 @@
         @if ($article_to_check)
             {{-- Intestazione --}}
             <div class="mb-4 mt-4">
-                <span class="badge-accent mb-4">Area revisore</span>
-                <h1 class="h2 fw-bold text-primary mb-2">Revisiona annunci</h1>
+                <span class="badge-accent mb-4 area-revisore">{{ __('ui.area-revisore') }}</span>
+                <h1 class="h2 fw-bold text-primary mb-2 revisiona-annunci">{{ __('ui.revisiona-annunci') }}</h1>
             </div>
 
             <div class="row g-4 align-items-start">
@@ -29,7 +29,7 @@
                     @else
                         <div class="revisor-no-images">
                             <i class="bi bi-image" aria-hidden="true"></i>
-                            <span>Questo annuncio non contiene immagini.</span>
+                            <span class="nessuna-immagine">{{ __('ui.nessuna-immagine') }}</span>
                         </div>
                     @endif
                 </section>
@@ -39,7 +39,7 @@
                     <div class="revisor-article-card position-sticky">
 
                         <span class="badge-accent mb-3">
-                            {{ $article_to_check->category->name ?? 'Senza categoria' }}
+                            {{ $article_to_check->category->name ?? __('ui.senza-categoria') }}
                         </span>
 
                         <h2 class="h3 fw-bold text-primary lh-sm mb-2">
@@ -53,8 +53,8 @@
                         <p class="footer-muted mb-4">{{ $article_to_check->body }}</p>
 
                         <div class="create-preview-divider mb-4"></div>
-                        <div class="small text-secondary mb-4">
-                            Pubblicato {{ $article_to_check->created_at->diffForHumans() }}
+                        <div class="small text-secondary mb-4 pubblicato">
+                            <span class="pubblicato-testo">{{ __('ui.pubblicato') }}</span> {{ $article_to_check->created_at->diffForHumans() }}
                         </div>
                         {{-- Azioni --}}
                         <div class="row g-2">
@@ -62,8 +62,8 @@
                                 <form action="{{ route('reject', ['article' => $article_to_check]) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn-custom-outline w-100">
-                                        <i class="bi bi-x-lg me-1"></i> Rifiuta
+                                    <button type="submit" class="btn-custom-outline w-100 rifiuta">
+                                        <i class="bi bi-x-lg me-1"></i> {{ __('ui.rifiuta') }}
                                     </button>
                                 </form>
                             </div>
@@ -71,8 +71,8 @@
                                 <form action="{{ route('accept', ['article' => $article_to_check]) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit" class="btn-custom-accent w-100">
-                                        <i class="bi bi-check-lg me-1"></i> Accetta
+                                    <button type="submit" class="btn-custom-accent w-100 accetta">
+                                        <i class="bi bi-check-lg me-1"></i> {{ __('ui.accetta') }}
                                     </button>
                                 </form>
                             </div>
@@ -87,9 +87,9 @@
                     <span class="nav-circle-btn btn-filled reviewer-empty-state-icon mx-auto mb-3" style="width: 56px; height: 56px;">
                         <i class="bi bi-check2-all fs-4"></i>
                     </span>
-                    <h2 class="h4 fw-bold text-primary mb-2">Nessun annuncio da revisionare</h2>
-                    <p class="footer-muted mb-4">Hai finito: tutti gli annunci sono stati controllati.</p>
-                    <a href="{{ route('home') }}" class="btn-custom-accent">Torna all'homepage</a>
+                    <h2 class="h4 fw-bold text-primary mb-2 nessun-annuncio-da-revisionare">{{ __('ui.nessun-annuncio-da-revisionare') }}</h2>
+                    <p class="footer-muted mb-4 tutti-annunci-controllati">{{ __('ui.tutti-annunci-controllati') }}</p>
+                    <a href="{{ route('home') }}" class="btn-custom-accent torna-homepage">{{ __('ui.torna-homepage') }}</a>
                 </div>
             </div>
         @endif

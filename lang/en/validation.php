@@ -181,8 +181,13 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'images' => [
+            'required' => 'To publish the listing you must upload exactly 6 images.',
+            'size' => 'To publish the listing you must upload exactly 6 images.',
+        ],
+        'images.*' => [
+            'image' => 'Each file must be a valid image.',
+            'max' => 'Each image must weigh at most 1 MB.',
         ],
     ],
 
@@ -197,6 +202,17 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'name',
+        'email' => 'email address',
+        'password' => 'password',
+        'password_confirmation' => 'password confirmation',
+        'title' => 'title',
+        'body' => 'description',
+        'price' => 'price',
+        'category_id' => 'category',
+        'images' => 'images',
+        'subject' => 'subject',
+    ],
 
 ];

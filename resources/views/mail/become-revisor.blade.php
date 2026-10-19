@@ -24,14 +24,14 @@
                     </tr>
                     <tr>
                         <td style="padding: 36px 36px 12px;">
-                            <span style="display: inline-block; padding: 6px 13px; border-radius: 999px; background-color: #C3B1FF; color: #25194A; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
-                                Nuova candidatura
+                            <span class="nuova-candidatura" style="display: inline-block; padding: 6px 13px; border-radius: 999px; background-color: #C3B1FF; color: #25194A; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
+                                {{ __('ui.nuova-candidatura') }}
                             </span>
-                            <h1 style="margin: 18px 0 10px; color: #F5F2FC; font-size: 27px; line-height: 1.3;">
-                                Una nuova persona vuole unirsi al team
+                            <h1 class="nuova-persona-team" style="margin: 18px 0 10px; color: #F5F2FC; font-size: 27px; line-height: 1.3;">
+                                {{ __('ui.nuova-persona-team') }}
                             </h1>
-                            <p style="margin: 0; color: #B7B1D0; font-size: 15px; line-height: 1.7;">
-                                Hai ricevuto una richiesta per diventare revisore su Presto. Qui trovi i dettagli della candidatura.
+                            <p class="dettagli-candidatura-info" style="margin: 0; color: #B7B1D0; font-size: 15px; line-height: 1.7;">
+                                {{ __('ui.dettagli-candidatura-info') }}
                             </p>
                         </td>
                     </tr>
@@ -41,8 +41,8 @@
                                 style="width: 100%; border: 1px solid #58537A; border-radius: 14px; background-color: #36334A;">
                                 <tr>
                                     <td style="padding: 19px 20px;">
-                                        <p style="margin: 0 0 6px; color: #B7B1D0; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
-                                            Candidato
+                                        <p class="candidato" style="margin: 0 0 6px; color: #B7B1D0; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
+                                            {{ __('ui.candidato') }}
                                         </p>
                                         <p style="margin: 0 0 5px; color: #F5F2FC; font-size: 16px; font-weight: bold;">
                                             {{ $user->name }}
@@ -58,8 +58,8 @@
                     </tr>
                     <tr>
                         <td style="padding: 16px 36px 8px;">
-                            <p style="margin: 0 0 8px; color: #B7B1D0; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
-                                Oggetto della richiesta
+                            <p class="oggetto-della-richiesta" style="margin: 0 0 8px; color: #B7B1D0; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">
+                                {{ __('ui.oggetto-della-richiesta') }}
                             </p>
                             <h2 style="margin: 0; color: #F5F2FC; font-size: 19px; line-height: 1.45;">
                                 {{ $requestSubject }}
@@ -81,11 +81,12 @@
                     <tr>
                         <td align="center" style="padding: 0 36px 36px;">
                             <a href="{{ route('make.revisor', ['user' => $user]) }}"
+                                class="rendi-revisore"
                                 style="display: inline-block; padding: 14px 25px; border: 1px solid #C3B1FF; border-radius: 999px; background-color: #C3B1FF; color: #25194A; font-size: 14px; font-weight: bold; text-decoration: none;">
-                                Rendi revisore
+                                {{ __('ui.rendi-revisore') }}
                             </a>
-                            <p style="margin: 18px 0 0; color: #B7B1D0; font-size: 12px; line-height: 1.6;">
-                                Se il pulsante non funziona, copia questo indirizzo nel browser:<br>
+                            <p class="se-pulsante-non-funziona" style="margin: 18px 0 0; color: #B7B1D0; font-size: 12px; line-height: 1.6;">
+                                {{ __('ui.se-pulsante-non-funziona') }}<br>
                                 <a href="{{ route('make.revisor', ['user' => $user]) }}"
                                     style="color: #C3B1FF; word-break: break-all;">
                                     {{ route('make.revisor', ['user' => $user]) }}
@@ -95,9 +96,8 @@
                     </tr>
                     <tr>
                         <td align="center" style="padding: 18px 30px; border-top: 1px solid #58537A;">
-                            <p style="margin: 0; color: #B7B1D0; font-size: 12px; line-height: 1.6;">
-                                Messaggio automatico dal team <strong style="color: #F5F2FC;">Presto</strong>.<br>
-                                Grazie per prenderti cura della nostra community.
+                            <p class="messaggio-automatico-info" style="margin: 0; color: #B7B1D0; font-size: 12px; line-height: 1.6;">
+                                {{ __('ui.messaggio-automatico-info') }}
                             </p>
                         </td>
                     </tr>

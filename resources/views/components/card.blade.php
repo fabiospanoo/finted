@@ -7,7 +7,7 @@
         @endif
                 <div class="card-media-box position-relative mb-3 overflow-hidden rounded-3">
                     <span class="badge-accent position-absolute top-0 start-0 m-2">
-                        {{ $article->category->name }}
+                        {{ __('ui.' . $article->category->name) }}
                     </span>
 
                     @if(isset($article) && !empty($article->image))
