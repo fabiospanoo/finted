@@ -122,4 +122,15 @@ return [
     'rendi-revisore' => 'Make reviewer',
     'se-pulsante-non-funziona' => 'If the button does not work, copy this address into your browser:',
     'messaggio-automatico-info' => 'Automated message from the Presto team. Thank you for taking care of our community.',
+
+    'Elettronica' => 'Elettronics',
+    'Abbigliamento' => 'Clothing',
+    'Salute e bellezza' => 'Health & Beauty',
+    'Casa e Giardinaggio' => 'House & Gardening',
+    'Giocattoli' => 'Toys',
+    'Sport' => 'Sport',
+    'Animali domestici' => 'Pets',
+    'Libri e Riviste' => 'Books & Magazines',
+    'Accessori' => 'Accessories',
+    'Motori e Veicoli' => 'Bikes & Vehicles',
 ];
