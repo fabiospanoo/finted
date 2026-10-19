@@ -22,8 +22,9 @@
                 alt="Immagine hero">
             <div class="home-hero__inner">
                 <div class="home-hero__card">
-                    <span class="badge-accent mb-3">
-                        Nuova collezione
+                    <span class="badge-accent mb-3 hello">
+                        {{ __('ui.hello') }}
+
                     </span>
                     <h1 class="display-5 fw-bold text-primary lh-sm mb-3" style="font-size: 50px;">
                         L'usato di qualità,<br>a portata di mano.

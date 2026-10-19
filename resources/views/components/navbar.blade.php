@@ -42,9 +42,13 @@
 
       <div class="navbar-search-group">
         <form class="navbar-search d-flex flex-grow-1" role="search" action="{{ route('article.search') }}">
-          <input name="query" class="form-control custom-search" type="search" placeholder="Cerca prodotti..." aria-label="Cerca"
-            wire:model="search" required />
+          <input name="query" class="form-control custom-search" type="search" placeholder="Cerca prodotti..."
+            aria-label="Cerca" wire:model="search" required />
         </form>
+
+        <x-locale lang="IT" />
+        <x-locale lang="UK" />
+        <x-locale lang="LK" />
 
         <div class="navbar-actions d-flex align-items-center gap-2">
           @auth

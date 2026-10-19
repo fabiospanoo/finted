@@ -789,7 +789,7 @@ STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
     clip-path: inset(50%);
 }
 
-.create-upload-input:focus-visible + .create-upload-grid .create-upload-slot {
+.create-upload-input:focus-visible+.create-upload-grid .create-upload-slot {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
 }
@@ -964,7 +964,7 @@ STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
     border-radius: 12px !important;
 }
 
-.create-preview-media > .badge-accent {
+.create-preview-media>.badge-accent {
     z-index: 5;
 }
 
@@ -979,7 +979,7 @@ STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
     height: 100%;
 }
 
-.create-preview-carousel .carousel-item > img,
+.create-preview-carousel .carousel-item>img,
 .create-preview-empty-image {
     display: flex;
     align-items: center;
@@ -988,7 +988,7 @@ STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
     height: 100%;
 }
 
-.create-preview-carousel .carousel-item > img {
+.create-preview-carousel .carousel-item>img {
     object-fit: cover;
 }
 
@@ -1888,383 +1888,10 @@ FOOTER
     }
 }
 
-<<<<<<< HEAD
-/* ========================================================
-   ANNUNCI RIFIUTATI — FINTED
-   Design moderno, elegante e professionale
-   Solo CSS — Nessuna modifica HTML / Livewire
-======================================================== */
-
-
-/* ========================================================
-   1. CONTENITORE PRINCIPALE
-======================================================== */
-
-.rejected-page {
-    width: 100%;
-    margin-top: -15px;
-    padding-bottom: 40px;
-}
-
-
-/* ========================================================
-   2. INTESTAZIONE SEZIONE
-======================================================== */
-
-.rejected-page .badge-accent {
-    display: inline-block;
-    margin-bottom: 14px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-}
-
-.rejected-page h2 {
-    color: var(--text-primary) !important;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-}
-
-
-/* ========================================================
-   3. BARRA DI RICERCA
-======================================================== */
-
-.rejected-page .input-group {
-    max-width: 65% !important;
-    margin-bottom: 0 !important;
-    height: 44px;
-}
-
-.rejected-page .input-group .form-control {
-
-    background-color: var(--card-body-color);
-    border: 1px solid var(--border-color);
-    border-right: none;
-    color: var(--text-primary);
-    border-radius: 14px 0 0 14px;
-    padding: 10px 18px;
-    font-size: 13px;
-    transition: all 0.25s ease;
-}
-
-.rejected-page .input-group .form-control::placeholder {
-    color: var(--text-secondary);
-    opacity: 0.65;
-}
-
-.rejected-page .input-group .form-control:focus {
-    background-color: var(--card-body-color);
-    color: var(--text-primary);
-    border-color: var(--accent-color);
-    box-shadow: none;
-}
-
-
-/* Pulsante X ricerca */
-
-.rejected-page .input-group .btn-outline-secondary {
-
-    --bs-btn-color: var(--text-secondary);
-    --bs-btn-bg: var(--card-body-color);
-    --bs-btn-border-color: var(--border-color);
-
-    --bs-btn-hover-color: var(--accent-color);
-    --bs-btn-hover-bg: var(--card-body-color);
-    --bs-btn-hover-border-color: var(--accent-color);
-
-    --bs-btn-active-color: var(--accent-color);
-    --bs-btn-active-bg: var(--card-body-color);
-    --bs-btn-active-border-color: var(--accent-color);
-
-    border-radius: 0 14px 14px 0;
-    padding: 0 18px;
-    transition: all 0.2s ease;
-}
-
-
-/* ========================================================
-   4. CONTENITORE TABELLA
-======================================================== */
-
-/* CONTENITORE TABELLA CON SCROLL */
-
-.rejected-articles-container {
-    background-color: var(--card-body-color);
-    border: 1px solid var(--border-color);
-    border-radius: 18px;
-
-    /* Altezza massima: intestazione + circa 5 annunci */
-    max-height: 390px;
-
-    /* Scroll verticale quando ci sono più di 5 annunci */
-    overflow-y: auto;
-
-    /* Scroll orizzontale se necessario */
-    overflow-x: auto;
-    margin-top: 8px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-color) transparent;
-}
-
-
-/* ========================================================
-   5. TABELLA PRINCIPALE
-======================================================== */
-
-.rejected-page .table {
-    --bs-table-bg: transparent;
-    --bs-table-color: var(--text-primary);
-    --bs-table-border-color: transparent;
-    --bs-table-hover-bg: rgba(195, 177, 255, 0.045);
-    --bs-table-hover-color: var(--text-primary);
-    width: 100%;
-    margin-bottom: 0;
-    border-collapse: separate;
-    border-spacing: 0;
-}
-
-
-/* ========================================================
-   6. INTESTAZIONE TABELLA
-   Elimina completamente lo sfondo bianco
-======================================================== */
-
-.rejected-page .table thead,
-.rejected-page .table thead.table-light {
-
-    --bs-table-bg: transparent;
-    --bs-table-color: var(--text-secondary);
-    --bs-table-border-color: transparent;
-    background-color: transparent !important;
-}
-
-
-.rejected-page .table thead th {
-    background-color: transparent !important;
-    color: var(--text-secondary) !important;
-    border: none !important;
-    border-bottom: 1px solid var(--border-color) !important;
-    padding: 18px 22px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    white-space: nowrap;
-}
-
-
-/* ========================================================
-   7. RIGHE DELLA TABELLA
-======================================================== */
-
-.rejected-page .table tbody tr {
-    background-color: transparent;
-    transition: background-color 0.25s ease;
-}
-
-
-.rejected-page .table tbody tr:hover {
-    background-color: rgba(195, 177, 255, 0.045);
-}
-
-
-.rejected-page .table tbody td {
-    background-color: transparent;
-    color: var(--text-primary);
-    padding: 20px 22px;
-    font-size: 13px;
-    vertical-align: middle;
-    border: none;
-    border-bottom: 1px solid var(--border-color);
-    transition: background-color 0.25s ease;
-}
-
-
-/* Elimina il bordo dall'ultima riga */
-
-.rejected-page .table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-
-/* Titolo annuncio */
-
-.rejected-page .table tbody td.fw-semibold {
-    color: var(--text-primary);
-    font-size: 13px;
-    font-weight: 600;
-}
-
-
-/* Descrizione annuncio */
-
-.rejected-page .table tbody td:nth-child(2) {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 380px;
-}
-
-
-/* ========================================================
-   8. BADGE CATEGORIA
-======================================================== */
-
-.rejected-page .badge.bg-secondary {
-
-    background-color: rgba(195, 177, 255, 0.15) !important;
-    color: var(--accent-color) !important;
-    border: 1px solid rgba(195, 177, 255, 0.25);
-    border-radius: 8px;
-    padding: 7px 12px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-
-/* ========================================================
-   9. PULSANTE RIPRISTINA
-======================================================== */
-
-.rejected-page .btn-success {
-    --bs-btn-color: var(--accent-text-color);
-    --bs-btn-bg: var(--accent-color);
-    --bs-btn-border-color: var(--accent-color);
-    --bs-btn-hover-color: var(--accent-text-color);
-    --bs-btn-hover-bg: #d4c7ff;
-    --bs-btn-hover-border-color: #d4c7ff;
-    --bs-btn-active-color: var(--accent-text-color);
-    --bs-btn-active-bg: #d4c7ff;
-    --bs-btn-active-border-color: #d4c7ff;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 9px 15px;
-    transition: all 0.25s ease;
-}
-
-
-.rejected-page .btn-success:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(195, 177, 255, 0.2);
-}
-
-
-/* ========================================================
-   10. PULSANTE ELIMINA DEFINITIVAMENTE
-======================================================== */
-
-.rejected-page .btn-danger {
-    --bs-btn-color: #ff9db0;
-    --bs-btn-bg: rgba(255, 157, 176, 0.06);
-    --bs-btn-border-color: rgba(255, 157, 176, 0.3);
-    --bs-btn-hover-color: #ffffff;
-    --bs-btn-hover-bg: #c65b75;
-    --bs-btn-hover-border-color: #c65b75;
-    --bs-btn-active-color: #ffffff;
-    --bs-btn-active-bg: #c65b75;
-    --bs-btn-active-border-color: #c65b75;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 9px 15px;
-    transition: all 0.25s ease;
-}
-
-
-.rejected-page .btn-danger:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(198, 91, 117, 0.15);
-}
-
-
-/* ========================================================
-   11. MESSAGGIO DI CONFERMA
-======================================================== */
-
-.rejected-page .alert-success {
-    --bs-alert-color: var(--text-primary);
-    --bs-alert-bg: var(--card-body-color);
-    --bs-alert-border-color: var(--accent-color);
-    border-radius: 14px;
-    padding: 14px 20px;
-    font-size: 13px;
-}
-
-
-/* ========================================================
-   12. NESSUN RISULTATO
-======================================================== */
-
-.rejected-page .alert-light {
-    --bs-alert-color: var(--text-primary);
-    --bs-alert-bg: var(--card-body-color);
-    background-color: var(--card-body-color);
-    border: 1px dashed var(--border-color) !important;
-    border-radius: 18px;
-    padding: 35px 20px !important;
-}
-
-
-.rejected-page .alert-light .bi {
-    color: var(--accent-color);
-}
-
-
-.rejected-page .alert-light h3 {
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
-
-/* ========================================================
-   13. RESPONSIVE
-======================================================== */
-
-@media (max-width: 992px) {
-    .rejected-page .input-group {
-        max-width: 100% !important;
-        width: 100%;
-    }
-
-    .rejected-page .table {
-        min-width: 850px;
-    }
-
-    .rejected-page .table thead th {
-        padding: 15px 16px;
-    }
-
-    .rejected-page .table tbody td {
-        padding: 16px;
-    }
-}
-
-
-@media (max-width: 576px) {
-    .rejected-page {
-        margin-top: 0;
-    }
-
-    .rejected-page h2 {
-        font-size: 22px;
-    }
-
-    .rejected-articles-container {
-        border-radius: 14px;
-    }
-
-    .rejected-page .table tbody td {
-        font-size: 12px;
-    }
-=======
 .img-preview {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 120px;
     width: 120px;
->>>>>>> 0c9d84aa6d18d557eb1c21e46c67c3704b128190
 }
