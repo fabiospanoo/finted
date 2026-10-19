@@ -12,6 +12,7 @@ html {
     padding: 0;
     margin: 0;
     background-color: var(--body-color);
+    overflow-x: clip;
 }
 
 body {
@@ -745,6 +746,134 @@ SEZIONE AUTH FULL BODY A 2 COLONNE (50 / 50)
 /* ========================================================
 STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
 ======================================================== */
+.create-article-page {
+    max-width: 1440px;
+    margin-inline: auto;
+}
+
+.create-page-heading h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    letter-spacing: -0.03em;
+}
+
+.create-page-heading {
+    text-align: center;
+}
+
+.create-page-heading .badge-accent {
+    margin-bottom: 0.75rem;
+}
+
+.create-form-card {
+    background-color: var(--card-body-color);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    padding: clamp(20px, 3vw, 32px);
+}
+
+.create-image-count {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.create-upload-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.create-upload-input:focus-visible + .create-upload-grid .create-upload-slot {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.create-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.6rem;
+}
+
+.create-upload-slot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px dashed var(--border-color);
+    border-radius: 15px;
+    background-color: var(--body-color);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.create-upload-slot:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(195, 177, 255, 0.08);
+}
+
+.create-upload-slot i {
+    font-size: 1.25rem;
+}
+
+.create-upload-slot.has-image {
+    border-style: solid;
+    border-color: var(--border-color);
+    padding: 0;
+}
+
+.create-upload-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.create-upload-remove {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background-color: rgba(30, 27, 43, 0.8);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.create-upload-slot:hover .create-upload-remove,
+.create-upload-slot:focus-visible .create-upload-remove {
+    opacity: 1;
+}
+
+.create-preview-panel {
+    position: sticky;
+    top: 1.5rem;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+}
+
+.create-preview-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    padding-inline: 0.25rem;
+}
 
 /* Input a pillola per titolo e prezzo */
 .create-input-pill {
@@ -817,28 +946,152 @@ STILI CREA ARTICOLO & ANTEPRIMA LIVEWIRE
     font-weight: 700;
 }
 
-/* Card Anteprima (Destra) */
+/* Anteprima catalogo */
 .create-preview-card {
-    background-color: var(--card-body-color);
-    border: 1px solid var(--border-color);
-    border-radius: 24px;
-    padding: 32px 28px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 16px;
+    border-radius: 18px;
+    transition: border-color 0.2s ease;
 }
 
-.create-preview-divider {
-    height: 1px;
-    background-color: var(--border-color);
+.create-preview-card:hover {
+    transform: none;
+    border-color: var(--border-color);
+}
+
+.create-preview-media {
+    aspect-ratio: 2 / 3;
+    border-radius: 12px !important;
+}
+
+.create-preview-media > .badge-accent {
+    z-index: 5;
+}
+
+.create-preview-carousel {
+    position: absolute;
+    inset: 0;
+}
+
+.create-preview-carousel .carousel-inner,
+.create-preview-carousel .carousel-item {
     width: 100%;
-    opacity: 0.7;
+    height: 100%;
 }
 
-/* Linee placeholder segnaposto */
-.create-placeholder-line {
-    height: 6px;
-    background-color: var(--border-color);
-    border-radius: 999px;
-    opacity: 0.8;
+.create-preview-carousel .carousel-item > img,
+.create-preview-empty-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.create-preview-carousel .carousel-item > img {
+    object-fit: cover;
+}
+
+.create-preview-empty-image {
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--body-color);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.create-preview-empty-image i {
+    color: var(--accent-color);
+    font-size: 2.25rem;
+}
+
+.create-preview-carousel .carousel-control-prev,
+.create-preview-carousel .carousel-control-next {
+    z-index: 2;
+    width: 15%;
+}
+
+.create-preview-carousel .carousel-control-prev-icon,
+.create-preview-carousel .carousel-control-next-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: rgba(30, 27, 43, 0.68);
+    background-size: 55%;
+}
+
+.create-preview-details {
+    padding: 0;
+}
+
+.create-preview-title {
+    overflow: hidden;
+    font-size: 16px;
+    max-width: 100%;
+    text-overflow: ellipsis;
+}
+
+.create-preview-body {
+    font-size: 13px;
+}
+
+.create-preview-price {
+    border-top: 1px solid var(--border-color);
+    padding-top: 0.65rem !important;
+}
+
+/* Griglia immagini dell'annuncio nella pagina revisore */
+.revisor-article-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    background-color: var(--card-body-color);
+}
+
+.revisor-article-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.revisor-no-images {
+    display: flex;
+    min-height: 220px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.75rem;
+    border: 1px dashed var(--border-color);
+    border-radius: 18px;
+    background-color: var(--card-body-color);
+    color: var(--text-secondary);
+}
+
+.revisor-no-images i {
+    color: var(--accent-color);
+    font-size: 2rem;
+}
+
+.revisor-article-card {
+    position: sticky;
+    top: 1.5rem;
+    padding: clamp(20px, 2.5vw, 32px);
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    background-color: var(--card-body-color);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 991.98px) {
+    .create-preview-panel {
+        position: static;
+    }
 }
 
 /* ========================================================
@@ -953,6 +1206,29 @@ FOOTER
     font-weight: 600;
 }
 
+.show-page {
+    max-width: 1320px;
+    margin-inline: auto;
+}
+
+.show-detail-layout {
+    --bs-gutter-y: 1.5rem;
+}
+
+.show-gallery-column,
+.show-details-column {
+    min-width: 0;
+}
+
+.show-details-column {
+    display: flex;
+    align-items: center;
+}
+
+.show-product-card {
+    width: 100%;
+}
+
 /* Box principale dell'immagine / Carosello */
 .show-carousel-box {
     background-color: var(--card-body-color);
@@ -960,7 +1236,8 @@ FOOTER
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    height: 380px;
+    height: 100%;
+    min-height: 0;
 }
 
 .show-carousel-box .carousel-inner,
@@ -971,7 +1248,7 @@ FOOTER
 .show-carousel-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Cerchio centrale placeholder del mockup */
@@ -1037,10 +1314,33 @@ FOOTER
     z-index: 4;
 }
 
-/* Miniature (Thumbnails) sotto il box principale */
+/* Galleria verticale con miniature a sinistra */
+.show-gallery-layout {
+    display: grid;
+    grid-template-columns: clamp(68px, 17%, 96px) minmax(0, 1fr);
+    grid-template-areas: "thumbnails carousel";
+    height: min(72vh, 620px);
+    min-height: 420px;
+    align-items: stretch;
+    gap: clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+.show-carousel-box {
+    grid-area: carousel;
+}
+
+.show-carousel-thumbnails {
+    display: flex;
+    grid-area: thumbnails;
+    flex-direction: column;
+    gap: 0.65rem;
+    min-height: 0;
+}
+
 .show-thumb-btn {
-    flex: 1;
-    height: 80px;
+    width: 100%;
+    flex: 1 1 0;
+    min-height: 0;
     background-color: var(--card-body-color);
     border: 1px solid var(--border-color);
     border-radius: 14px;
@@ -1060,7 +1360,34 @@ FOOTER
 .show-thumb-btn img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+@media (max-width: 575.98px) {
+    .show-gallery-layout {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "carousel"
+            "thumbnails";
+        height: auto;
+        min-height: 0;
+    }
+
+    .show-carousel-box {
+        height: auto;
+        aspect-ratio: 4 / 5;
+    }
+
+    .show-carousel-thumbnails {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+    }
+
+    .show-thumb-btn {
+        flex: 0 0 64px;
+        aspect-ratio: 4 / 5;
+    }
 }
 
 .show-thumb-circle {
@@ -1075,7 +1402,35 @@ FOOTER
     background-color: var(--card-body-color);
     border: 1px solid var(--border-color);
     border-radius: 22px;
-    padding: 34px 30px;
+    padding: clamp(24px, 3vw, 40px);
+    height: auto;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+}
+
+@media (max-width: 991.98px) {
+    .show-gallery-layout {
+        height: auto;
+        min-height: 0;
+    }
+
+    .show-carousel-box {
+        height: auto;
+        aspect-ratio: 4 / 5;
+    }
+
+    .show-details-column {
+        display: block;
+    }
+}
+
+.show-product-title {
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    line-height: 1.2;
+}
+
+.show-product-price {
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+    margin-bottom: 2rem !important;
 }
 
 /* Avatar circolare del venditore con iniziali */
@@ -1533,6 +1888,7 @@ FOOTER
     }
 }
 
+<<<<<<< HEAD
 /* ========================================================
    ANNUNCI RIFIUTATI — FINTED
    Design moderno, elegante e professionale
@@ -1903,4 +2259,12 @@ FOOTER
     .rejected-page .table tbody td {
         font-size: 12px;
     }
+=======
+.img-preview {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+>>>>>>> 0c9d84aa6d18d557eb1c21e46c67c3704b128190
 }

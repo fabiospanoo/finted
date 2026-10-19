@@ -31,9 +31,9 @@
         </div>
     </div>
 
-    @if (session('message'))
+    @if (session('rejected_articles_message'))
         <div class="alert alert-success" role="status">
-            {{ session('message') }}
+            {{ session('rejected_articles_message') }}
         </div>
     @endif
 

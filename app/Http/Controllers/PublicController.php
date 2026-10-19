@@ -20,6 +20,12 @@ class PublicController extends Controller
     public function searchArticles(Request $request)
     {
         $query = $request->input('query');
+
+        if (! is_string($query) || trim($query) === '') {
+            return redirect()->route('tutti-gli-articoli');
+        }
+
+        $query = trim($query);
         $articles = Article::search($query)->where('is_accepted', true)->paginate(10);
 
         return view('articles.searched', ['articles' => $articles, 'query' => $query]);

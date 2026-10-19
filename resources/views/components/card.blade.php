@@ -16,10 +16,10 @@
                              class="w-100">
                     @else
                         <div class="card-placeholder w-100 h-100">
-                            <img src="https://picsum.photos/800/800"
+                            <img src="{{ $article->images->isNotEmpty() ? $article->images->first()->getUrl(400, 600) : 'https://picsum.photos/800/800' }}"
                                  alt="Immagine di esempio"
                                  class="w-100 h-100">
-                        </div>
+                        </div>       
                     @endif
                 </div>
         @if(isset($article->id))
@@ -50,8 +50,8 @@
                 <form method="POST" action="{{ route('reject', $article) }}">
                     @csrf
                     @method('PATCH')
-                    <button type="submit" class="btn-ui-accent btn p-0">
-                        <i class="bi bi-trash3-fill"></i>
+                    <button type="submit" class="btn-ui-accent btn p-0 d-inline-block">
+                        <i class="bi bi-arrow-return-left fw-bolder" style="-webkit-text-stroke: 0.5px currentColor; padding: 0 !important; line-height: 1;""></i>
                     </button>
                 </form>
             @endif
