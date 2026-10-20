@@ -176,14 +176,24 @@ return [
             'min' => 'Per pubblicare l\'annuncio devi caricare almeno un\'immagine.',
             'max' => 'Puoi caricare al massimo 6 immagini.',
             'invalid_file' => 'Ogni file deve essere un\'immagine valida.',
-            'file_size' => 'Ogni immagine deve pesare al massimo 1 MB.',
+            'file_size' => 'Ogni immagine deve pesare al massimo 2 MB.',
         ],
         'images.*' => [
             'image' => 'Ogni file deve essere un\'immagine valida.',
-            'max' => 'Ogni immagine deve pesare al massimo 1 MB.',
+            'max' => 'Ogni immagine deve pesare al massimo 2 MB.',
         ],
         'temporary_images' => [
             'max' => 'Puoi selezionare al massimo 6 immagini alla volta.',
+        ],
+        'temporary_images.*' => [
+            'uploaded' => 'Il caricamento dell\'immagine non è riuscito (il file supera il limite consentito di 2 MB).',
+            'image' => 'Il file deve essere un\'immagine valida.',
+            'max' => 'Ogni immagine deve pesare al massimo 2 MB.',
+        ],
+        'files.*' => [
+            'uploaded' => 'Il caricamento dell\'immagine non è riuscito (il file supera il limite consentito di 2 MB).',
+            'image' => 'Il file deve essere un\'immagine valida.',
+            'max' => 'Ogni immagine deve pesare al massimo 2 MB.',
         ],
     ],
 
@@ -204,6 +214,10 @@ return [
         'category_id' => 'categoria',
         'images' => 'immagini',
         'subject' => 'oggetto',
+        'temporary_images' => 'immagini',
+        'temporary_images.*' => 'immagine',
+        'files' => 'file',
+        'files.*' => 'immagine',
     ],
 
 ];

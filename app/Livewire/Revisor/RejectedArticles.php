@@ -15,7 +15,7 @@ class RejectedArticles extends Component
             ->findOrFail($articleId);
 
         $article->setAccepted(true);
-        session()->flash('rejected_articles_message', "Hai ripristinato l'articolo {$article->title}.");
+        session()->flash('rejected_articles_message', __('ui.articolo-ripristinato', ['title' => $article->title]));
     }
 
     public function destroy($articleId)

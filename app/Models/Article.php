@@ -54,8 +54,13 @@ class Article extends Model
         ];
     }
 
-    public function images() : HasMany
+    public function images(): HasMany
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function hasRedFlags(): bool
+    {
+        return $this->images->contains(fn ($image) => $image->hasRedFlags());
     }
 }

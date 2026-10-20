@@ -22,7 +22,7 @@
                 <button
                     class="btn rejected-search-clear"
                     type="button"
-                    aria-label="Cancella ricerca"
+                    aria-label="{{ __('ui.cancella-ricerca') }}"
                     wire:click="$set('search', '')"
                 >
                     <i class="bi bi-x-lg"></i>
@@ -67,7 +67,7 @@
 
                             <td>
                                 <span class="badge rejected-category-badge">
-                                    {{ $article->category->name ?? __('ui.senza-categoria') }}
+                                    {{ $article->category ? __('ui.' . $article->category->name) : __('ui.senza-categoria') }}
                                 </span>
                             </td>
 
@@ -79,7 +79,7 @@
                                         type="button"
                                         class="btn btn-sm rejected-restore-btn text-nowrap"
                                         wire:click="restore({{ $article->id }})"
-                                        wire:confirm="Vuoi ripristinare questo annuncio?"
+                                        wire:confirm="{{ __('ui.conferma-ripristino') }}"
                                         wire:loading.attr="disabled"
                                         wire:target="restore({{ $article->id }})">
 
@@ -92,7 +92,7 @@
                                         type="button"
                                         class="btn btn-sm rejected-delete-btn text-nowrap"
                                         wire:click="destroy({{ $article->id }})"
-                                        wire:confirm="Sei sicuro di voler eliminare definitivamente questo annuncio?"
+                                        wire:confirm="{{ __('ui.conferma-eliminazione') }}"
                                         wire:loading.attr="disabled"
                                         wire:target="destroy({{ $article->id }})">
 
@@ -120,8 +120,7 @@
             @if (trim($search) !== '')
                 <h3 class="h5 nessun-risultato-trovato">{{ __('ui.nessun-risultato-trovato') }}</h3>
                 <p class="text-secondary mb-0">
-                    Non ci sono annunci che corrispondono alla ricerca
-                    "{{ $search }}".
+                    {{ __('ui.nessun-risultato-ricerca', ['search' => $search]) }}
                 </p>
             @else
                 <h3 class="h5 nessun-annuncio-rifiutato">{{ __('ui.nessun-annuncio-rifiutato') }}</h3>

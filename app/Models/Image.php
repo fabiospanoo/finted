@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
+use Override;
 
 class Image extends Model
 {
@@ -34,5 +35,24 @@ class Image extends Model
     public function getUrl($w = null, $h = null)
     {
         return self::getUrlByFilePath($this->path, $w, $h);
+    }
+
+    #[Override]
+    protected function casts()
+    {
+        return [
+            'labels' => 'array',
+        ];
+    }
+
+    public function hasRedFlags(): bool
+    {
+        $danger = 'text-danger';
+
+        return str_contains($this->adult ?? '', $danger)
+            || str_contains($this->violence ?? '', $danger)
+            || str_contains($this->spoof ?? '', $danger)
+            || str_contains($this->racy ?? '', $danger)
+            || str_contains($this->medical ?? '', $danger);
     }
 }

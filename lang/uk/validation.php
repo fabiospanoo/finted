@@ -186,11 +186,11 @@ return [
             'min' => 'Upload at least one image to publish the listing.',
             'max' => 'You can upload a maximum of 6 images.',
             'invalid_file' => 'Each file must be a valid image.',
-            'file_size' => 'Each image must weigh at most 1 MB.',
+            'file_size' => 'Each image must weigh at most 2 MB.',
         ],
         'images.*' => [
             'image' => 'Each file must be a valid image.',
-            'max' => 'Each image must weigh at most 1 MB.',
+            'max' => 'Each image must weigh at most 2 MB.',
         ],
         'temporary_images' => [
             'max' => 'You can select a maximum of 6 images at a time.',

@@ -27,14 +27,21 @@ class RevisorController extends Controller
     {
         $article->setAccepted(true);
 
-        return redirect()->back()->with('review_message', "Hai accettato l'articolo $article->title");
+        return redirect()->back()->with('review_message', __('ui.articolo-accettato', ['title' => $article->title]));
     }
 
     public function reject(Article $article)
     {
         $article->setAccepted(false);
 
-        return redirect()->back()->with('review_message', "Hai rifiutato l'articolo $article->title");
+        return redirect()->back()->with('review_message', __('ui.articolo-rifiutato', ['title' => $article->title]));
+    }
+
+    public function destroy(Article $article): RedirectResponse
+    {
+        $article->delete();
+
+        return redirect()->back();
     }
 
     public function becomeRevisor(): View
@@ -60,13 +67,13 @@ class RevisorController extends Controller
             $validated['body'],
         ));
 
-        return redirect()->route('home')->with('message', 'La tua richiesta di diventare revisore è stata inviata con successo!');
+        return redirect()->route('home')->with('message', __('ui.richiesta-revisore-inviata'));
     }
 
     public function makeRevisor(User $user)
     {
         Artisan::call('app:make-user-revisor', ['email' => $user->email]);
 
-        return redirect()->route('home')->with('message', "L'utente {$user->name} ora è revisore!");
+        return redirect()->route('home')->with('message', __('ui.utente-ora-revisore', ['name' => $user->name]));
     }
 }
