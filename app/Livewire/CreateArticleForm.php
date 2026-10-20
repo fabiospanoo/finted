@@ -63,7 +63,7 @@ class CreateArticleForm extends Component
             foreach ($this->images as $image) {
                 $newFileName = "articles/{$this->article->id}";
                 $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
-                dispatch(new ResizeImage($newImage->path, 400, 600));
+                dispatch(new ResizeImage($newImage->path, 800, 1200));
             }
             File::deleteDirectory(storage_path('/app/livewire-tmp'));
         }

@@ -42,7 +42,7 @@
                                     data-bs-target="#article-carousel"
                                     data-bs-slide-to="{{ $key }}"
                                     aria-label="Visualizza immagine {{ $key + 1 }}">
-                                <img src="{{ $image->getUrl() }}" alt="Miniatura {{ $key + 1 }}">
+                                <img src="{{ $image->getUrl(800, 1200) }}" alt="Miniatura {{ $key + 1 }}">
                             </button>
                             @endforeach
                         </div>
@@ -53,7 +53,7 @@
                         <div class="carousel-inner">
                             @forelse ($article->images as $key => $image)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <img src="{{ $image->getUrl() }}"
+                                    <img src="{{ $image->getUrl(800, 1200) }}"
                                         class="d-block w-100 rounded shadow"
                                         alt="Immagine {{ $key + 1 }} dell'articolo {{ $article->title }}">
                                 </div>

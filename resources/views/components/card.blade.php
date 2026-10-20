@@ -11,7 +11,7 @@
                     </span>
 
                     @if($article->images->isNotEmpty())
-                        <img src="{{ $article->images->first()->getUrl() }}"
+                        <img src="{{ $article->images->first()->getUrl(800, 1200) }}"
                              alt="{{ $article->title }}"
                              class="w-100 h-100">
                     @else
