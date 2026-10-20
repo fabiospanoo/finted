@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ __('ui.home') }}
+    </x-slot>
+
     @if (session('errorMessage'))
         <div class="row justify-content-center pt-5">
             <div class="col-5 alert alert-danger text-center">
@@ -73,11 +77,13 @@
                     <div class="row align-items-center gy-3">
                         <div class="col-md-8">
                             <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="small text-accent fw-bold text-uppercase offerta-in-corso" style="font-size: 12px;">
+                                <span class="small text-accent fw-bold text-uppercase offerta-in-corso"
+                                    style="font-size: 12px;">
                                     {{ __('ui.offerta-in-corso') }}
                                 </span>
                                 <span class="small footer-muted text-uppercase scade-tra" style="font-size: 12px;">
-                                    {{ __('ui.scade-tra') }} <span id="promo-countdown" class="fw-bold text-accent">59:59</span>
+                                    {{ __('ui.scade-tra') }} <span id="promo-countdown"
+                                        class="fw-bold text-accent">59:59</span>
                                 </span>
                             </div>
 

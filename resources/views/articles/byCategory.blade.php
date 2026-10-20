@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ __('ui.' . $category->name) }}
+    </x-slot>
+
     <div class="container-fluid pt-4 m-0 px-0">
 
         {{-- Intestazione --}}

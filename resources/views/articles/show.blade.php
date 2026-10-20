@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ $article->title }}
+    </x-slot>
+
     <div class="show-page py-4 my-2">
         
         <!-- Breadcrumb identico al mockup (Home / Categoria / Titolo) -->

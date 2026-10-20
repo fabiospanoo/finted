@@ -1,4 +1,8 @@
-<x-layout :title="__('ui.privacy_page.page_title')">
+<x-layout>
+    <x-slot name="title">
+        {{ __('ui.privacy_page.page_title') }}
+    </x-slot>
+
     <main class="container privacy-page py-5">
         <nav aria-label="{{ __('ui.privacy_page.breadcrumb_label') }}" class="mb-4">
             <ol class="breadcrumb privacy-breadcrumb mb-0">

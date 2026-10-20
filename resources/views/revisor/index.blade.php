@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ __('ui.area-revisore') }}
+    </x-slot>
+
     <div class="container-fluid px-0 py-4">
 
         @if (session('review_message'))

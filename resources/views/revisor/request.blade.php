@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ __('ui.lavora-con-noi') }}
+    </x-slot>
+
     <div class="container-fluid py-5">
         <section class="revisor-request-page mx-auto" aria-labelledby="revisor-request-title">
             <header class="text-center mb-4">

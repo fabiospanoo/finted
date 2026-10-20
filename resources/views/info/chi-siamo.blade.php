@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ __('ui.chi-siamo') }}
+    </x-slot>
+
     <div class="container py-5">
 
         {{-- Introduzione --}}

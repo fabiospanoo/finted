@@ -1,4 +1,9 @@
 <x-layout>
+
+    <x-slot name="title">
+        Finted | {{ __('ui.articoli') }}
+    </x-slot>
+
     <div class="container-fluid pt-4 m-0 px-0">
         <section aria-labelledby="articles-index-title">
             <header class="pt-2 mb-4">

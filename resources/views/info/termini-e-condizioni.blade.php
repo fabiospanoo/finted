@@ -1,4 +1,8 @@
-<x-layout :title="__('ui.terms_page.page_title')">
+<x-layout>
+    <x-slot name="title">
+        {{ __('ui.terms_page.page_title') }}
+    </x-slot>
+
     <main class="container terms-page py-5">
         <nav aria-label="{{ __('ui.terms_page.breadcrumb_label') }}" class="mb-4">
             <ol class="breadcrumb terms-breadcrumb mb-0">

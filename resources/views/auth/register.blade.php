@@ -1,4 +1,8 @@
 <x-layout>
+    <x-slot name="title">
+        Finted | {{ __('ui.registrati') }}
+    </x-slot>
+
     <div class="auth-page-container">
         <div class="auth-grid">
 
