@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Jobs\GoogleVisionLabelImage;
 use App\Jobs\GoogleVisionSafeSearch;
+use App\Jobs\RemoveFaces;
 use App\Jobs\ResizeImage;
 use App\Models\Article;
 use App\Models\Category;
@@ -44,12 +45,13 @@ class CreateArticleForm extends Component
             'price' => 'required|numeric|min:0',
             'category_id' => 'required|exists:categories,id',
             'images' => 'required|array|min:1|max:6',
-            'images.*' => 'image|max:2048',
+            'images.*' => 'image|mimes:jpg,png|max:2048',
         ], [
             'images.required' => __('validation.custom.images.required'),
             'images.min' => __('validation.custom.images.min'),
             'images.max' => __('validation.custom.images.max'),
             'images.*.image' => __('validation.custom.images.invalid_file'),
+            'images.*.mimes' => __('validation.custom.images.invalid_format'),
             'images.*.max' => __('validation.custom.images.file_size'),
         ]);
 
@@ -65,9 +67,11 @@ class CreateArticleForm extends Component
             foreach ($this->images as $image) {
                 $newFileName = "articles/{$this->article->id}";
                 $newImage = $this->article->images()->create(['path' => $image->store($newFileName, 'public')]);
-                dispatch(new ResizeImage($newImage->path, 800, 1200));
-                dispatch(new GoogleVisionSafeSearch($newImage->id));
-                dispatch(new GoogleVisionLabelImage($newImage->id));
+                RemoveFaces::withChain([
+                    new ResizeImage($newImage->path, 800, 1200),
+                    new GoogleVisionSafeSearch($newImage->id),
+                    new GoogleVisionLabelImage($newImage->id),
+                ])->dispatch($newImage->id);
             }
             File::deleteDirectory(storage_path('/app/livewire-tmp'));
         }
@@ -98,6 +102,7 @@ class CreateArticleForm extends Component
             'category_id.exists' => 'La categoria selezionata non è valida.',
             'temporary_images.*.uploaded' => 'Il caricamento dell\'immagine non è riuscito (il file supera il limite consentito di 2 MB).',
             'temporary_images.*.image' => 'Il file selezionato deve essere un\'immagine valida.',
+            'temporary_images.*.mimes' => __('validation.custom.images.invalid_format'),
             'temporary_images.*.max' => 'L\'immagine non può superare 2 MB.',
             'temporary_images.max' => 'Puoi selezionare al massimo 6 immagini alla volta.',
         ];
@@ -129,7 +134,7 @@ class CreateArticleForm extends Component
     {
         $this->validate([
             'temporary_images' => 'array|max:6',
-            'temporary_images.*' => 'image|max:2048',
+            'temporary_images.*' => 'image|mimes:jpg,png|max:2048',
         ]);
 
         if (count($this->images) + count($this->temporary_images) > 6) {

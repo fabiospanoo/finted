@@ -176,6 +176,7 @@ return [
             'min' => 'Per pubblicare l\'annuncio devi caricare almeno un\'immagine.',
             'max' => 'Puoi caricare al massimo 6 immagini.',
             'invalid_file' => 'Ogni file deve essere un\'immagine valida.',
+            'invalid_format' => 'Sono consentite solo immagini in formato JPG o PNG.',
             'file_size' => 'Ogni immagine deve pesare al massimo 2 MB.',
         ],
         'images.*' => [

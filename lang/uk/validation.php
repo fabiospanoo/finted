@@ -186,6 +186,7 @@ return [
             'min' => 'Upload at least one image to publish the listing.',
             'max' => 'You can upload a maximum of 6 images.',
             'invalid_file' => 'Each file must be a valid image.',
+            'invalid_format' => 'Only JPG or PNG images are allowed.',
             'file_size' => 'Each image must weigh at most 2 MB.',
         ],
         'images.*' => [

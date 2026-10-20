@@ -23,7 +23,7 @@
                             <span class="create-image-count">{{ count($images) }} / 6</span>
                         </div>
                         <p class="text-secondary small mb-3 aggiungi-immagini-info">{{ __('ui.aggiungi-immagini-info') }}</p>
-                        <input id="temporary_images" type="file" wire:model.live="temporary_images" accept="image/*" multiple
+                        <input id="temporary_images" type="file" wire:model.live="temporary_images" accept=".jpg,.png,image/jpeg,image/png" multiple
                             class="create-upload-input @error('temporary_images.*') is-invalid @enderror @error('temporary_images') is-invalid @enderror @error('images') is-invalid @enderror"/>
                         <div class="create-upload-grid">
                             @for ($slot = 0; $slot < 6; $slot++)
