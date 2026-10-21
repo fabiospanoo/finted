@@ -88,7 +88,8 @@
             <div class="dropdown">
               <button class="btn btn-custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <span class="ciao">{{ __('ui.ciao') }}</span>, {{ Auth::user()->name }}
+                <span class="ciao">{{ __('ui.ciao') }}</span>,
+                <span class="navbar-user-name">{{ Auth::user()->name }}</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end custom-dropdown-menu">
                 <li>
