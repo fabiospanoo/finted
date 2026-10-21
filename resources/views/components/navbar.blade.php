@@ -43,7 +43,7 @@
 
         @guest
           @unless (request()->routeIs('login', 'register'))
-            <div class="navbar-guest-actions d-lg-none d-flex align-items-center gap-2">
+            <div class="navbar-guest-actions d-flex align-items-center gap-2">
               <a href="{{ route('login') }}"
                 class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
               <a href="{{ route('register') }}"
@@ -61,15 +61,6 @@
         </form>
 
         {{-- Dropdown per la selezione della lingua --}}
-        @php
-          $languages = [
-            'it' => ['nation' => 'it', 'name' => 'Italiano'],
-            'lk' => ['nation' => 'lk', 'name' => 'සිංහල'],
-            'en' => ['nation' => 'gb', 'name' => 'English'],
-          ];
-          $current = app()->getLocale();
-        @endphp
-
         <div class="dropdown language-dropdown">
           <button class="btn btn-custom-outline dropdown-toggle language-toggle" type="button" data-bs-toggle="dropdown"
             aria-expanded="false" aria-label="Lingua: {{ $languages[$current]['name'] ?? 'Italiano' }}">
@@ -98,7 +89,7 @@
             <div class="dropdown">
               <button class="btn btn-custom-outline dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
-                <span class="ciao">{{ __('ui.ciao') }}</span>,
+                <span class="ciao">{{ __('ui.ciao') }},&nbsp;</span> 
                 <span class="navbar-user-name">{{ Auth::user()->name }}</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end custom-dropdown-menu">
@@ -112,10 +103,12 @@
             </div>
           @else
             @unless (request()->routeIs('login', 'register'))
-              <a href="{{ route('login') }}"
-                class="btn btn-custom-outline align-items-center accedi d-none d-lg-inline-flex">{{ __('ui.accedi') }}</a>
-              <a href="{{ route('register') }}"
-                class="btn btn-custom-accent align-items-center registrati d-none d-lg-inline-flex">{{ __('ui.registrati') }}</a>
+              <div class="navbar-desktop-auth-actions align-items-center gap-2">
+                <a href="{{ route('login') }}"
+                  class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
+                <a href="{{ route('register') }}"
+                  class="btn btn-custom-accent align-items-center registrati">{{ __('ui.registrati') }}</a>
+              </div>
             @endunless
           @endauth
         </div>
@@ -130,12 +123,6 @@
           class="category-pill {{ request()->routeIs('tutti-gli-articoli') ? 'btn-custom-accent' : 'btn-custom-outline' }} text-nowrap tutti">
           {{ __('ui.tutti') }}
         </a>
-        @php
-          $currentRouteCategory = request()->route('category');
-          $currentCategoryId = is_object($currentRouteCategory)
-            ? $currentRouteCategory->id
-            : $currentRouteCategory;
-        @endphp
         @foreach($categories as $category)
           <a href="{{ route('categoria', ['category' => $category, 'categories' => 'open']) }}" wire:navigate
             class="category-pill {{ request()->routeIs('categoria') && (int) $currentCategoryId === (int) $category->id ? 'btn-custom-accent' : 'btn-custom-outline' }} text-nowrap">
@@ -146,51 +133,3 @@
     </div>
   </div>
 </nav>
-
-<script>
-  (function () {
-    function initNavbarSearchMobile() {
-      const navbarLayout = document.querySelector('.navbar-layout');
-      const searchGroup = document.querySelector('.navbar-search-group');
-      const searchInput = document.querySelector('.navbar-search input[type="search"]');
-      if (!searchInput) return;
-
-      if (searchInput.dataset.mobileSearchBound === 'true') return;
-      searchInput.dataset.mobileSearchBound = 'true';
-
-      const expandSearch = function () {
-        if (window.innerWidth < 992) {
-          if (searchGroup) searchGroup.classList.add('search-expanded');
-          if (navbarLayout) navbarLayout.classList.add('search-expanded');
-        }
-      };
-
-      const collapseSearch = function () {
-        if (searchGroup) searchGroup.classList.remove('search-expanded');
-        if (navbarLayout) navbarLayout.classList.remove('search-expanded');
-      };
-
-      searchInput.addEventListener('focus', expandSearch);
-      searchInput.addEventListener('touchstart', expandSearch, { passive: true });
-      searchInput.addEventListener('blur', collapseSearch);
-
-      document.addEventListener('pointerdown', function (e) {
-        if (window.innerWidth >= 992) return;
-        const searchForm = document.querySelector('.navbar-search');
-        if (searchForm && !searchForm.contains(e.target)) {
-          if (document.activeElement === searchInput) {
-            searchInput.blur();
-          }
-          collapseSearch();
-        }
-      });
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initNavbarSearchMobile);
-    } else {
-      initNavbarSearchMobile();
-    }
-    document.addEventListener('livewire:navigated', initNavbarSearchMobile);
-  })();
-</script>

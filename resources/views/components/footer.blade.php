@@ -1,15 +1,3 @@
-@php
-    $link = fn(string $name) => Route::has($name) ? route($name) : '#';
-
-    // Contatti di esempio (dati finti, da sostituire)
-    $team = [
-        ['nome' => 'Ivan', 'email' => 'ivan@example.com', 'tel' => '+39 000 123 4561'],
-        ['nome' => 'Mikele', 'email' => 'mikele@example.com', 'tel' => '+39 000 123 4562'],
-        ['nome' => 'Fabio', 'email' => 'fabio@example.com', 'tel' => '+39 000 123 4563'],
-        ['nome' => 'Nadeesh', 'email' => 'nadeesh@example.com', 'tel' => '+39 000 123 4564'],
-    ];
-@endphp
-
 <footer class="site-footer mt-5">
     <div class="container py-5">
         <div class="row g-4">
