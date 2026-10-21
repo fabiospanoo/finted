@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg custom-navbar py-3 sticky-top">
-  <div class="container-fluid px-0 navbar-layout">
+  <div class="container-fluid px-0 navbar-layout {{ Auth::check() ? 'navbar-auth' : 'navbar-guest' }}">
     <a class="navbar-brand" href="{{ route('home') }}">
       <img class="navbar-logo" src="{{ asset('images/logo.png') }}" alt="Logo">
     </a>
@@ -7,13 +7,13 @@
     <div class="navbar-content">
       <div class="navbar-navigation align-items-center gap-2">
         <ul class="navbar-nav navbar-links mb-2 mb-lg-0 gap-lg-2 justify-content-end">
-          <li class="nav-item">
+          <li class="nav-item nav-item-articles">
             <a class="nav-link custom-nav-link articoli"
               href="{{ route('tutti-gli-articoli') }}">{{ __('ui.articoli') }}</a>
           </li>
           @auth
             @if (Auth::user()->is_revisor)
-              <li class="nav-item">
+              <li class="nav-item nav-item-review">
                 <a class="nav-link custom-nav-link nav-link-with-badge revisiona-articoli"
                   href="{{ route('revisor.index') }}">
                   {{ __('ui.revisiona-articoli') }}
@@ -26,12 +26,12 @@
                 </a>
               </li>
             @endif
-            <li class="nav-item">
+            <li class="nav-item nav-item-create">
               <a class="nav-link custom-nav-link inserisci-annuncio"
                 href="{{ route('crea-articolo') }}">{{ __('ui.inserisci-annuncio') }}</a>
             </li>
           @endauth
-          <li class="nav-item">
+          <li class="nav-item nav-item-categories">
             <button class="nav-link custom-nav-link dropdown-toggle categories-toggle categorie" type="button"
               id="categoriesDropdown" data-bs-toggle="collapse" data-bs-target="#navbarCategoryPanel"
               aria-expanded="{{ request()->query('categories') === 'open' ? 'true' : 'false' }}"
@@ -41,6 +41,16 @@
           </li>
         </ul>
 
+        @guest
+          @unless (request()->routeIs('login', 'register'))
+            <div class="navbar-guest-actions d-lg-none d-flex align-items-center gap-2">
+              <a href="{{ route('login') }}"
+                class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
+              <a href="{{ route('register') }}"
+                class="btn btn-custom-accent align-items-center registrati">{{ __('ui.registrati') }}</a>
+            </div>
+          @endunless
+        @endguest
       </div>
 
       <div class="navbar-search-group">
@@ -102,9 +112,9 @@
           @else
             @unless (request()->routeIs('login', 'register'))
               <a href="{{ route('login') }}"
-                class="btn btn-custom-outline align-items-center accedi">{{ __('ui.accedi') }}</a>
+                class="btn btn-custom-outline align-items-center accedi d-none d-lg-inline-flex">{{ __('ui.accedi') }}</a>
               <a href="{{ route('register') }}"
-                class="btn btn-custom-accent align-items-center registrati">{{ __('ui.registrati') }}</a>
+                class="btn btn-custom-accent align-items-center registrati d-none d-lg-inline-flex">{{ __('ui.registrati') }}</a>
             @endunless
           @endauth
         </div>
@@ -135,3 +145,51 @@
     </div>
   </div>
 </nav>
+
+<script>
+  (function () {
+    function initNavbarSearchMobile() {
+      const navbarLayout = document.querySelector('.navbar-layout');
+      const searchGroup = document.querySelector('.navbar-search-group');
+      const searchInput = document.querySelector('.navbar-search input[type="search"]');
+      if (!searchInput) return;
+
+      if (searchInput.dataset.mobileSearchBound === 'true') return;
+      searchInput.dataset.mobileSearchBound = 'true';
+
+      const expandSearch = function () {
+        if (window.innerWidth < 992) {
+          if (searchGroup) searchGroup.classList.add('search-expanded');
+          if (navbarLayout) navbarLayout.classList.add('search-expanded');
+        }
+      };
+
+      const collapseSearch = function () {
+        if (searchGroup) searchGroup.classList.remove('search-expanded');
+        if (navbarLayout) navbarLayout.classList.remove('search-expanded');
+      };
+
+      searchInput.addEventListener('focus', expandSearch);
+      searchInput.addEventListener('touchstart', expandSearch, { passive: true });
+      searchInput.addEventListener('blur', collapseSearch);
+
+      document.addEventListener('pointerdown', function (e) {
+        if (window.innerWidth >= 992) return;
+        const searchForm = document.querySelector('.navbar-search');
+        if (searchForm && !searchForm.contains(e.target)) {
+          if (document.activeElement === searchInput) {
+            searchInput.blur();
+          }
+          collapseSearch();
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initNavbarSearchMobile);
+    } else {
+      initNavbarSearchMobile();
+    }
+    document.addEventListener('livewire:navigated', initNavbarSearchMobile);
+  })();
+</script>
